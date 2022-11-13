@@ -20,8 +20,8 @@ from datetime import datetime
 from nhl_database.queries import epochtime, full_name_to_id
 from nhl_database.nhl_data_models import database, Games
 
-season_year_start = 2022
-filename = "2021-2022-hockey.csv"
+season_year = 2018
+filename = "2017-2018-hockey.csv"
 df = pd.read_csv(filename)
 imported_season_dicts = df.T.to_dict().values()
 
@@ -34,7 +34,7 @@ season_dicts=[]
 for d in imported_season_dicts:
 
     # add in the season year
-    d["season_year"] = season_year_start
+    d["season_year"] = season_year
 
     # standardized date conversion
     datestr = d["Date"]
