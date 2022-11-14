@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Script for calculating what the "difference over sum" distribution looks like
-for the NBA, for later use in mathematical modelling.
+for the nhl, for later use in mathematical modelling.
 
 Inputs:
     None (reads from database)
@@ -18,22 +18,22 @@ from scipy import stats
 
 # from sklearn.preprocessing import StandardScaler
 
-from nba_database.nba_data_models import BballrefScores
+from nhl_database.nhl_data_models import Games
 
 # Get minimum and maximum years for the distribution fitting
-x = BballrefScores.select().order_by(BballrefScores.season_year.asc()).get()
+x = Games.select().order_by(Games.season_year.asc()).get()
 min_val = x.season_year
-x = BballrefScores.select().order_by(BballrefScores.season_year.desc()).get()
+x = Games.select().order_by(Games.season_year.desc()).get()
 max_val = x.season_year
 
-z = BballrefScores.select().where(
-    BballrefScores.season_year >= min_val, BballrefScores.season_year < max_val
+z = Games.select().where(
+    Games.season_year >= min_val, Games.season_year < max_val
 )
-mov = [x.home_pts - x.away_pts for x in z]
+mov = [x.home_g - x.visitor_g for x in z]
 dos = [
-    (x.home_pts - x.away_pts) / (x.home_pts + x.away_pts)
+    (x.home_g - x.visitor_g) / (x.home_g + x.visitor_g)
     for x in z
-    if x.home_pts + x.away_pts > 0
+    if x.home_g + x.visitor_g > 0
 ]
 
 
