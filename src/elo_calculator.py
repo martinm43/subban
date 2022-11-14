@@ -12,8 +12,8 @@ Outputs:
 
 
 """
-from nba_database.queries import season_query, prettytime, team_abbreviation
-from nba_database.nba_data_models import database, BballrefScores, NbaTeamEloData
+from nhl_database.queries import season_query, prettytime, team_abbreviation
+from nhl_database.nhl_data_models import database, Games, TeamEloData
 from pprint import pprint
 from math import exp
 from random import randint
@@ -37,10 +37,10 @@ def predicted_dos_formula(a, b):
     Constants
     ---------
     mean and stddev taken from results of points_analysis.py
-
+    mu = 0.05442,  std = 0.28929
     """
-    mean = 0.01638
-    stddev = 0.03784
+    mean = 0.05442
+    stddev = 0.28929
     DoS = -1 + 2 / (1 + exp((b - a - mean) / stddev))
     return DoS
 
@@ -48,7 +48,7 @@ def predicted_dos_formula(a, b):
 def season_elo_calc(_analysis_list, previous_ratings=None, new_season=True):
     """
     Based on a series of games provided in
-    [away id, away pts, home id, home pts]
+    [visitor id, visitor g, home id, home g]
     format, previous ratings (if applicable),
     and if a previous iteration is being used
     return both the final ratings and a continuous set of ratings
@@ -97,11 +97,12 @@ def season_elo_calc(_analysis_list, previous_ratings=None, new_season=True):
     for g in _analysis_list:
 
         # get previous elo ratings
-        away_rating = season_elo_ratings_list[g[0] - 1]
+        visitor_rating = season_elo_ratings_list[g[0] - 1]
         home_rating = season_elo_ratings_list[g[2] - 1]
         # get expected DoS value, compare it to the real one
-        expected_dos = predicted_dos_formula(away_rating, home_rating)
+        expected_dos = predicted_dos_formula(visitor_rating, home_rating)
         actual_dos = (g[1] - g[3]) / (g[1] + g[3])
+        
         dos_difference = actual_dos - expected_dos
         # adjust ratings
         change_factor = default_K * dos_difference
@@ -220,10 +221,10 @@ def results_summary(season_elo_ratings_list, scaling=100000):
 
 if __name__ == "__main__":
 
-    x = BballrefScores.select().order_by(BballrefScores.season_year.asc()).get()
+    x = Games.select().order_by(Games.season_year.asc()).get()
     start_year = x.season_year
-    x = BballrefScores.select().order_by(BballrefScores.season_year.desc()).get()
-    end_year = x.season_year + 1
+    x = Games.select().order_by(Games.season_year.desc()).get()
+    end_year = x.season_year+1
 
     # master_results - capture all ratings over all seasons.
     master_results = []
@@ -248,6 +249,6 @@ if __name__ == "__main__":
         master_results.append(ratings)
 
     with database.atomic():
-        NbaTeamEloData.delete().execute()  # clear previous table
+        TeamEloData.delete().execute()  # clear previous table
         for dl in master_results:
-            NbaTeamEloData.insert_many(dl).execute()
+            TeamEloData.insert_many(dl).execute()

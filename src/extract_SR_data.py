@@ -36,6 +36,10 @@ for d in imported_season_dicts:
     # add in the season year
     d["season_year"] = season_year
 
+    # add in team ids
+    d["visitor_team_id"]=full_name_to_id(d["visitor"])
+    d["home_team_id"]=full_name_to_id(d["home"])
+
     # standardized date conversion
     datestr = d["Date"]
     datefmt = "%Y-%m-%d"

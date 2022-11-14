@@ -19,7 +19,7 @@ class BaseModel(Model):
 
 
 class Games(BaseModel):
-    """ORM object for the BballrefScores table"""
+    """ORM object for the Games table"""
 
     notes = TextField(db_column="Notes", null=True)
     game_decided_by = TextField(null=True)
@@ -39,21 +39,36 @@ class Games(BaseModel):
         db_table = "games"
 
 
-class ProApiTeams(BaseModel):
-    """ORM object for the ProApiTeams table"""
+class Teams(BaseModel):
+    """ORM object for the Teams table"""
+
+    """
+    CREATE TABLE "teams" (
+	`id`	INTEGER NOT NULL,
+	`abbreviation`	TEXT,
+	`city`	TEXT,
+	"conference"	TEXT,
+	`division`	TEXT,
+	`team_name`	TEXT,
+	"alternate_name"	TEXT, primary_color text, legacy_divisions_1 text, legacy_divisions_2 text, legacy_divisions_3 text,
+	PRIMARY KEY(id)
+    )
+    """
 
     abbreviation = TextField(null=True)
-    bball_ref = IntegerField(db_column="bball_ref_id", null=True)  #
+    team_name = IntegerField(null=True)  
     city = TextField(null=True)
-    conf_or_league = TextField(null=True)
-    team = IntegerField(db_column="team_id", null=True)
+    conference = TextField(null=True)
     team_name = TextField(null=True)
     division = TextField(null=True)
-    full_team_name = TextField(null=True)
-    current_abbreviation = TextField(null=True)
+    alternate_name = TextField(null=True)
+    primary_color = TextField(null=True)
+    legacy_divisions_1 = TextField(null=True)
+    legacy_divisions_2 = TextField(null=True)
+    legacy_divisions_3 = TextField(null=True)
 
     class Meta:
-        db_table = "pro_api_teams"
+        db_table = "teams"
 
 
 class ProlineData(BaseModel):
@@ -93,7 +108,7 @@ class ProlineData(BaseModel):
         db_table = "proline_data"
 
 
-class NbaTeamEloData(BaseModel):
+class TeamEloData(BaseModel):
     """ORM object for the 'NBATeamEloData' Table"""
 
     season_year = IntegerField(null=True)  #
@@ -103,4 +118,4 @@ class NbaTeamEloData(BaseModel):
     team_id = IntegerField(null=True)
 
     class Meta:
-        db_table = "nba_team_elo_data"
+        db_table = "team_elo_data"

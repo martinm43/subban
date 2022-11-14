@@ -16,7 +16,7 @@ def epochtime(datetime_obj):
     """
     Convert time in MON DAY YEAR format to a UNIX timestamp
 
-    Input: datetime object (datetime.datetime)
+    Input: datetime object (datetime.game_datetime)
     Output: Unix timestamp
     """
     return time.mktime(datetime_obj.timetuple())
@@ -26,9 +26,9 @@ def prettytime(timestamp):
     """
     Convert time since epoch to date
     Input: Unix timestamps
-    Output: a datetime object (datetime.datetime)
+    Output: a datetime object (datetime.game_datetime)
     """
-    return datetime.datetime.fromtimestamp(timestamp)
+    return datetime.game_datetime.fromtimestamp(timestamp)
 
 
 #####################
@@ -40,10 +40,10 @@ def team_abbreviation(team_alphabetical_id):
     """
     Converts team numerical ids into team names.
     """
-    from .nhl_data_models import ProApiTeams
+    from .nhl_data_models import Teams
 
-    s_query = ProApiTeams.select(ProApiTeams.abbreviation).where(
-        ProApiTeams.bball_ref == team_alphabetical_id
+    s_query = Teams.select(Teams.abbreviation).where(
+        Teams.id == team_alphabetical_id
     )
     s_result = s_query[0]
     return s_result.abbreviation
@@ -59,23 +59,19 @@ def full_name_to_id(full_team_name):
 
     """
     # Adjusting for previous team names/previous team locations.
+    """
     if full_team_name == "New Jersey Nets":
         full_team_name = "Brooklyn Nets"
-    if full_team_name == "Seattle SuperSonics":
-        full_team_name = "Oklahoma City Thunder"
-    if full_team_name == "Washington Bullets":
-        full_team_name = "Washington Wizards"
-    if full_team_name == "Vancouver Grizzlies":
-        full_team_name = "Memphis Grizzlies"
+    """
 
-    from .nhl_data_models import ProApiTeams
+    from .nhl_data_models import Teams
 
-    s_query = ProApiTeams.select(ProApiTeams.bball_ref).where(
-        ProApiTeams.full_team_name == full_team_name
+    s_query = Teams.select(Teams.id).where(
+        Teams.team_name == full_team_name
     )
 
     s_result = s_query[0]
-    return s_result.bball_ref
+    return s_result.id
 
 
 def abbrev_to_id(team_abbrev):
@@ -85,13 +81,13 @@ def abbrev_to_id(team_abbrev):
     Input: team abbreviation e.g. "WAS"
     Output: numerical id e.g. "30"
     """
-    from .nhl_data_models import ProApiTeams
+    from .nhl_data_models import Teams
 
-    s_query = ProApiTeams.select(ProApiTeams.bball_ref).where(
-        ProApiTeams.current_abbreviation == team_abbrev
+    s_query = Teams.select(Teams.id).where(
+        Teams.current_abbreviation == team_abbrev
     )
     s_result = s_query[0]
-    return s_result.bball_ref
+    return s_result.id
 
 
 def id_to_name(team_id):
@@ -100,10 +96,10 @@ def id_to_name(team_id):
     Input: team id e.g. "30"
     Output: team name e.g. "Washington Wizards"
     """
-    from .nhl_data_models import ProApiTeams
+    from .nhl_data_models import Teams
 
-    s_query = ProApiTeams.select(ProApiTeams.team_name).where(
-        ProApiTeams.bball_ref == team_id
+    s_query = Teams.select(Teams.team_name).where(
+        Teams.id == team_id
     )
     s_result = s_query[0]
     return s_result.team_name
@@ -117,22 +113,22 @@ def id_to_name(team_id):
 def games_query(start_datetime, end_datetime):
     """
     Input: datetime objects
-    Output: [away_team, away_pts, home_team, home_pts] list
+    Output: [visitor_team, visitor_g, home_team, home_g] list
     """
     start_epochtime = epochtime(start_datetime)
     end_epochtime = epochtime(end_datetime)
     played_games = (
         Games.select()
         .where(
-            Games.datetime < end_epochtime,
-            Games.datetime > start_epochtime,
-            Games.away_pts > 0,
+            Games.game_datetime < end_epochtime,
+            Games.game_datetime > start_epochtime,
+            Games.visitor_g > 0,
         )
-        .order_by(Games.datetime)
+        .order_by(Games.game_datetime)
     )
 
     played_games = [
-        [g.away_team_id, g.away_pts, g.home_team_id, g.home_pts] for g in played_games
+        [g.visitor_team_id, g.visitor_g, g.home_team_id, g.home_g] for g in played_games
     ]
     return played_games
 
@@ -140,22 +136,22 @@ def games_query(start_datetime, end_datetime):
 def season_query(season_year):
     """
     Input: a season year
-    Output: [away_team, away_pts, home_team, home_pts, epochtime, season_year] list
+    Output: [visitor_team, visitor_g, home_team, home_g, epochtime, season_year] list
     """
 
     played_games = (
         Games.select()
-        .where(Games.season_year == season_year, Games.away_pts > 0)
-        .order_by(Games.datetime)
+        .where(Games.season_year == season_year, Games.visitor_g > 0)
+        .order_by(Games.game_datetime)
     )
 
     played_games = [
         [
-            g.away_team_id,
-            g.away_pts,
+            g.visitor_team_id,
+            g.visitor_g,
             g.home_team_id,
-            g.home_pts,
-            g.datetime,
+            g.home_g,
+            g.game_datetime,
             season_year,
         ]
         for g in played_games
@@ -166,7 +162,7 @@ def season_query(season_year):
 
 def games_won_query(played_games, return_format="list"):
     """
-    Input: [away_team, away_pts, home_team, home_pts] list
+    Input: [visitor_team, visitor_g, home_team, home_g] list
     Output: a list of lists, a list, or a matrix
     """
     winlist = [x[0] if x[1] > x[3] else x[2] for x in played_games]
@@ -208,9 +204,9 @@ def future_games_query(season_datetime, season_year):
     """
     season_epochtime = epochtime(season_datetime)
     query = Games.select().where(
-        Games.datetime >= season_epochtime, Games.season_year == season_year
+        Games.game_datetime >= season_epochtime, Games.season_year == season_year
     )
-    matches = [[x.away_team_id, x.home_team_id] for x in query]
+    matches = [[x.visitor_team_id, x.home_team_id] for x in query]
     return matches
 
 
@@ -238,11 +234,11 @@ def form_query(team_id):
         "ENDC": "\033[0m",
     }
     q = Games.select().where(
-        ((Games.away_team_id == team_id) | (Games.home_team_id == team_id))
-        & Games.away_pts
+        ((Games.visitor_team_id == team_id) | (Games.home_team_id == team_id))
+        & Games.visitor_g
         > 0
     )
-    x = [[z.away_team_id, z.away_pts, z.home_team_id, z.home_pts] for z in q[-5:]]
+    x = [[z.visitor_team_id, z.visitor_g, z.home_team_id, z.home_g] for z in q[-5:]]
     winstring = ""
     for g in x:
         if g[1] > g[3]:
@@ -276,12 +272,12 @@ def team_elo_rating(team_id, epochtime):
 
     """
 
-    from .nhl_data_models import NbaTeamEloData
+    from .nhl_data_models import TeamEloData
 
     rtg_iterable = (
-        NbaTeamEloData.select()
-        .where(NbaTeamEloData.team_id == team_id, NbaTeamEloData.datetime <= epochtime)
-        .order_by(NbaTeamEloData.datetime.desc())
+        TeamEloData.select()
+        .where(TeamEloData.team_id == team_id, TeamEloData.game_datetime <= epochtime)
+        .order_by(TeamEloData.game_datetime.desc())
         .limit(1)
     )
     rtg = [x.elo_rating for x in rtg_iterable]
