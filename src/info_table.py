@@ -15,14 +15,14 @@ from datetime import datetime
 from tabulate import tabulate
 
 # Query imports
-from nba_database.queries import (
+from nhl_database.queries import (
     games_query,
     team_abbreviation,
     epochtime,
     elo_ratings_list,
     form_query,
 )
-from nba_database.nba_data_models import BballrefScores as Game
+from nhl_database.nhl_data_models import Games
 
 # Analytics imports
 from analytics.SRS import SRS
@@ -32,9 +32,9 @@ from analytics.pythag import league_pythagorean_wins
 from analytics.wins_script import get_wins
 
 # Query Testing
-season_year = 2023
-start_datetime = datetime(2022, 10, 10)
-end_datetime = datetime.today()
+season_year = 2021
+start_datetime = datetime(2021, 10, 10)
+end_datetime = datetime(2022,5,5)
 
 games_list = games_query(start_datetime, end_datetime)
 

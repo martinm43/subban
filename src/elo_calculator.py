@@ -20,7 +20,7 @@ from random import randint
 import numpy as np
 
 # default rating is 0.01, multiplied by 10^6 for readability.
-DEFAULT_RATING = 0.01
+DEFAULT_RATING = 0.015
 
 
 def predicted_dos_formula(a, b):
@@ -73,11 +73,11 @@ def season_elo_calc(_analysis_list, previous_ratings=None, new_season=True):
     """
 
     default_rating = DEFAULT_RATING  # 1 gives good results.
-    rating_scaling = 10  # 10 gives good spread
+    rating_scaling = 70  # under development - rating_scaling being calibrated
     default_K = default_rating / rating_scaling
 
     if new_season == True:
-        season_elo_ratings_list = default_rating * np.ones((30, 1))
+        season_elo_ratings_list = default_rating * np.ones((32, 1))
     else:
         season_elo_ratings_list = previous_ratings
 
@@ -171,7 +171,7 @@ def year_to_year_ratings(
     # print(previous_ratings)
     new_ratings = previous_ratings * (
         1 - reset_factor
-    ) + reset_factor * reset_value * np.ones((30, 1))
+    ) + reset_factor * reset_value * np.ones((32, 1))
     new_ratings.tolist()
     new_ratings = [r for r in new_ratings]
     return new_ratings
@@ -203,7 +203,7 @@ def results_summary(season_elo_ratings_list, scaling=100000):
 
     print_list = sorted(print_list, key=lambda x: -x[0])
     top_list = print_list[0:10]
-    bottom_list = print_list[21:30]
+    bottom_list = print_list[23:32]
     print("Top 10 teams for the season ending in " + str(season_year) + ":")
     for t in top_list:
         rating = "%.1f" % t[0]
