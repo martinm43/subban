@@ -46,11 +46,11 @@ win_floor = 0
 wins_dict_list = [
     get_wins(i, season_year, start_datetime, end_datetime) for i in range(1, 31)
 ]
-wins_list = [[x["away_record"], x["home_record"], x["record"]] for x in wins_dict_list]
+wins_list = [[x["visitor_record"], x["home_record"], x["record"]] for x in wins_dict_list]
 
 # Pythagorean Wins
 lpw_results = league_pythagorean_wins(
-    Game,
+    Games,
     mincalcdatetime=epochtime(start_datetime),
     maxcalcdatetime=epochtime(end_datetime),
 )

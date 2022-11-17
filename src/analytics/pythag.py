@@ -25,7 +25,7 @@ def pythagorean_wins(
     Parameters
     ----------
     Game : ORM object from the
-            nba_playoff_odds.nba_database.nba_data_models file
+            nhl_playoff_odds.nhl_database.nhl_data_models file
     team_id_num : team id (1=ATL,30=WAS)
     win_exp : Exponent used in pythagorean_wins calculation. The default is 14.
     numgames : number of games to apply the pythagorean win percentage to
@@ -42,46 +42,46 @@ def pythagorean_wins(
 
     """
     team_id = str(team_id_num)
-    pts = Game.select(Game.away_team_runs).where(
-        Game.away_team_id == team_id,
+    pts = Game.select(Game.visitor_g).where(
+        Game.visitor_team_id == team_id,
         Game.epochtime >= mincalcdatetime,
         Game.epochtime <= maxcalcdatetime,
     )
-    #team_away_team_runs = sum([p.away_team_runs if p.away_team_runs is not None else 0 for p in pts])
-    team_away_team_runs = sum([p.away_team_runs for p in pts])
-    pts = Game.select(Game.home_team_runs).where(
+    #team_visitor_g = sum([p.visitor_g if p.visitor_g is not None else 0 for p in pts])
+    team_visitor_g = sum([p.visitor_g for p in pts])
+    pts = Game.select(Game.home_g).where(
         Game.home_team_id == team_id,
         Game.epochtime >= mincalcdatetime,
         Game.epochtime <= maxcalcdatetime,
     )
-    #team_home_team_runs = sum([p.home_team_runs if p.home_team_runs is not None else 0 for p in pts])
-    team_home_team_runs = sum([p.home_team_runs for p in pts])
-    team_team_runs_for = team_away_team_runs + team_home_team_runs
-    team_team_runs_against_home = Game.select(Game.away_team_runs).where(
+    #team_home_g = sum([p.home_g if p.home_g is not None else 0 for p in pts])
+    team_home_g = sum([p.home_g for p in pts])
+    team_team_g_for = team_visitor_g + team_home_g
+    team_team_g_against_home = Game.select(Game.visitor_g).where(
         Game.home_team_id == team_id,
         Game.epochtime >= mincalcdatetime,
         Game.epochtime <= maxcalcdatetime,
     )
-    team_team_runs_against_away = Game.select(Game.home_team_runs).where(
-        Game.away_team_id == team_id,
+    team_team_g_against_away = Game.select(Game.home_g).where(
+        Game.visitor_team_id == team_id,
         Game.epochtime >= mincalcdatetime,
         Game.epochtime <= maxcalcdatetime,
     )
-    team_team_runs_against_home = sum(
-         [p.away_team_runs for p in team_team_runs_against_home]
-    #    [p.away_team_runs if p.away_team_runs is not None else 0 for p in team_team_runs_against_home]
+    team_team_g_against_home = sum(
+         [p.visitor_g for p in team_team_g_against_home]
+    #    [p.visitor_g if p.visitor_g is not None else 0 for p in team_team_g_against_home]
     )
-    team_team_runs_against_away = sum(
-         [p.home_team_runs for p in team_team_runs_against_away]
-    #    [p.home_team_runs if p.home_team_runs is not None else 0 for p in team_team_runs_against_away]
+    team_team_g_against_away = sum(
+         [p.home_g for p in team_team_g_against_away]
+    #    [p.home_g if p.home_g is not None else 0 for p in team_team_g_against_away]
     )
-    team_team_runs_against = team_team_runs_against_away + team_team_runs_against_home
+    team_team_g_against = team_team_g_against_away + team_team_g_against_home
 
-    if team_team_runs_against > 0 and team_team_runs_for > 0:
+    if team_team_g_against > 0 and team_team_g_for > 0:
         return (
             numgames
-            * team_team_runs_for ** win_exp
-            / (team_team_runs_for ** win_exp + team_team_runs_against ** win_exp)
+            * team_team_g_for ** win_exp
+            / (team_team_g_for ** win_exp + team_team_g_against ** win_exp)
         )
     else:
         return 0
