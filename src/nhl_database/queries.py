@@ -231,6 +231,7 @@ def form_query(team_id):
         "HEADER": "\033[95m",
         "GREEN": "\033[92m",
         "RED": "\033[91m",
+        "YELLOW": "\033[93m",
         "ENDC": "\033[0m",
     }
     q = Games.select().where(
@@ -238,15 +239,17 @@ def form_query(team_id):
         & Games.visitor_g
         > 0
     )
-    x = [[z.visitor_team_id, z.visitor_g, z.home_team_id, z.home_g] for z in q[-5:]]
+    x = [[z.visitor_team_id, z.visitor_g, z.home_team_id, z.home_g, z.game_decided_by] for z in q[-5:]]
     winstring = ""
     for g in x:
-        if g[1] > g[3]:
+        if g[4] != "Regulation":
+            winstring += COLOR["YELLOW"] + "T" + COLOR["ENDC"]
+        elif g[1] > g[3]:
             if g[0] == team_id:
                 winstring += COLOR["GREEN"] + "W" + COLOR["ENDC"]
             else:
                 winstring += COLOR["RED"] + "L" + COLOR["ENDC"]
-        if g[3] > g[1]:
+        elif g[3] > g[1]:
             if g[0] == team_id:
                 winstring += COLOR["RED"] + "L" + COLOR["ENDC"]
             else:
