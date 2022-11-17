@@ -14,8 +14,8 @@ from tabulate import tabulate
 def pythagorean_wins(
     Game,
     team_id_num,
-    win_exp=1.83, #baseball
-    numgames=162,#baseball
+    win_exp=2, #hockey
+    numgames=82,#hockey
     mincalcdatetime=0.0,
     maxcalcdatetime=999999999999.9,
 ):
@@ -89,8 +89,8 @@ def pythagorean_wins(
 
 def league_pythagorean_wins(
     GAME_ORM, mincalcdatetime, maxcalcdatetime, 
-    win_exp=1.83, 
-    numgames=162
+    win_exp=2, 
+    numgames=82
 ):
     """
 
