@@ -276,8 +276,8 @@ def team_elo_rating(team_id, epochtime):
 
     rtg_iterable = (
         TeamEloData.select()
-        .where(TeamEloData.team_id == team_id, TeamEloData.game_datetime <= epochtime)
-        .order_by(TeamEloData.game_datetime.desc())
+        .where(TeamEloData.team_id == team_id, TeamEloData.datetime <= epochtime)
+        .order_by(TeamEloData.datetime.desc())
         .limit(1)
     )
     rtg = [x.elo_rating for x in rtg_iterable]

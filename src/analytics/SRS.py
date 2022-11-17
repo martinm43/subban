@@ -1,4 +1,4 @@
-def SRS(game, printing=False, max_MOV=100.0, home_team_adv=0.0, win_floor=0.0,numTeams = 30):
+def SRS(game, printing=False, max_MOV=100.0, home_team_adv=0.0, win_floor=0.0,numTeams = 32):
     """
 
     Inputs:
