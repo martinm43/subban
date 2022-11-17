@@ -8,7 +8,7 @@
      filename of csv containing Sports Reference data
      csv must have the following header format:
          
-     Date,Visitor,Visitor_G,Home,Home_G,Game_Decided_By,Att.,LOG,Notes
+     Date,visitor,visitor_g,home,home_g,Game_Decided_By,Att.,log,Notes
      
         
 """

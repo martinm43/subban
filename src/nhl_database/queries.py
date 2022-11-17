@@ -59,10 +59,10 @@ def full_name_to_id(full_team_name):
 
     """
     # Adjusting for previous team names/previous team locations.
-    """
-    if full_team_name == "New Jersey Nets":
-        full_team_name = "Brooklyn Nets"
-    """
+    
+    if full_team_name == "Phoenix Coyotes":
+        full_team_name = "Arizona Coyotes"
+    
 
     from .nhl_data_models import Teams
 

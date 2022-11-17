@@ -32,9 +32,9 @@ from analytics.pythag import league_pythagorean_wins
 from analytics.wins_script import get_wins
 
 # Query Testing
-season_year = 2022
-start_datetime = datetime(season_year-1, 10, 1)
-end_datetime = datetime(season_year,5,15)
+season_year = 2018
+start_datetime = datetime(season_year-1, 9, 1)
+end_datetime = datetime(season_year,6,15)
 
 games_list = games_query(start_datetime, end_datetime)
 
@@ -46,7 +46,7 @@ win_floor = 0
 wins_dict_list = [
     get_wins(i, season_year, start_datetime, end_datetime) for i in range(1, 31)
 ]
-wins_list = [[x["visitor_record"], x["home_record"], x["record"]] for x in wins_dict_list]
+wins_list = [[x["visitor_record"], x["home_record"], x["record"],x["points"],x["pts_pct"]] for x in wins_dict_list]
 
 # Pythagorean Wins
 lpw_results = league_pythagorean_wins(
@@ -67,8 +67,10 @@ lpw_results.sort(key=lambda x: x[0])
 
 results = list(zip(lpw_results, srs_list, wins_list, elo_list, form_list))
 
+#print(results)
+
 results = [
-    [x[0][0], x[0][1], x[1], x[2][0], x[2][1], x[2][2], x[3], x[4]] for x in results
+    [x[0][0], x[0][1], x[1], x[2][0], x[2][1], x[2][2], x[3], x[2][3], x[2][4], x[4]] for x in results
 ]
 
 results_tuples = [
@@ -81,11 +83,13 @@ results_tuples = [
         x[4],
         x[5],
         x[7],
+        round(x[8],3),
+        x[9],
     )
     for x in results
 ]
 
-results_tuples.sort(key=lambda x: -x[2])
+results_tuples.sort(key=lambda x: -x[8])
 
 results_table = tabulate(
     results_tuples,
@@ -97,6 +101,8 @@ results_table = tabulate(
         "Away Record",
         "Home Record",
         "Overall Record",
+        "Pts",
+        "Pts %",
         "Form",
     ],
     tablefmt="rst",
