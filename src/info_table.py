@@ -32,7 +32,7 @@ from analytics.pythag import league_pythagorean_wins
 from analytics.wins_script import get_wins
 
 # Query Testing
-season_year = 2018
+season_year = 2019
 start_datetime = datetime(season_year-1, 9, 1)
 end_datetime = datetime(season_year,6,15)
 

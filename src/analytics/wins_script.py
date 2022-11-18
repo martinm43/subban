@@ -1,7 +1,8 @@
 # coding: utf-8
+from pprint import pprint
 def get_wins(team_id, season_year, start_datetime, end_datetime):
     """
-
+    
     Return wins from a given season for a given team.
 
     Parameters
@@ -26,11 +27,13 @@ def get_wins(team_id, season_year, start_datetime, end_datetime):
         Games.game_datetime >= epochtime(start_datetime),
         Games.game_datetime <= epochtime(end_datetime),
     )
+
     visitor_results = [[i.visitor_g, i.home_g, i.game_decided_by] for i in visitor_query]
 
-    visitor_wins_total = sum([1 if x[0] > x[1] and x[2]=="Regulation" else 0 for x in visitor_results])
-    visitor_OTW_total = sum([1 if x[2] != "Regulation" and x[0] > x[1] else 0 for x in visitor_results])
-    visitor_OTL_total = sum([1 if x[2] != "Regulation" and x[1] < x[0] else 0 for x in visitor_results])
+    visitor_wins_total = sum([1 if x[0] > x[1] else 0 for x in visitor_results])
+    visitor_OTW_total = sum([1 if x[2] != "Regulation" and x[1] < x[0] else 0 for x in visitor_results])
+    visitor_OTL_total = sum([1 if x[2] != "Regulation" and x[1] > x[0] else 0 for x in visitor_results])
+
     visitor_games_total = len(visitor_results)
     # home_query = Games.select().where(Games.season_year == season_year, Games.home_team_id == team_id, Games.home_g > 0)
     home_query = Games.select().where(
@@ -41,23 +44,23 @@ def get_wins(team_id, season_year, start_datetime, end_datetime):
         Games.game_datetime <= epochtime(end_datetime),
     )
     home_results = [[i.home_g, i.visitor_g,i.game_decided_by] for i in home_query]
-    home_wins_total = sum([1 if x[0] > x[1] and x[2] == "Regulation" else 0 for x in home_results])
-    home_OTW_total = sum([1 if x[2] != "Regulation" and x[0] > x[1] else 0 for x in home_results])
-    home_OTL_total = sum([1 if x[2] != "Regulation" and x[1] < x[0] else 0 for x in home_results])
-    
+    home_wins_total = sum([1 if x[0] > x[1] else 0 for x in home_results])
+    home_OTW_total = sum([1 if x[2] != "Regulation" and x[1] < x[0] else 0 for x in home_results])
+    home_OTL_total = sum([1 if x[2] != "Regulation" and x[1] > x[0] else 0 for x in home_results])
+
     home_games_total = len(home_results)
 
-    visitor_record = str(visitor_wins_total+visitor_OTW_total) + "-" + str(visitor_games_total - visitor_OTW_total - visitor_OTL_total - visitor_wins_total) + "-" + str(visitor_OTL_total)
-    home_record = str(home_wins_total+home_OTW_total) + "-" + str(home_games_total - home_OTW_total - home_OTL_total - home_wins_total) + "-" + str(home_OTL_total)
+    visitor_record = str(visitor_wins_total) + "-" + str(visitor_games_total - visitor_OTW_total - visitor_OTL_total - visitor_wins_total) + "-" + str(visitor_OTL_total)
+    home_record = str(home_wins_total) + "-" + str(home_games_total - home_OTW_total - home_OTL_total - home_wins_total) + "-" + str(home_OTL_total)
 
     record = (
         str(visitor_wins_total + home_wins_total)
         + "-"
-        + str(visitor_games_total + home_games_total - visitor_OTW_total - home_OTW_total - visitor_wins_total - home_wins_total)
+        + str(visitor_games_total + home_games_total - visitor_OTL_total - home_OTL_total - visitor_wins_total - home_wins_total)
         + "-" 
         + str(home_OTL_total+visitor_OTL_total)
     )
-    pts =  2*(visitor_wins_total+home_wins_total+visitor_OTW_total+home_OTW_total)+1*(visitor_OTL_total+home_OTL_total)
+    pts =  2*(visitor_wins_total+home_wins_total)+1*(visitor_OTL_total+home_OTL_total)
     try:
         pts_pct = pts/(2*(home_games_total+visitor_games_total))
     except ZeroDivisionError:
