@@ -50,8 +50,8 @@ def get_wins(team_id, season_year, start_datetime, end_datetime):
 
     home_games_total = len(home_results)
 
-    visitor_record = str(visitor_wins_total) + "-" + str(visitor_games_total - visitor_OTW_total - visitor_OTL_total - visitor_wins_total) + "-" + str(visitor_OTL_total)
-    home_record = str(home_wins_total) + "-" + str(home_games_total - home_OTW_total - home_OTL_total - home_wins_total) + "-" + str(home_OTL_total)
+    visitor_record = str(visitor_wins_total) + "-" + str(visitor_games_total - visitor_OTL_total - visitor_wins_total) + "-" + str(visitor_OTL_total)
+    home_record = str(home_wins_total) + "-" + str(home_games_total - home_OTL_total - home_wins_total) + "-" + str(home_OTL_total)
 
     record = (
         str(visitor_wins_total + home_wins_total)
