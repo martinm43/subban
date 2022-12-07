@@ -223,8 +223,10 @@ if __name__ == "__main__":
 
     x = Games.select().order_by(Games.season_year.asc()).get()
     start_year = x.season_year
+    print("Minimum start year is "+str(start_year))
     x = Games.select().order_by(Games.season_year.desc()).get()
     end_year = x.season_year+1
+    print("Maximum start year is "+str(end_year))
 
     # master_results - capture all ratings over all seasons.
     master_results = []
