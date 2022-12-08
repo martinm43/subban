@@ -20,8 +20,8 @@ from datetime import datetime
 from nhl_database.queries import epochtime, full_name_to_id
 from nhl_database.nhl_data_models import database, Games
 
-season_year = 2015
-filename = "2014-2015-hockey.csv"
+season_year = 2023
+filename = "2022-2023-hockey.csv"
 df = pd.read_csv(filename)
 imported_season_dicts = df.T.to_dict().values()
 
