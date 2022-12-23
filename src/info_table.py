@@ -33,8 +33,8 @@ from analytics.wins_script import get_wins
 
 # Query Testing
 season_year = 2023
-start_datetime = datetime(season_year-1, 9, 1)
-end_datetime = datetime(season_year-1,12,7)
+start_datetime = datetime(2022, 9, 1)
+end_datetime = datetime(2022,12,22)
 #end_datetime = datetime(season_year,5,1)
 
 games_list = games_query(start_datetime, end_datetime)
@@ -64,7 +64,7 @@ elo_list = elo_ratings_list(epochtime(end_datetime))
 
 form_list = [form_query(i) for i in range(1, 31)]
 
-lpw_results.sort(key=lambda x: x[0])
+lpw_results.sort(key=lambda x: x[0]) 
 
 results = list(zip(lpw_results, srs_list, wins_list, elo_list, form_list))
 
@@ -90,7 +90,7 @@ results_tuples = [
     for x in results
 ]
 
-results_tuples.sort(key=lambda x: -x[8])
+results_tuples.sort(key=lambda x: -x[2]) #formerly x[8]
 
 results_table = tabulate(
     results_tuples,
