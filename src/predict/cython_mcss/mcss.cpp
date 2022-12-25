@@ -150,48 +150,48 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
         vector<Team> east_conf(first,mid);
         vector<Team> west_conf(mid+1,last); //When you split, you need to start one more entry over.
 
-       //Format for 2013-2019,2021
-       if(((year >= 2013)&&(year<=2019)) || (year = 2021))
+       //MODERN: Format for 2013-2014 through 2022-23 excluding the COVID (2019-20) and CANDIV (2020-21) seasons
+       if(((year >= 2014)&&(year<=2019)) || (year >= 2022))
        {
-       //iterate through list of teams to determine division winners.
+       //iterate through list of teams to determine playoff teams.
             for(int i=0;i<NUM_TEAMS;i++){
             string team_name = sim_teams[i].get_full_team_name();
             string team_division = sim_teams[i].get_division();
             int print_total_wins = sim_teams[i].get_total_wins();
             int team_id = sim_teams[i].get_team_id();
             cout << team_name << ":" << team_division << ":" << print_total_wins << endl;
-            if((i == 0) || (i==5)||(i==10)||(i==15)||(i==20)||(i==25)){
+            if(( i >= 0 && i <= 2) || (i >= 8 && i <= 10)||(i >= 16 && i <= 18)||(i >= 24 && i <= 26)){
                 sim_playoff_total.row(team_id-1)[0]++; //Division Winner
             }
         }
 
-        //NL Wild Cards
-        vector<Team> nl_wild_card;
-        nl_wild_card.push_back(sim_teams[16]); //Cent 1	
-        nl_wild_card.push_back(sim_teams[17]); //Cent 2	
-        nl_wild_card.push_back(sim_teams[21]); //East 1	
-        nl_wild_card.push_back(sim_teams[22]); //East 2	
-        nl_wild_card.push_back(sim_teams[26]); //West 1	
-        nl_wild_card.push_back(sim_teams[27]); //West 2	
-        sort(nl_wild_card.begin(),nl_wild_card.end(),wins_sort());        
-        int nl_wc1 = nl_wild_card[0].get_team_id();
-        int nl_wc2 = nl_wild_card[1].get_team_id();
-        sim_playoff_total.row(nl_wc1-1)[3]++; 
-        sim_playoff_total.row(nl_wc2-1)[3]++; 
+        //East Conference Wild Cards.
+        vector<Team> east_wild_card;
+        east_wild_card.push_back(sim_teams[16]); //Cent 1	
+        east_wild_card.push_back(sim_teams[17]); //Cent 2	
+        east_wild_card.push_back(sim_teams[21]); //East 1	
+        east_wild_card.push_back(sim_teams[22]); //East 2	
+        east_wild_card.push_back(sim_teams[26]); //West 1	
+        east_wild_card.push_back(sim_teams[27]); //West 2	
+        sort(east_wild_card.begin(),east_wild_card.end(),wins_sort());        
+        int east_wc1 = east_wild_card[0].get_team_id();
+        int east_wc2 = east_wild_card[1].get_team_id();
+        sim_playoff_total.row(east_wc1-1)[3]++; 
+        sim_playoff_total.row(east_wc2-1)[3]++; 
         
         //AL Wild Cards
-        vector<Team> al_wild_card;
-        al_wild_card.push_back(sim_teams[1]); //Cent 1	
-        al_wild_card.push_back(sim_teams[2]); //Cent 2	
-        al_wild_card.push_back(sim_teams[6]); //East 1	
-        al_wild_card.push_back(sim_teams[7]); //East 2	
-        al_wild_card.push_back(sim_teams[11]); //West 1	
-        al_wild_card.push_back(sim_teams[12]); //West 2	
-        sort(al_wild_card.begin(),al_wild_card.end(),wins_sort());        
-        int al_wc1 = al_wild_card[0].get_team_id();
-        int al_wc2 = al_wild_card[1].get_team_id();
-        sim_playoff_total.row(al_wc1-1)[3]++; 
-        sim_playoff_total.row(al_wc2-1)[3]++;  
+        vector<Team> west_wild_card;
+        west_wild_card.push_back(sim_teams[1]); //Cent 1	
+        west_wild_card.push_back(sim_teams[2]); //Cent 2	
+        west_wild_card.push_back(sim_teams[6]); //East 1	
+        west_wild_card.push_back(sim_teams[7]); //East 2	
+        west_wild_card.push_back(sim_teams[11]); //West 1	
+        west_wild_card.push_back(sim_teams[12]); //West 2	
+        sort(west_wild_card.begin(),west_wild_card.end(),wins_sort());        
+        int west_wc1 = west_wild_card[0].get_team_id();
+        int west_wc2 = west_wild_card[1].get_team_id();
+        sim_playoff_total.row(west_wc1-1)[3]++; 
+        sim_playoff_total.row(west_wc2-1)[3]++;  
         }
 
        //Format for 2020. CORONAVIRUS, IT'S GETTING REAL
@@ -211,32 +211,32 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
         }
 
         //NL Wild Cards
-        vector<Team> nl_wild_card;
-        nl_wild_card.push_back(sim_teams[17]); //Cent 3	
-        nl_wild_card.push_back(sim_teams[18]); //Cent 4	
-        nl_wild_card.push_back(sim_teams[22]); //East 3	
-        nl_wild_card.push_back(sim_teams[23]); //East 4	
-        nl_wild_card.push_back(sim_teams[27]); //West 3	
-        nl_wild_card.push_back(sim_teams[28]); //West 4	
-        sort(nl_wild_card.begin(),nl_wild_card.end(),wins_sort());        
-        int nl_wc1 = nl_wild_card[0].get_team_id();
-        int nl_wc2 = nl_wild_card[1].get_team_id();
-        sim_playoff_total.row(nl_wc1-1)[3]++; 
-        sim_playoff_total.row(nl_wc2-1)[3]++;
+        vector<Team> east_wild_card;
+        east_wild_card.push_back(sim_teams[17]); //Cent 3	
+        east_wild_card.push_back(sim_teams[18]); //Cent 4	
+        east_wild_card.push_back(sim_teams[22]); //East 3	
+        east_wild_card.push_back(sim_teams[23]); //East 4	
+        east_wild_card.push_back(sim_teams[27]); //West 3	
+        east_wild_card.push_back(sim_teams[28]); //West 4	
+        sort(east_wild_card.begin(),east_wild_card.end(),wins_sort());        
+        int east_wc1 = east_wild_card[0].get_team_id();
+        int east_wc2 = east_wild_card[1].get_team_id();
+        sim_playoff_total.row(east_wc1-1)[3]++; 
+        sim_playoff_total.row(east_wc2-1)[3]++;
 
         //AL Wild Cards
-        vector<Team> al_wild_card;
-        al_wild_card.push_back(sim_teams[2]); //Cent 3	
-        al_wild_card.push_back(sim_teams[3]); //Cent 4	
-        al_wild_card.push_back(sim_teams[7]); //East 3	
-        al_wild_card.push_back(sim_teams[8]); //East 4	
-        al_wild_card.push_back(sim_teams[12]); //West 3	
-        al_wild_card.push_back(sim_teams[13]); //West 4	
-        sort(al_wild_card.begin(),al_wild_card.end(),wins_sort());        
-        int al_wc1 = al_wild_card[0].get_team_id();
-        int al_wc2 = al_wild_card[1].get_team_id();
-        sim_playoff_total.row(al_wc1-1)[3]++; 
-        sim_playoff_total.row(al_wc2-1)[3]++;  
+        vector<Team> west_wild_card;
+        west_wild_card.push_back(sim_teams[2]); //Cent 3	
+        west_wild_card.push_back(sim_teams[3]); //Cent 4	
+        west_wild_card.push_back(sim_teams[7]); //East 3	
+        west_wild_card.push_back(sim_teams[8]); //East 4	
+        west_wild_card.push_back(sim_teams[12]); //West 3	
+        west_wild_card.push_back(sim_teams[13]); //West 4	
+        sort(west_wild_card.begin(),west_wild_card.end(),wins_sort());        
+        int west_wc1 = west_wild_card[0].get_team_id();
+        int west_wc2 = west_wild_card[1].get_team_id();
+        sim_playoff_total.row(west_wc1-1)[3]++; 
+        sim_playoff_total.row(west_wc2-1)[3]++;  
        }
 
         //Format for 2012
@@ -253,32 +253,32 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
         }
 
         //NL Wild Cards
-        vector<Team> nl_wild_card;
-        nl_wild_card.push_back(sim_teams[15]); //Cent 1	
-        nl_wild_card.push_back(sim_teams[16]); //Cent 2	
-        nl_wild_card.push_back(sim_teams[21]); //East 1	
-        nl_wild_card.push_back(sim_teams[22]); //East 2	
-        nl_wild_card.push_back(sim_teams[26]); //West 1	
-        nl_wild_card.push_back(sim_teams[27]); //West 2	
-        sort(nl_wild_card.begin(),nl_wild_card.end(),wins_sort());        
-        int nl_wc1 = nl_wild_card[0].get_team_id();
-        int nl_wc2 = nl_wild_card[1].get_team_id();
-        sim_playoff_total.row(nl_wc1-1)[3]++; 
-        sim_playoff_total.row(nl_wc2-1)[3]++; 
+        vector<Team> east_wild_card;
+        east_wild_card.push_back(sim_teams[15]); //Cent 1	
+        east_wild_card.push_back(sim_teams[16]); //Cent 2	
+        east_wild_card.push_back(sim_teams[21]); //East 1	
+        east_wild_card.push_back(sim_teams[22]); //East 2	
+        east_wild_card.push_back(sim_teams[26]); //West 1	
+        east_wild_card.push_back(sim_teams[27]); //West 2	
+        sort(east_wild_card.begin(),east_wild_card.end(),wins_sort());        
+        int east_wc1 = east_wild_card[0].get_team_id();
+        int east_wc2 = east_wild_card[1].get_team_id();
+        sim_playoff_total.row(east_wc1-1)[3]++; 
+        sim_playoff_total.row(east_wc2-1)[3]++; 
         
         //AL Wild Cards
-        vector<Team> al_wild_card;
-        al_wild_card.push_back(sim_teams[1]); //Cent 1	
-        al_wild_card.push_back(sim_teams[2]); //Cent 2	
-        al_wild_card.push_back(sim_teams[6]); //East 1	
-        al_wild_card.push_back(sim_teams[7]); //East 2	
-        al_wild_card.push_back(sim_teams[11]); //West 1	
-        al_wild_card.push_back(sim_teams[12]); //West 2	
-        sort(al_wild_card.begin(),al_wild_card.end(),wins_sort());        
-        int al_wc1 = al_wild_card[0].get_team_id();
-        int al_wc2 = al_wild_card[1].get_team_id();
-        sim_playoff_total.row(al_wc1-1)[3]++; 
-        sim_playoff_total.row(al_wc2-1)[3]++;
+        vector<Team> west_wild_card;
+        west_wild_card.push_back(sim_teams[1]); //Cent 1	
+        west_wild_card.push_back(sim_teams[2]); //Cent 2	
+        west_wild_card.push_back(sim_teams[6]); //East 1	
+        west_wild_card.push_back(sim_teams[7]); //East 2	
+        west_wild_card.push_back(sim_teams[11]); //West 1	
+        west_wild_card.push_back(sim_teams[12]); //West 2	
+        sort(west_wild_card.begin(),west_wild_card.end(),wins_sort());        
+        int west_wc1 = west_wild_card[0].get_team_id();
+        int west_wc2 = west_wild_card[1].get_team_id();
+        sim_playoff_total.row(west_wc1-1)[3]++; 
+        sim_playoff_total.row(west_wc2-1)[3]++;
        }
 
         //Format for 1998-2011 inclusive
@@ -297,22 +297,22 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
         }
 
         //NL Wild Card (singluar)
-        vector<Team> nl_wild_card;
-        nl_wild_card.push_back(sim_teams[15]); //Cent 1	
-        nl_wild_card.push_back(sim_teams[21]); //East 1	
-        nl_wild_card.push_back(sim_teams[26]); //West 1	
-        sort(nl_wild_card.begin(),nl_wild_card.end(),wins_sort());        
-        int nl_wc1 = nl_wild_card[0].get_team_id();
-        sim_playoff_total.row(nl_wc1-1)[3]++; 
+        vector<Team> east_wild_card;
+        east_wild_card.push_back(sim_teams[15]); //Cent 1	
+        east_wild_card.push_back(sim_teams[21]); //East 1	
+        east_wild_card.push_back(sim_teams[26]); //West 1	
+        sort(east_wild_card.begin(),east_wild_card.end(),wins_sort());        
+        int east_wc1 = east_wild_card[0].get_team_id();
+        sim_playoff_total.row(east_wc1-1)[3]++; 
         
         //AL Wild Cards
-        vector<Team> al_wild_card;
-        al_wild_card.push_back(sim_teams[1]); //Cent 1	
-        al_wild_card.push_back(sim_teams[6]); //East 1	
-        al_wild_card.push_back(sim_teams[11]); //West 1	
-        sort(al_wild_card.begin(),al_wild_card.end(),wins_sort());        
-        int al_wc1 = al_wild_card[0].get_team_id();
-        sim_playoff_total.row(al_wc1-1)[3]++; 
+        vector<Team> west_wild_card;
+        west_wild_card.push_back(sim_teams[1]); //Cent 1	
+        west_wild_card.push_back(sim_teams[6]); //East 1	
+        west_wild_card.push_back(sim_teams[11]); //West 1	
+        sort(west_wild_card.begin(),west_wild_card.end(),wins_sort());        
+        int west_wc1 = west_wild_card[0].get_team_id();
+        sim_playoff_total.row(west_wc1-1)[3]++; 
         }
 
         //Format for 1994-1997 inclusive
@@ -330,22 +330,22 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
         }
 
         //NL Wild Card (singluar)
-        vector<Team> nl_wild_card;
-        nl_wild_card.push_back(sim_teams[16]); //Cent 1	
-        nl_wild_card.push_back(sim_teams[21]); //East 1	
-        nl_wild_card.push_back(sim_teams[26]); //West 1	
-        sort(nl_wild_card.begin(),nl_wild_card.end(),wins_sort());        
-        int nl_wc1 = nl_wild_card[0].get_team_id();
-        sim_playoff_total.row(nl_wc1-1)[3]++; 
+        vector<Team> east_wild_card;
+        east_wild_card.push_back(sim_teams[16]); //Cent 1	
+        east_wild_card.push_back(sim_teams[21]); //East 1	
+        east_wild_card.push_back(sim_teams[26]); //West 1	
+        sort(east_wild_card.begin(),east_wild_card.end(),wins_sort());        
+        int east_wc1 = east_wild_card[0].get_team_id();
+        sim_playoff_total.row(east_wc1-1)[3]++; 
         
         //AL Wild Cards
-        vector<Team> al_wild_card;
-        al_wild_card.push_back(sim_teams[1]); //Cent 1	
-        al_wild_card.push_back(sim_teams[6]); //East 1	
-        al_wild_card.push_back(sim_teams[12]); //West 1	
-        sort(al_wild_card.begin(),al_wild_card.end(),wins_sort());        
-        int al_wc1 = al_wild_card[0].get_team_id();
-        sim_playoff_total.row(al_wc1-1)[3]++;
+        vector<Team> west_wild_card;
+        west_wild_card.push_back(sim_teams[1]); //Cent 1	
+        west_wild_card.push_back(sim_teams[6]); //East 1	
+        west_wild_card.push_back(sim_teams[12]); //West 1	
+        sort(west_wild_card.begin(),west_wild_card.end(),wins_sort());        
+        int west_wc1 = west_wild_card[0].get_team_id();
+        sim_playoff_total.row(west_wc1-1)[3]++;
         }
 
         //Format for 1977-1993 inclusive
@@ -380,68 +380,68 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
         }*/
 
         //NL Processing
-        vector<Team> nl_division_winners;
-        nl_division_winners.push_back(sim_teams[15]); //Cent Winner
-        nl_division_winners.push_back(sim_teams[20]); //East Winner
-        nl_division_winners.push_back(sim_teams[25]); //West Winner
-        sort(nl_division_winners.begin(),nl_division_winners.end(),wins_sort());
-        int nl_s_1 = nl_division_winners[0].get_team_id();
-        int nl_s_2 = nl_division_winners[1].get_team_id();
-        int nl_s_3 = nl_division_winners[2].get_team_id();
-        sim_playoff_total.row(nl_s_1-1)[0]++; 
-        sim_playoff_total.row(nl_s_2-1)[0]++;
+        vector<Team> east_division_winners;
+        east_division_winners.push_back(sim_teams[15]); //Cent Winner
+        east_division_winners.push_back(sim_teams[20]); //East Winner
+        east_division_winners.push_back(sim_teams[25]); //West Winner
+        sort(east_division_winners.begin(),east_division_winners.end(),wins_sort());
+        int east_s_1 = east_division_winners[0].get_team_id();
+        int east_s_2 = east_division_winners[1].get_team_id();
+        int east_s_3 = east_division_winners[2].get_team_id();
+        sim_playoff_total.row(east_s_1-1)[0]++; 
+        sim_playoff_total.row(east_s_2-1)[0]++;
         //Third team becomes a defacto wild card (wild card functionality will be explained in notes)
-        sim_playoff_total.row(nl_s_3-1)[2]++;
+        sim_playoff_total.row(east_s_3-1)[2]++;
         //Sort remaining teams in NL to get other three wild cards
-        vector<Team> nl_wild_card;
-        nl_wild_card.push_back(sim_teams[16]); //Cent 1	
-        nl_wild_card.push_back(sim_teams[17]); //Cent 2
-        nl_wild_card.push_back(sim_teams[18]); //Cent 2	
-        nl_wild_card.push_back(sim_teams[21]); //East 1	
-        nl_wild_card.push_back(sim_teams[22]); //East 2
-        nl_wild_card.push_back(sim_teams[23]); //East 2	
-        nl_wild_card.push_back(sim_teams[26]); //West 1	
-        nl_wild_card.push_back(sim_teams[27]); //West 2
-        nl_wild_card.push_back(sim_teams[28]); //West 2	
-        sort(nl_wild_card.begin(),nl_wild_card.end(),wins_sort());        
-        int nl_s_4 = nl_wild_card[0].get_team_id();
-        int nl_s_5 = nl_wild_card[1].get_team_id();
-        int nl_s_6 = nl_wild_card[2].get_team_id();
-        sim_playoff_total.row(nl_s_4-1)[3]++; 
-        sim_playoff_total.row(nl_s_5-1)[3]++;
-        sim_playoff_total.row(nl_s_6-1)[3]++; 
+        vector<Team> east_wild_card;
+        east_wild_card.push_back(sim_teams[16]); //Cent 1	
+        east_wild_card.push_back(sim_teams[17]); //Cent 2
+        east_wild_card.push_back(sim_teams[18]); //Cent 2	
+        east_wild_card.push_back(sim_teams[21]); //East 1	
+        east_wild_card.push_back(sim_teams[22]); //East 2
+        east_wild_card.push_back(sim_teams[23]); //East 2	
+        east_wild_card.push_back(sim_teams[26]); //West 1	
+        east_wild_card.push_back(sim_teams[27]); //West 2
+        east_wild_card.push_back(sim_teams[28]); //West 2	
+        sort(east_wild_card.begin(),east_wild_card.end(),wins_sort());        
+        int east_s_4 = east_wild_card[0].get_team_id();
+        int east_s_5 = east_wild_card[1].get_team_id();
+        int east_s_6 = east_wild_card[2].get_team_id();
+        sim_playoff_total.row(east_s_4-1)[3]++; 
+        sim_playoff_total.row(east_s_5-1)[3]++;
+        sim_playoff_total.row(east_s_6-1)[3]++; 
         
         //AL Wild Cards
-        vector<Team> al_division_winners;
-        al_division_winners.push_back(sim_teams[0]); //Cent Winner
-        al_division_winners.push_back(sim_teams[5]); //East Winner
-        al_division_winners.push_back(sim_teams[10]); //West Winner
-        sort(al_division_winners.begin(),al_division_winners.end(),wins_sort());
-        int al_s_1 = al_division_winners[0].get_team_id();
-        int al_s_2 = al_division_winners[1].get_team_id();
-        int al_s_3 = al_division_winners[2].get_team_id();
-        sim_playoff_total.row(al_s_1-1)[0]++; 
-        sim_playoff_total.row(al_s_2-1)[0]++;
+        vector<Team> west_division_winners;
+        west_division_winners.push_back(sim_teams[0]); //Cent Winner
+        west_division_winners.push_back(sim_teams[5]); //East Winner
+        west_division_winners.push_back(sim_teams[10]); //West Winner
+        sort(west_division_winners.begin(),west_division_winners.end(),wins_sort());
+        int west_s_1 = west_division_winners[0].get_team_id();
+        int west_s_2 = west_division_winners[1].get_team_id();
+        int west_s_3 = west_division_winners[2].get_team_id();
+        sim_playoff_total.row(west_s_1-1)[0]++; 
+        sim_playoff_total.row(west_s_2-1)[0]++;
         //Third team becomes a defacto wild card (wild card functionality will be explained in notes)
-        sim_playoff_total.row(al_s_3-1)[2]++;
+        sim_playoff_total.row(west_s_3-1)[2]++;
         //Sort remaining teams in NL to get other three wild cards
-        vector<Team> al_wild_card;
-        al_wild_card.push_back(sim_teams[1]); //Cent 1	
-        al_wild_card.push_back(sim_teams[2]); //Cent 2
-        al_wild_card.push_back(sim_teams[3]); //Cent 2	
-        al_wild_card.push_back(sim_teams[6]); //East 1	
-        al_wild_card.push_back(sim_teams[7]); //East 2
-        al_wild_card.push_back(sim_teams[8]); //East 2	
-        al_wild_card.push_back(sim_teams[11]); //West 1	
-        al_wild_card.push_back(sim_teams[12]); //West 2
-        al_wild_card.push_back(sim_teams[13]); //West 2	
-        sort(al_wild_card.begin(),al_wild_card.end(),wins_sort());        
-        int al_s_4 = al_wild_card[0].get_team_id();
-        int al_s_5 = al_wild_card[1].get_team_id();
-        int al_s_6 = al_wild_card[2].get_team_id();
-        sim_playoff_total.row(al_s_4-1)[3]++; 
-        sim_playoff_total.row(al_s_5-1)[3]++;
-        sim_playoff_total.row(al_s_6-1)[3]++;
+        vector<Team> west_wild_card;
+        west_wild_card.push_back(sim_teams[1]); //Cent 1	
+        west_wild_card.push_back(sim_teams[2]); //Cent 2
+        west_wild_card.push_back(sim_teams[3]); //Cent 2	
+        west_wild_card.push_back(sim_teams[6]); //East 1	
+        west_wild_card.push_back(sim_teams[7]); //East 2
+        west_wild_card.push_back(sim_teams[8]); //East 2	
+        west_wild_card.push_back(sim_teams[11]); //West 1	
+        west_wild_card.push_back(sim_teams[12]); //West 2
+        west_wild_card.push_back(sim_teams[13]); //West 2	
+        sort(west_wild_card.begin(),west_wild_card.end(),wins_sort());        
+        int west_s_4 = west_wild_card[0].get_team_id();
+        int west_s_5 = west_wild_card[1].get_team_id();
+        int west_s_6 = west_wild_card[2].get_team_id();
+        sim_playoff_total.row(west_s_4-1)[3]++; 
+        sim_playoff_total.row(west_s_5-1)[3]++;
+        sim_playoff_total.row(west_s_6-1)[3]++;
      
         }
 
