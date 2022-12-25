@@ -126,7 +126,6 @@ def games_query(start_datetime, end_datetime):
         .where(
             Games.game_datetime < end_epochtime,
             Games.game_datetime > start_epochtime,
-            Games.visitor_g > 0,
         )
         .order_by(Games.game_datetime)
     )
