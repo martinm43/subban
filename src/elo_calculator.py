@@ -204,11 +204,11 @@ def results_summary(season_elo_ratings_list, scaling=100000):
     print_list = sorted(print_list, key=lambda x: -x[0])
     top_list = print_list[0:10]
     bottom_list = print_list[23:32]
-    print("Top 10 teams for the season ending in " + str(season_year) + ":")
+    print("Top 10 teams for the season ending in " + str(season_year+1) + ":")
     for t in top_list:
         rating = "%.1f" % t[0]
         print(t[1] + ": " + rating)
-    print("Bottom 10 teams for the season ending in " + str(season_year) + ":")
+    print("Bottom 10 teams for the season ending in " + str(season_year+1) + ":")
     for t in bottom_list:
         rating = "%.1f" % t[0]
         print(t[1] + ": " + rating)
