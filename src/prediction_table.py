@@ -53,6 +53,7 @@ def playoff_odds_calc(start_datetime, end_datetime, season_year, ratings_mode="E
 
     # Get List Of Known Wins
     games_list = games_query(start_datetime, end_datetime)
+    print(games_won_query(games_list))
     games_won_list_cpp = games_won_query(games_list, return_format="matrix").tolist()
 
     # Get team data.
@@ -65,10 +66,10 @@ def playoff_odds_calc(start_datetime, end_datetime, season_year, ratings_mode="E
 
     #pprint(teams_list)
     # Division changes go here
-    for z in teams_list:
-        if season_year <= 2003 and z[0] == 19: #Charlotte Hornets to NOH change
-            z[4]="E"
-            z[3]="Central"
+    #for z in teams_list:
+    #    if season_year <= 2003 and z[0] == 19: #Charlotte Hornets to NOH change
+    #        z[4]="E"
+    #        z[3]="Central"
 
     #pprint("Fixed")
     #pprint(teams_list)
@@ -109,6 +110,7 @@ def playoff_odds_calc(start_datetime, end_datetime, season_year, ratings_mode="E
             Elo_diff = home_team_rating - away_team_rating
             x.append(Elo_regress(Elo_diff))
 
+    pprint(games_won_list_cpp)
     team_results = simulations_result_vectorized(
         games_won_list_cpp, future_games_list, teams_list, season_year
     )
