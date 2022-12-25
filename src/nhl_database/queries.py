@@ -7,6 +7,9 @@ from .nhl_data_models import Games
 import time, datetime
 import numpy as np
 
+#Define the number of teams.
+num_teams = 32
+
 ###################
 # Time Conversion #
 ###################
@@ -181,7 +184,7 @@ def games_won_query(played_games, return_format="list"):
             winrows.append(winlist.count(i))
         return_value = winrows
     elif return_format == "matrix":
-        win_matrix = np.zeros((30, 30))
+        win_matrix = np.zeros((num_teams, num_teams))
         for x in played_games:
             if x[1] > x[3]:
                 win_matrix[x[0] - 1, x[2] - 1] += 1

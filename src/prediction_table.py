@@ -8,8 +8,8 @@ and allow for integration with more 'modern' interfaces -think flask or Django
 # Future import first
 
 
-from nba_database.nba_data_models import ProApiTeams as Team
-from nba_database.queries import elo_ratings_list, epochtime
+from nhl_database.nhl_data_models import Teams
+from nhl_database.queries import elo_ratings_list, epochtime
 from datetime import datetime, timedelta
 
 from pprint import pprint
@@ -41,7 +41,7 @@ def playoff_odds_calc(start_datetime, end_datetime, season_year, ratings_mode="E
     from analytics.SRS import SRS
     from analytics.morey import SRS_regress, Elo_regress
 
-    from nba_database.queries import games_query, games_won_query, future_games_query
+    from nhl_database.queries import games_query, games_won_query, future_games_query
 
     # Test results/inputs
     if end_datetime < start_datetime:
@@ -56,9 +56,9 @@ def playoff_odds_calc(start_datetime, end_datetime, season_year, ratings_mode="E
     games_won_list_cpp = games_won_query(games_list, return_format="matrix").tolist()
 
     # Get team data.
-    teams_list = Team.select().order_by(Team.bball_ref)
+    teams_list = Teams.select().order_by(Teams.id)
     teams_list = [
-        [x.bball_ref, x.team_name, x.abbreviation, x.division, x.conf_or_league]
+        [x.id, x.team_name, x.abbreviation, x.division, x.conference]
         for x in teams_list
     ]
 
@@ -131,10 +131,10 @@ def playoff_odds_print(team_results,season_year):
         return str(percent_float) + "%"
 
     # Format the results into a table
-    teams = Team.select().order_by(Team.bball_ref)
+    teams = Teams.select().order_by(Teams.id)
 
     teams_dict = [
-        dict(list(zip(["Team", "Conference"], [i.abbreviation, i.conf_or_league])))
+              dict(list(zip(["Team", "Conference"], [i.abbreviation, i.conference])))
         for i in teams
     ]
 
@@ -189,10 +189,10 @@ def playoff_odds_print(team_results,season_year):
 
 if __name__ == "__main__":
 
-    season_year = 2023  # year in which season ends
-    start_datetime = datetime(season_year - 1, 10, 10)  # start of season
+    season_year = 2022  # year in which season ends
+    start_datetime = datetime(season_year - 1, 9, 1)  # start of season
     #end_datetime = datetime(season_year,4,30)  # a few weeks or months in
-    end_datetime = datetime.today()-timedelta(days=1)
+    end_datetime = datetime(season_year,5,5)
 
     ratings_mode = "SRS"
     results = playoff_odds_calc(
