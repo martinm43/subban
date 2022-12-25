@@ -11,6 +11,7 @@
 #include "mcss.hpp"
 
 #define MAX_ITER 1
+#define NUM_TEAMS 32
 
 using namespace std;
 using namespace arma;
@@ -44,7 +45,7 @@ mat std_vec_to_HH_mat(vector< vector<double> > std_vec_array){
         }
     }
     mat col_vec(std_vec_array_flat);
-    mat mat_from_vec_t = reshape(col_vec,30,30);
+    mat mat_from_vec_t = reshape(col_vec,NUM_TEAMS,NUM_TEAMS);
     mat mat_from_vec = mat_from_vec_t.t();
     return mat_from_vec;
 }
@@ -82,10 +83,10 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
     vector<Team> teams;
 
     // Matrix examples.
-    mat MCSS_Head_To_Head = zeros<mat>(30,30);
-    mat Sim_Total = zeros<mat>(30,30);
-    mat debug_total = zeros<mat>(30,30);
-    mat sim_playoff_total = zeros<mat>(30,4); // [Division Win, Division Runner Up, Wildcard, Unused]  
+    mat MCSS_Head_To_Head = zeros<mat>(NUM_TEAMS,NUM_TEAMS);
+    mat Sim_Total = zeros<mat>(NUM_TEAMS,NUM_TEAMS);
+    mat debug_total = zeros<mat>(NUM_TEAMS,NUM_TEAMS);
+    mat sim_playoff_total = zeros<mat>(NUM_TEAMS,4); // [Division Win, Division Runner Up, Wildcard, Unused]  
     mat error_matrix = ones<mat>(1,1);
 
     mat Head_To_Head = mat_head_to_head;
@@ -126,7 +127,7 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
 
         //Calculate raw wins - only concerned with that now (can implement tie breaking functionality later)
         mat total_wins = sum(debug_total.t());
-        for(int i=0;i<30;i++){
+        for(int i=0;i<NUM_TEAMS;i++){
             sim_playoff_total.row(i)[1] = sim_playoff_total.row(i)[1] +  total_wins[i];
             //cout << sim_playoff_total.row(i)[2] << endl;
         }
@@ -134,7 +135,7 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
         vector<Team> sim_teams = teams;
 	
         //Round all wins
-        for(int i=0;i<30;i++){
+        for(int i=0;i<NUM_TEAMS;i++){
             sim_teams[i].set_total_wins(round(total_wins[i]));
 	    sim_teams[i].set_htoh(htoh_records[i]);
 	}
@@ -153,7 +154,7 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
        if(((year >= 2013)&&(year<=2019)) || (year = 2021))
        {
        //iterate through list of teams to determine division winners.
-            for(int i=0;i<30;i++){
+            for(int i=0;i<NUM_TEAMS;i++){
             string team_name = sim_teams[i].get_full_team_name();
             string team_division = sim_teams[i].get_division();
             int print_total_wins = sim_teams[i].get_total_wins();
@@ -195,7 +196,7 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
 
        //Format for 2020. CORONAVIRUS, IT'S GETTING REAL
        if(year==2020){
-         for(int i=0;i<30;i++){
+         for(int i=0;i<NUM_TEAMS;i++){
             string team_name = sim_teams[i].get_full_team_name();
             string team_division = sim_teams[i].get_division();
             //int print_total_wins = sim_teams[i].get_total_wins();
@@ -240,7 +241,7 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
 
         //Format for 2012
         if(year == 2012){
-        for(int i=0;i<30;i++){
+        for(int i=0;i<NUM_TEAMS;i++){
             string team_name = sim_teams[i].get_full_team_name();
             string team_division = sim_teams[i].get_division();
             //int print_total_wins = sim_teams[i].get_total_wins();
@@ -284,7 +285,7 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
 
         if((year >= 1998)&&(year<=2011)){
        //iterate through list of teams to determine division winners.
-       for(int i=0;i<30;i++){
+       for(int i=0;i<NUM_TEAMS;i++){
             string team_name = sim_teams[i].get_full_team_name();
             string team_division = sim_teams[i].get_division();
             //int print_total_wins = sim_teams[i].get_total_wins();
@@ -317,7 +318,7 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
         //Format for 1994-1997 inclusive
         if((year >= 1994)&&(year<=1997)){
        //iterate through list of teams to determine division winners.
-        for(int i=0;i<30;i++){
+        for(int i=0;i<NUM_TEAMS;i++){
             string team_name = sim_teams[i].get_full_team_name();
             string team_division = sim_teams[i].get_division();
             //int print_total_wins = sim_teams[i].get_total_wins();
@@ -349,7 +350,7 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
 
         //Format for 1977-1993 inclusive
        if((year >= 1977)&&(year<=1993)){
-        for(int i=0;i<30;i++){
+        for(int i=0;i<NUM_TEAMS;i++){
             string team_name = sim_teams[i].get_full_team_name();
             string team_division = sim_teams[i].get_division();
             //int print_total_wins = sim_teams[i].get_total_wins();
@@ -367,7 +368,7 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
        //iterate through list of teams to determine division winners.
        //Old code left here for your reference
        /*
-            for(int i=0;i<30;i++){
+            for(int i=0;i<NUM_TEAMS;i++){
             string team_name = sim_teams[i].get_full_team_name();
             string team_division = sim_teams[i].get_division();
             //int print_total_wins = sim_teams[i].get_total_wins();
@@ -449,13 +450,13 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
 	/*int tm_index = 29;
 	vector<double> htoh_print = sim_teams[tm_index].get_htoh();
 	cout << sim_teams[tm_index].get_team_id() << " " << sim_teams[tm_index].get_full_team_name() << endl;
-	for(int i=0;i<30;i++){
+	for(int i=0;i<NUM_TEAMS;i++){
 	cout << htoh_print[i] << " " ;
 	}
 	cout << endl;*/
     }
 	
-    for(int i=0;i<30;i++){
+    for(int i=0;i<NUM_TEAMS;i++){
         sim_playoff_total.row(i)[0] = sim_playoff_total.row(i)[0]/MAX_ITER;
         sim_playoff_total.row(i)[1] = sim_playoff_total.row(i)[1]/MAX_ITER;
         sim_playoff_total.row(i)[2] = sim_playoff_total.row(i)[2]/MAX_ITER;
