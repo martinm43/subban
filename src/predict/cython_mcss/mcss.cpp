@@ -86,7 +86,7 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
     mat MCSS_Head_To_Head = zeros<mat>(NUM_TEAMS,NUM_TEAMS);
     mat Sim_Total = zeros<mat>(NUM_TEAMS,NUM_TEAMS);
     mat debug_total = zeros<mat>(NUM_TEAMS,NUM_TEAMS);
-    mat sim_playoff_total = zeros<mat>(NUM_TEAMS,4); // [Division Win, Division Runner Up, Wildcard, Unused]  
+    mat sim_playoff_total = zeros<mat>(NUM_TEAMS,4); // [Division Win, Total Wins, Division Runner Up (NOT USED), Wild Card]  
     mat error_matrix = ones<mat>(1,1);
 
     mat Head_To_Head = mat_head_to_head;
@@ -167,34 +167,31 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
 
         //East Conference Wild Cards.
         vector<Team> east_wild_card;
-        east_wild_card.push_back(sim_teams[16]); //Cent 1	
-        east_wild_card.push_back(sim_teams[17]); //Cent 2	
-        east_wild_card.push_back(sim_teams[21]); //East 1	
-        east_wild_card.push_back(sim_teams[22]); //East 2	
-        east_wild_card.push_back(sim_teams[26]); //West 1	
-        east_wild_card.push_back(sim_teams[27]); //West 2	
+        east_wild_card.push_back(sim_teams[3]); //Division Group A remaining top two
+        east_wild_card.push_back(sim_teams[4]); 	
+        east_wild_card.push_back(sim_teams[11]); //Division Group B remaining top two	
+        east_wild_card.push_back(sim_teams[12]); 	
         sort(east_wild_card.begin(),east_wild_card.end(),wins_sort());        
         int east_wc1 = east_wild_card[0].get_team_id();
         int east_wc2 = east_wild_card[1].get_team_id();
-        sim_playoff_total.row(east_wc1-1)[3]++; 
-        sim_playoff_total.row(east_wc2-1)[3]++; 
+        sim_playoff_total.row(east_wc1-1)[3]++; //WC Winner 
+        sim_playoff_total.row(east_wc2-1)[3]++;  //WC winner
         
-        //AL Wild Cards
+        //West Wild Cards
         vector<Team> west_wild_card;
-        west_wild_card.push_back(sim_teams[1]); //Cent 1	
-        west_wild_card.push_back(sim_teams[2]); //Cent 2	
-        west_wild_card.push_back(sim_teams[6]); //East 1	
-        west_wild_card.push_back(sim_teams[7]); //East 2	
-        west_wild_card.push_back(sim_teams[11]); //West 1	
-        west_wild_card.push_back(sim_teams[12]); //West 2	
+        west_wild_card.push_back(sim_teams[19]); //Division Group C remaining top two	
+        west_wild_card.push_back(sim_teams[20]); 	
+        west_wild_card.push_back(sim_teams[27]); //Division Group D remaining top two	
+        west_wild_card.push_back(sim_teams[28]); 
         sort(west_wild_card.begin(),west_wild_card.end(),wins_sort());        
         int west_wc1 = west_wild_card[0].get_team_id();
         int west_wc2 = west_wild_card[1].get_team_id();
-        sim_playoff_total.row(west_wc1-1)[3]++; 
-        sim_playoff_total.row(west_wc2-1)[3]++;  
+        sim_playoff_total.row(west_wc1-1)[3]++; //WC Winner
+        sim_playoff_total.row(west_wc2-1)[3]++;  //WC Winner
         }
 
-       //Format for 2020. CORONAVIRUS, IT'S GETTING REAL
+       //Format for 2020. Not currently coded, may never be coded properly
+       /*
        if(year==2020){
          for(int i=0;i<NUM_TEAMS;i++){
             string team_name = sim_teams[i].get_full_team_name();
@@ -280,9 +277,9 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
         sim_playoff_total.row(west_wc1-1)[3]++; 
         sim_playoff_total.row(west_wc2-1)[3]++;
        }
-
+       */
         //Format for 1998-2011 inclusive
-
+        /*
         if((year >= 1998)&&(year<=2011)){
        //iterate through list of teams to determine division winners.
        for(int i=0;i<NUM_TEAMS;i++){
@@ -314,8 +311,10 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
         int west_wc1 = west_wild_card[0].get_team_id();
         sim_playoff_total.row(west_wc1-1)[3]++; 
         }
+        */
 
         //Format for 1994-1997 inclusive
+	/*
         if((year >= 1994)&&(year<=1997)){
        //iterate through list of teams to determine division winners.
         for(int i=0;i<NUM_TEAMS;i++){
@@ -347,8 +346,9 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
         int west_wc1 = west_wild_card[0].get_team_id();
         sim_playoff_total.row(west_wc1-1)[3]++;
         }
-
+        */
         //Format for 1977-1993 inclusive
+	/*
        if((year >= 1977)&&(year<=1993)){
         for(int i=0;i<NUM_TEAMS;i++){
             string team_name = sim_teams[i].get_full_team_name();
@@ -361,10 +361,11 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
             }
         }
        }
- 
+ */
 //Format for 2022 onwards
-       if(year >= 2022)
-       {
+
+       //if(year >= 2022)
+       //{
        //iterate through list of teams to determine division winners.
        //Old code left here for your reference
        /*
@@ -378,7 +379,7 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
                 sim_playoff_total.row(team_id-1)[0]++; //Division Winner
             }
         }*/
-
+/*
         //NL Processing
         vector<Team> east_division_winners;
         east_division_winners.push_back(sim_teams[15]); //Cent Winner
@@ -444,7 +445,7 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
         sim_playoff_total.row(west_s_6-1)[3]++;
      
         }
-
+*/
 
 	//Debug print
 	/*int tm_index = 29;

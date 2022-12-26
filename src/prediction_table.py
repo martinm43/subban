@@ -114,6 +114,7 @@ def playoff_odds_calc(start_datetime, end_datetime, season_year, ratings_mode="E
     team_results = simulations_result_vectorized(
         games_won_list_cpp, future_games_list, teams_list, season_year
     )
+    print(team_results)
     # Return (top 8 odds, average wins, top 6 odds, and play in tournament odds).
     team_results = [
         [x[0] * 100.0, x[1], x[2] * 100.0, x[3] * 100.0] for x in team_results
@@ -141,21 +142,23 @@ def playoff_odds_print(team_results,season_year):
     ]
 
 
+    #The dict for the teams
+    #Conference change implemented here.
     for z in teams_dict:
         if z["Team"]=="NOP/NOH/CHA" and season_year <= 2003:
             z["Conference"]="E"
 
 
     for i, d in enumerate(teams_dict):
-        d["Hist. Playoff %"] = round(team_results[i][0], 1)
+        d["PF%"] = round(team_results[i][0], 1)
         d["Avg. Wins"] = round(team_results[i][1], 1)
-        d["Playoff %"] = round(team_results[i][2], 1)
-        d["PIT %"] = round(team_results[i][3], 1)
+        d["Unused"] = round(team_results[i][2], 1)
+        d["WC%"] = round(team_results[i][3], 1)
 
         # Convert into percentages for printing
-        d["Hist. Playoff %"] = format_percent(d["Hist. Playoff %"])
-        d["Playoff %"] = format_percent(d["Playoff %"])
-        d["PIT %"] = format_percent(d["PIT %"])
+        d["PF%"] = format_percent(d["PF%"])
+        d["Unused"] = format_percent(d["Unused"])
+        d["WC%"] = format_percent(d["WC%"])
 
     teams_dict.sort(key=lambda x: (x["Conference"], -x["Avg. Wins"]))
 
@@ -164,9 +167,9 @@ def playoff_odds_print(team_results,season_year):
             d["Conference"],
             d["Team"],
             d["Avg. Wins"],
-            d["Hist. Playoff %"],
-            d["PIT %"],
-            d["Playoff %"],
+            d["PF%"],
+            d["WC%"],
+            d["Unused"],
         )
         for d in teams_dict
     ]
@@ -179,7 +182,7 @@ def playoff_odds_print(team_results,season_year):
             "Avg. Wins",
             "PF%",
             "WC%",
-            "PF% (UNUSED)",
+            "Unused",
         ],
         tablefmt="rst",
         numalign="left",
