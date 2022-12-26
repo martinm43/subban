@@ -159,7 +159,7 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
             string team_division = sim_teams[i].get_division();
             int print_total_wins = sim_teams[i].get_total_wins();
             int team_id = sim_teams[i].get_team_id();
-            cout << team_name << ":" << team_division << ":" << print_total_wins << endl;
+            cout << i << ":" << team_name << ":" << team_division << ":" << print_total_wins << endl;
             if(( i >= 0 && i <= 2) || (i >= 8 && i <= 10)||(i >= 16 && i <= 18)||(i >= 24 && i <= 26)){
                 sim_playoff_total.row(team_id-1)[0]++; //Division Winner
             }
@@ -167,10 +167,10 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
 
         //East Conference Wild Cards.
         vector<Team> east_wild_card;
-        east_wild_card.push_back(sim_teams[3]); //Division Group A remaining top two
+        east_wild_card.push_back(sim_teams[3]); //Division Group Atlantic remaining top two
         east_wild_card.push_back(sim_teams[4]); 	
-        east_wild_card.push_back(sim_teams[11]); //Division Group B remaining top two	
-        east_wild_card.push_back(sim_teams[12]); 	
+        east_wild_card.push_back(sim_teams[19]); //Division Group Metro remaining top two	
+        east_wild_card.push_back(sim_teams[20]); 	
         sort(east_wild_card.begin(),east_wild_card.end(),wins_sort());        
         int east_wc1 = east_wild_card[0].get_team_id();
         int east_wc2 = east_wild_card[1].get_team_id();
@@ -179,9 +179,9 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
         
         //West Wild Cards
         vector<Team> west_wild_card;
-        west_wild_card.push_back(sim_teams[19]); //Division Group C remaining top two	
-        west_wild_card.push_back(sim_teams[20]); 	
-        west_wild_card.push_back(sim_teams[27]); //Division Group D remaining top two	
+        west_wild_card.push_back(sim_teams[11]); //Division Group Central remaining top two	
+        west_wild_card.push_back(sim_teams[12]); 	
+        west_wild_card.push_back(sim_teams[27]); //Division Group Pacific remaining top two	
         west_wild_card.push_back(sim_teams[28]); 
         sort(west_wild_card.begin(),west_wild_card.end(),wins_sort());        
         int west_wc1 = west_wild_card[0].get_team_id();
