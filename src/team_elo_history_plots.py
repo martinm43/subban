@@ -15,7 +15,9 @@ import time
 
 from nhl_database.queries import team_abbreviation
 
-for team_id in range(1, 33):
+rolling_factor = 20
+
+for team_id in range(1, 5):
     conn = sqlite3.connect("nhl_data.sqlite")
     query = "SELECT datetime,elo_rating FROM team_elo_data where team_id = " + str(
         team_id
@@ -34,7 +36,7 @@ for team_id in range(1, 33):
 
     plt.plot(
         df["datetime"],
-        df["elo_rating"].rolling(41).mean(),
+        df["elo_rating"].rolling(rolling_factor).mean(),
         label="41 game moving avg.",
         color=s[0][0],
     )
