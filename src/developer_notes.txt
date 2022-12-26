@@ -1,3 +1,7 @@
 #Developer Notes, December 26
 Playoff positions are decided based on points not "total wins". A new function needs to be created to get points (or use the one from the info_table function. 
 Monte Carlo simulation with ties is not exactly easy/intuitive. Need to research further.
+
+Strategy:
+Import points to the CPP file
+Use fact winner gets pt .25 pct of time
