@@ -214,7 +214,7 @@ if __name__ == "__main__":
     print("Method used: " + ratings_mode)
     print(results_table)
     print(
-        "Note that in 2014 and earlier, division winners were automatically given a top-four seed\n"
-        + "and home court advantage for the first round. That logic has not yet been implemented in this progam"
+        "Notes Pending. Note that an editorial decision also has yet to be made on whether this tool will use 2020/2021 seasons\n" +
+        "While valid for the purposes of determining Elo ratings, the playoff format for 2020 was for obvious reasons changed mid-season"
     )
 
