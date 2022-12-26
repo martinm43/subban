@@ -1,0 +1,3 @@
+#Developer Notes, December 26
+Playoff positions are decided based on points not "total wins". A new function needs to be created to get points (or use the one from the info_table function. 
+Monte Carlo simulation with ties is not exactly easy/intuitive. Need to research further.
