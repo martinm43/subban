@@ -24,18 +24,19 @@ private:
     float _division_odds;
     float _playoff_odds;
     std::vector<double> _htoh;
+    int _points;
 public:
 
     Team(int team_id, std::string full_team_name, 
             std::string abbreviation, std::string division, std::string league, 
-            float rating,std::vector<double> htoh):
+            float rating,std::vector<double> htoh, int points):
         _team_id(team_id), _full_team_name(full_team_name), 
             _abbreviation(abbreviation), _division(division), 
-            _league(league), _rating(rating),_htoh(htoh) {}
+            _league(league), _rating(rating),_htoh(htoh),_points(points) {}
 
     //Sample team definition, blank definition.
     //Team()
-    Team(){_team_id=0, _full_team_name="Carp", _abbreviation="HC", _division="Central", _league="NPL", _rating=9001.0, _htoh={0,0,0};}
+    Team(){_team_id=0, _full_team_name="Carp", _abbreviation="HC", _division="Central", _league="NPL", _rating=9001.0, _htoh={0,0,0},_points=100;}
 
 
     int get_team_id() const {return _team_id;}
@@ -45,9 +46,11 @@ public:
     std::string get_league() const {return _league;}
     float get_rating() const {return _rating;}
     int get_total_wins() const {return _total_wins;}
+    int get_points() const {return _points;}
     std::vector<double> get_htoh() const{return _htoh;}
 
     void set_total_wins(int val) {_total_wins = val;}
+    void set_points(int val) {_points = val;}
     void set_wild_card_odds(float val) {_wild_card_odds = val;}
     void set_division_odds(float val) {_division_odds = val;}
     void set_playoff_odds(float val) {_playoff_odds = val;}

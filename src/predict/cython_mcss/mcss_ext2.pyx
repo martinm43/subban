@@ -17,7 +17,7 @@ cdef extern from "mcss.hpp":
 
     cdef cppclass Team:
 
-        Team(int,string,string,string,string,float,vector[double]) except +
+        Team(int,string,string,string,string,float,vector[double],int) except +
         Team() except +
 
         int get_team_id()
@@ -28,8 +28,10 @@ cdef extern from "mcss.hpp":
         float get_rating()
         int get_total_wins()
         vector[double] get_htoh()
+        int get_points()
 
         void set_total_wins(int val)
+        void set_points(int val)
         void set_wild_card_odds(float val)
         void set_division_odds(float val)
         void set_playoff_odds(float val)
@@ -42,8 +44,8 @@ cdef extern from "mcss.hpp":
 cdef class PyTeam:
     cdef Team *thisptr # hold a C++ instance of a team object
 
-    def __cinit__(self,int id, string full_team_name, string abbreviation, string division, string league, float rating, vector[double] htoh):
-        self.thisptr = new Team(id,full_team_name,abbreviation,division,league,rating,htoh)
+    def __cinit__(self,int id, string full_team_name, string abbreviation, string division, string league, float rating, vector[double] htoh, int points):
+        self.thisptr = new Team(id,full_team_name,abbreviation,division,league,rating,htoh,points)
 
     def __dealloc__(self):
         del self.thisptr
@@ -69,8 +71,14 @@ cdef class PyTeam:
     def get_total_wins(self):
         return self.thisptr.get_total_wins()
 
+    def get_points(self):
+        return self.thisptr.get_points()
+
     def set_total_wins(self,val):
         self.thisptr.set_total_wins(val)
+
+    def set_points(self,val):
+        self.thisptr.set_points(val)
 
     def set_wild_card_odds(self,val):
         self.thisptr.set_wild_card_odds(val)
@@ -132,8 +140,9 @@ def simulations_result_vectorized(head_to_head, future_games, list_of_teams, int
         division = t[3]
         league = t[4]
         rating = t[5]
+        points = t[6]
         htoh = head_to_head[i]
-        st = PyTeam(team_id,full_team_name,abbreviation,division,league,rating,htoh)
+        st = PyTeam(team_id,full_team_name,abbreviation,division,league,rating,htoh,points)
         st_cpp =dereference(st.thisptr)
         cpp_list_of_teams.push_back(st_cpp)
 

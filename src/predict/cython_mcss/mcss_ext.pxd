@@ -18,7 +18,7 @@ cdef extern from "mcss.hpp":
 
     cdef cppclass Team:
 
-        Team(int,string,string,string,string,float) except +
+        Team(int,string,string,string,string,float,int) except +
 
         int get_team_id()
         string get_full_team_name()
@@ -27,9 +27,11 @@ cdef extern from "mcss.hpp":
         string get_league()
         float get_rating()
         int get_total_wins()
+        int get_poinrs()
         vector[double] get_htoh()
 
         void set_total_wins(int val)
+        void set_points(int val)
         void set_wild_card_odds(float val)
         void set_division_odds(float val)
         void set_playoff_odds(float val)

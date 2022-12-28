@@ -62,7 +62,7 @@ def playoff_odds_calc(start_datetime, end_datetime, season_year, ratings_mode="E
     # Get team data.
     teams_list = Teams.select().order_by(Teams.id)
     teams_list = [
-        [x.id, x.team_name, x.abbreviation, x.division, x.conference]
+        [x.id, x.team_name, x.abbreviation, x.division, x.conference,0,0] #last two are 'rating' (unused) and 'points' (to be used)
         for x in teams_list
     ]
 
