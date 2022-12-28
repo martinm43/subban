@@ -77,8 +77,8 @@ cdef class PyTeam:
     def set_total_wins(self,val):
         self.thisptr.set_total_wins(val)
 
-    def set_points(self,val):
-        self.thisptr.set_points(val)
+    #def set_points(self,val):
+    #    self.thisptr.set_points(val)
 
     def set_wild_card_odds(self,val):
         self.thisptr.set_wild_card_odds(val)
