@@ -96,7 +96,7 @@ cdef class PyTeam:
     def set_htoh(self):
         return self.thisptr.set_htoh(array.array)
 
-def simulations_result_vectorized(head_to_head, future_games, list_of_teams, int year):
+def simulations_result_vectorized(head_to_head, future_games, list_of_teams, int year, current_points):
     """
     
     Wrapper to the C++ main function simulations_result_vectorized
@@ -137,4 +137,4 @@ def simulations_result_vectorized(head_to_head, future_games, list_of_teams, int
         st_cpp =dereference(st.thisptr)
         cpp_list_of_teams.push_back(st_cpp)
 
-    return mcss_ext.simulations_result_vectorized(head_to_head, future_games,cpp_list_of_teams,year)
+    return mcss_ext.simulations_result_vectorized(head_to_head, future_games,cpp_list_of_teams,year,current_points)

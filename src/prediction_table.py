@@ -40,6 +40,7 @@ def playoff_odds_calc(start_datetime, end_datetime, season_year, ratings_mode="E
     from predict.cython_mcss.mcss_ext2 import simulations_result_vectorized
     from analytics.SRS import SRS
     from analytics.morey import SRS_regress, Elo_regress
+    from analytics.wins_script import points_list
 
     from nhl_database.queries import games_query, games_won_query, future_games_query
 
@@ -53,6 +54,8 @@ def playoff_odds_calc(start_datetime, end_datetime, season_year, ratings_mode="E
 
     # Get List Of Known Wins
     games_list = games_query(start_datetime, end_datetime)
+    print("Debug print of points based analysis")
+    current_points = points_list(season_year,start_datetime,end_datetime)
     print(len(games_list))
     games_won_list_cpp = games_won_query(games_list, return_format="matrix").tolist()
 
@@ -112,7 +115,7 @@ def playoff_odds_calc(start_datetime, end_datetime, season_year, ratings_mode="E
 
     pprint(games_won_list_cpp)
     team_results = simulations_result_vectorized(
-        games_won_list_cpp, future_games_list, teams_list, season_year
+        games_won_list_cpp, future_games_list, teams_list, season_year,current_points
     )
     print(team_results)
     # Return (top 8 odds, average wins, top 6 odds, and play in tournament odds).

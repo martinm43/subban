@@ -1650,6 +1650,7 @@ static const char __pyx_k_head_to_head[] = "head_to_head";
 static const char __pyx_k_list_of_teams[] = "list_of_teams";
 static const char __pyx_k_mcss_ext2_pyx[] = "mcss_ext2.pyx";
 static const char __pyx_k_reduce_cython[] = "__reduce_cython__";
+static const char __pyx_k_current_points[] = "current_points";
 static const char __pyx_k_full_team_name[] = "full_team_name";
 static const char __pyx_k_setstate_cython[] = "__setstate_cython__";
 static const char __pyx_k_cpp_list_of_teams[] = "cpp_list_of_teams";
@@ -1664,6 +1665,7 @@ static PyObject *__pyx_n_s_abbreviation;
 static PyObject *__pyx_n_s_array;
 static PyObject *__pyx_n_s_cline_in_traceback;
 static PyObject *__pyx_n_s_cpp_list_of_teams;
+static PyObject *__pyx_n_s_current_points;
 static PyObject *__pyx_n_s_division;
 static PyObject *__pyx_n_s_enumerate;
 static PyObject *__pyx_n_s_full_team_name;
@@ -1715,7 +1717,7 @@ static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_32get_htoh(struct __pyx_obj_9mcss_e
 static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_34set_htoh(struct __pyx_obj_9mcss_ext2_PyTeam *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_36__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_9mcss_ext2_PyTeam *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_38__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_9mcss_ext2_PyTeam *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
-static PyObject *__pyx_pf_9mcss_ext2_simulations_result_vectorized(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_head_to_head, PyObject *__pyx_v_future_games, PyObject *__pyx_v_list_of_teams, int __pyx_v_year); /* proto */
+static PyObject *__pyx_pf_9mcss_ext2_simulations_result_vectorized(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_head_to_head, PyObject *__pyx_v_future_games, PyObject *__pyx_v_list_of_teams, int __pyx_v_year, PyObject *__pyx_v_current_points); /* proto */
 static int __pyx_pf_7cpython_5array_5array___getbuffer__(arrayobject *__pyx_v_self, Py_buffer *__pyx_v_info, CYTHON_UNUSED int __pyx_v_flags); /* proto */
 static void __pyx_pf_7cpython_5array_5array_2__releasebuffer__(CYTHON_UNUSED arrayobject *__pyx_v_self, Py_buffer *__pyx_v_info); /* proto */
 static PyObject *__pyx_tp_new_9mcss_ext2_PyTeam(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
@@ -2910,7 +2912,7 @@ static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_34set_htoh(struct __pyx_obj_9mcss_e
  *     def set_htoh(self):
  *         return self.thisptr.set_htoh(array.array)             # <<<<<<<<<<<<<<
  * 
- * def simulations_result_vectorized(head_to_head, future_games, list_of_teams, int year):
+ * def simulations_result_vectorized(head_to_head, future_games, list_of_teams, int year, current_points):
  */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_1 = __pyx_convert_vector_from_py_double(((PyObject *)__pyx_ptype_7cpython_5array_array)); if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 97, __pyx_L1_error)
@@ -3055,7 +3057,7 @@ static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_38__setstate_cython__(CYTHON_UNUSED
 /* "mcss_ext2.pyx":99
  *         return self.thisptr.set_htoh(array.array)
  * 
- * def simulations_result_vectorized(head_to_head, future_games, list_of_teams, int year):             # <<<<<<<<<<<<<<
+ * def simulations_result_vectorized(head_to_head, future_games, list_of_teams, int year, current_points):             # <<<<<<<<<<<<<<
  *     """
  * 
  */
@@ -3069,6 +3071,7 @@ static PyObject *__pyx_pw_9mcss_ext2_1simulations_result_vectorized(PyObject *__
   PyObject *__pyx_v_future_games = 0;
   PyObject *__pyx_v_list_of_teams = 0;
   int __pyx_v_year;
+  PyObject *__pyx_v_current_points = 0;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -3076,12 +3079,14 @@ static PyObject *__pyx_pw_9mcss_ext2_1simulations_result_vectorized(PyObject *__
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("simulations_result_vectorized (wrapper)", 0);
   {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_head_to_head,&__pyx_n_s_future_games,&__pyx_n_s_list_of_teams,&__pyx_n_s_year,0};
-    PyObject* values[4] = {0,0,0,0};
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_head_to_head,&__pyx_n_s_future_games,&__pyx_n_s_list_of_teams,&__pyx_n_s_year,&__pyx_n_s_current_points,0};
+    PyObject* values[5] = {0,0,0,0,0};
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
       switch (pos_args) {
+        case  5: values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
+        CYTHON_FALLTHROUGH;
         case  4: values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
         CYTHON_FALLTHROUGH;
         case  3: values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
@@ -3102,53 +3107,61 @@ static PyObject *__pyx_pw_9mcss_ext2_1simulations_result_vectorized(PyObject *__
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_future_games)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("simulations_result_vectorized", 1, 4, 4, 1); __PYX_ERR(1, 99, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("simulations_result_vectorized", 1, 5, 5, 1); __PYX_ERR(1, 99, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_list_of_teams)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("simulations_result_vectorized", 1, 4, 4, 2); __PYX_ERR(1, 99, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("simulations_result_vectorized", 1, 5, 5, 2); __PYX_ERR(1, 99, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
         if (likely((values[3] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_year)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("simulations_result_vectorized", 1, 4, 4, 3); __PYX_ERR(1, 99, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("simulations_result_vectorized", 1, 5, 5, 3); __PYX_ERR(1, 99, __pyx_L3_error)
+        }
+        CYTHON_FALLTHROUGH;
+        case  4:
+        if (likely((values[4] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_current_points)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("simulations_result_vectorized", 1, 5, 5, 4); __PYX_ERR(1, 99, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "simulations_result_vectorized") < 0)) __PYX_ERR(1, 99, __pyx_L3_error)
       }
-    } else if (PyTuple_GET_SIZE(__pyx_args) != 4) {
+    } else if (PyTuple_GET_SIZE(__pyx_args) != 5) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
       values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
+      values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
     }
     __pyx_v_head_to_head = values[0];
     __pyx_v_future_games = values[1];
     __pyx_v_list_of_teams = values[2];
     __pyx_v_year = __Pyx_PyInt_As_int(values[3]); if (unlikely((__pyx_v_year == (int)-1) && PyErr_Occurred())) __PYX_ERR(1, 99, __pyx_L3_error)
+    __pyx_v_current_points = values[4];
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("simulations_result_vectorized", 1, 4, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(1, 99, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("simulations_result_vectorized", 1, 5, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(1, 99, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("mcss_ext2.simulations_result_vectorized", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_9mcss_ext2_simulations_result_vectorized(__pyx_self, __pyx_v_head_to_head, __pyx_v_future_games, __pyx_v_list_of_teams, __pyx_v_year);
+  __pyx_r = __pyx_pf_9mcss_ext2_simulations_result_vectorized(__pyx_self, __pyx_v_head_to_head, __pyx_v_future_games, __pyx_v_list_of_teams, __pyx_v_year, __pyx_v_current_points);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_9mcss_ext2_simulations_result_vectorized(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_head_to_head, PyObject *__pyx_v_future_games, PyObject *__pyx_v_list_of_teams, int __pyx_v_year) {
+static PyObject *__pyx_pf_9mcss_ext2_simulations_result_vectorized(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_head_to_head, PyObject *__pyx_v_future_games, PyObject *__pyx_v_list_of_teams, int __pyx_v_year, PyObject *__pyx_v_current_points) {
   std::vector<Team>  __pyx_v_cpp_list_of_teams;
   PyObject *__pyx_v_i = NULL;
   PyObject *__pyx_v_t = NULL;
@@ -3171,6 +3184,7 @@ static PyObject *__pyx_pf_9mcss_ext2_simulations_result_vectorized(CYTHON_UNUSED
   PyObject *__pyx_t_6 = NULL;
   std::vector<std::vector<double> >  __pyx_t_7;
   std::vector<std::vector<double> >  __pyx_t_8;
+  std::vector<double>  __pyx_t_9;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -3371,7 +3385,7 @@ static PyObject *__pyx_pf_9mcss_ext2_simulations_result_vectorized(CYTHON_UNUSED
  *         st_cpp =dereference(st.thisptr)
  *         cpp_list_of_teams.push_back(st_cpp)             # <<<<<<<<<<<<<<
  * 
- *     return mcss_ext.simulations_result_vectorized(head_to_head, future_games,cpp_list_of_teams,year)
+ *     return mcss_ext.simulations_result_vectorized(head_to_head, future_games,cpp_list_of_teams,year,current_points)
  */
     try {
       __pyx_v_cpp_list_of_teams.push_back(__pyx_v_st_cpp);
@@ -3394,12 +3408,13 @@ static PyObject *__pyx_pf_9mcss_ext2_simulations_result_vectorized(CYTHON_UNUSED
   /* "mcss_ext2.pyx":140
  *         cpp_list_of_teams.push_back(st_cpp)
  * 
- *     return mcss_ext.simulations_result_vectorized(head_to_head, future_games,cpp_list_of_teams,year)             # <<<<<<<<<<<<<<
+ *     return mcss_ext.simulations_result_vectorized(head_to_head, future_games,cpp_list_of_teams,year,current_points)             # <<<<<<<<<<<<<<
  */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_7 = __pyx_convert_vector_from_py_std_3a__3a_vector_3c_double_3e___(__pyx_v_head_to_head); if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 140, __pyx_L1_error)
   __pyx_t_8 = __pyx_convert_vector_from_py_std_3a__3a_vector_3c_double_3e___(__pyx_v_future_games); if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 140, __pyx_L1_error)
-  __pyx_t_1 = __pyx_convert_vector_to_py_std_3a__3a_vector_3c_double_3e___(simulations_result_vectorized(__pyx_t_7, __pyx_t_8, ((std::vector<Team> )__pyx_v_cpp_list_of_teams), __pyx_v_year)); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 140, __pyx_L1_error)
+  __pyx_t_9 = __pyx_convert_vector_from_py_double(__pyx_v_current_points); if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 140, __pyx_L1_error)
+  __pyx_t_1 = __pyx_convert_vector_to_py_std_3a__3a_vector_3c_double_3e___(simulations_result_vectorized(__pyx_t_7, __pyx_t_8, ((std::vector<Team> )__pyx_v_cpp_list_of_teams), __pyx_v_year, __pyx_t_9)); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 140, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -3408,7 +3423,7 @@ static PyObject *__pyx_pf_9mcss_ext2_simulations_result_vectorized(CYTHON_UNUSED
   /* "mcss_ext2.pyx":99
  *         return self.thisptr.set_htoh(array.array)
  * 
- * def simulations_result_vectorized(head_to_head, future_games, list_of_teams, int year):             # <<<<<<<<<<<<<<
+ * def simulations_result_vectorized(head_to_head, future_games, list_of_teams, int year, current_points):             # <<<<<<<<<<<<<<
  *     """
  * 
  */
@@ -4956,6 +4971,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_array, __pyx_k_array, sizeof(__pyx_k_array), 0, 0, 1, 1},
   {&__pyx_n_s_cline_in_traceback, __pyx_k_cline_in_traceback, sizeof(__pyx_k_cline_in_traceback), 0, 0, 1, 1},
   {&__pyx_n_s_cpp_list_of_teams, __pyx_k_cpp_list_of_teams, sizeof(__pyx_k_cpp_list_of_teams), 0, 0, 1, 1},
+  {&__pyx_n_s_current_points, __pyx_k_current_points, sizeof(__pyx_k_current_points), 0, 0, 1, 1},
   {&__pyx_n_s_division, __pyx_k_division, sizeof(__pyx_k_division), 0, 0, 1, 1},
   {&__pyx_n_s_enumerate, __pyx_k_enumerate, sizeof(__pyx_k_enumerate), 0, 0, 1, 1},
   {&__pyx_n_s_full_team_name, __pyx_k_full_team_name, sizeof(__pyx_k_full_team_name), 0, 0, 1, 1},
@@ -5025,14 +5041,14 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   /* "mcss_ext2.pyx":99
  *         return self.thisptr.set_htoh(array.array)
  * 
- * def simulations_result_vectorized(head_to_head, future_games, list_of_teams, int year):             # <<<<<<<<<<<<<<
+ * def simulations_result_vectorized(head_to_head, future_games, list_of_teams, int year, current_points):             # <<<<<<<<<<<<<<
  *     """
  * 
  */
-  __pyx_tuple__3 = PyTuple_Pack(16, __pyx_n_s_head_to_head, __pyx_n_s_future_games, __pyx_n_s_list_of_teams, __pyx_n_s_year, __pyx_n_s_cpp_list_of_teams, __pyx_n_s_i, __pyx_n_s_t, __pyx_n_s_team_id, __pyx_n_s_full_team_name, __pyx_n_s_abbreviation, __pyx_n_s_division, __pyx_n_s_league, __pyx_n_s_rating, __pyx_n_s_htoh, __pyx_n_s_st, __pyx_n_s_st_cpp); if (unlikely(!__pyx_tuple__3)) __PYX_ERR(1, 99, __pyx_L1_error)
+  __pyx_tuple__3 = PyTuple_Pack(17, __pyx_n_s_head_to_head, __pyx_n_s_future_games, __pyx_n_s_list_of_teams, __pyx_n_s_year, __pyx_n_s_current_points, __pyx_n_s_cpp_list_of_teams, __pyx_n_s_i, __pyx_n_s_t, __pyx_n_s_team_id, __pyx_n_s_full_team_name, __pyx_n_s_abbreviation, __pyx_n_s_division, __pyx_n_s_league, __pyx_n_s_rating, __pyx_n_s_htoh, __pyx_n_s_st, __pyx_n_s_st_cpp); if (unlikely(!__pyx_tuple__3)) __PYX_ERR(1, 99, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__3);
   __Pyx_GIVEREF(__pyx_tuple__3);
-  __pyx_codeobj__4 = (PyObject*)__Pyx_PyCode_New(4, 0, 16, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__3, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mcss_ext2_pyx, __pyx_n_s_simulations_result_vectorized, 99, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__4)) __PYX_ERR(1, 99, __pyx_L1_error)
+  __pyx_codeobj__4 = (PyObject*)__Pyx_PyCode_New(5, 0, 17, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__3, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mcss_ext2_pyx, __pyx_n_s_simulations_result_vectorized, 99, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__4)) __PYX_ERR(1, 99, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -5378,7 +5394,7 @@ if (!__Pyx_RefNanny) {
   /* "mcss_ext2.pyx":99
  *         return self.thisptr.set_htoh(array.array)
  * 
- * def simulations_result_vectorized(head_to_head, future_games, list_of_teams, int year):             # <<<<<<<<<<<<<<
+ * def simulations_result_vectorized(head_to_head, future_games, list_of_teams, int year, current_points):             # <<<<<<<<<<<<<<
  *     """
  * 
  */

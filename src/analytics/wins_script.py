@@ -69,3 +69,8 @@ def get_wins(team_id, season_year, start_datetime, end_datetime):
         pass
     return {"visitor_record": visitor_record, "home_record": home_record, "record": record,"points":pts,"pts_pct":pts_pct}
 
+def points_list(season_year, start_datetime, end_datetime):
+    wins_dict_list = [
+    get_wins(i, season_year, start_datetime, end_datetime) for i in range(1, 32)]
+    points_list = [x["points"] for x in wins_dict_list]
+    return points_list
