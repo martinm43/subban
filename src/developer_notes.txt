@@ -4,6 +4,6 @@ Monte Carlo simulation with ties is not exactly easy/intuitive. Need to research
 
 Strategy:
 Import points to the CPP file - done
-Add "points" value to the Team class
+Add "points" value to the Team class - done
 Change custom comparison function to use points and then wins
 Add to simulation, Use fact winner gets pt .25 pct of time

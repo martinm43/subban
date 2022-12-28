@@ -1710,17 +1710,16 @@ static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_14get_rating(struct __pyx_obj_9mcss
 static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_16get_total_wins(struct __pyx_obj_9mcss_ext2_PyTeam *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_18get_points(struct __pyx_obj_9mcss_ext2_PyTeam *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_20set_total_wins(struct __pyx_obj_9mcss_ext2_PyTeam *__pyx_v_self, PyObject *__pyx_v_val); /* proto */
-static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_22set_points(struct __pyx_obj_9mcss_ext2_PyTeam *__pyx_v_self, PyObject *__pyx_v_val); /* proto */
-static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_24set_wild_card_odds(struct __pyx_obj_9mcss_ext2_PyTeam *__pyx_v_self, PyObject *__pyx_v_val); /* proto */
-static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_26set_division_odds(struct __pyx_obj_9mcss_ext2_PyTeam *__pyx_v_self, PyObject *__pyx_v_val); /* proto */
-static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_28set_playoff_odds(struct __pyx_obj_9mcss_ext2_PyTeam *__pyx_v_self, PyObject *__pyx_v_val); /* proto */
-static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_30get_wild_card_odds(struct __pyx_obj_9mcss_ext2_PyTeam *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_32get_division_odds(struct __pyx_obj_9mcss_ext2_PyTeam *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_34get_playoff_odds(struct __pyx_obj_9mcss_ext2_PyTeam *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_36get_htoh(struct __pyx_obj_9mcss_ext2_PyTeam *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_38set_htoh(struct __pyx_obj_9mcss_ext2_PyTeam *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_40__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_9mcss_ext2_PyTeam *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_42__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_9mcss_ext2_PyTeam *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
+static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_22set_wild_card_odds(struct __pyx_obj_9mcss_ext2_PyTeam *__pyx_v_self, PyObject *__pyx_v_val); /* proto */
+static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_24set_division_odds(struct __pyx_obj_9mcss_ext2_PyTeam *__pyx_v_self, PyObject *__pyx_v_val); /* proto */
+static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_26set_playoff_odds(struct __pyx_obj_9mcss_ext2_PyTeam *__pyx_v_self, PyObject *__pyx_v_val); /* proto */
+static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_28get_wild_card_odds(struct __pyx_obj_9mcss_ext2_PyTeam *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_30get_division_odds(struct __pyx_obj_9mcss_ext2_PyTeam *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_32get_playoff_odds(struct __pyx_obj_9mcss_ext2_PyTeam *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_34get_htoh(struct __pyx_obj_9mcss_ext2_PyTeam *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_36set_htoh(struct __pyx_obj_9mcss_ext2_PyTeam *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_38__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_9mcss_ext2_PyTeam *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_40__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_9mcss_ext2_PyTeam *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_pf_9mcss_ext2_simulations_result_vectorized(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_head_to_head, PyObject *__pyx_v_future_games, PyObject *__pyx_v_list_of_teams, int __pyx_v_year, PyObject *__pyx_v_current_points); /* proto */
 static int __pyx_pf_7cpython_5array_5array___getbuffer__(arrayobject *__pyx_v_self, Py_buffer *__pyx_v_info, CYTHON_UNUSED int __pyx_v_flags); /* proto */
 static void __pyx_pf_7cpython_5array_5array_2__releasebuffer__(CYTHON_UNUSED arrayobject *__pyx_v_self, Py_buffer *__pyx_v_info); /* proto */
@@ -2497,7 +2496,7 @@ static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_20set_total_wins(struct __pyx_obj_9
  *     def set_total_wins(self,val):
  *         self.thisptr.set_total_wins(val)             # <<<<<<<<<<<<<<
  * 
- *     def set_points(self,val):
+ *     #def set_points(self,val):
  */
   __pyx_t_1 = __Pyx_PyInt_As_int(__pyx_v_val); if (unlikely((__pyx_t_1 == (int)-1) && PyErr_Occurred())) __PYX_ERR(1, 78, __pyx_L1_error)
   __pyx_v_self->thisptr->set_total_wins(__pyx_t_1);
@@ -2522,68 +2521,8 @@ static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_20set_total_wins(struct __pyx_obj_9
   return __pyx_r;
 }
 
-/* "mcss_ext2.pyx":80
- *         self.thisptr.set_total_wins(val)
- * 
- *     def set_points(self,val):             # <<<<<<<<<<<<<<
- *         self.thisptr.set_points(val)
- * 
- */
-
-/* Python wrapper */
-static PyObject *__pyx_pw_9mcss_ext2_6PyTeam_23set_points(PyObject *__pyx_v_self, PyObject *__pyx_v_val); /*proto*/
-static PyObject *__pyx_pw_9mcss_ext2_6PyTeam_23set_points(PyObject *__pyx_v_self, PyObject *__pyx_v_val) {
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("set_points (wrapper)", 0);
-  __pyx_r = __pyx_pf_9mcss_ext2_6PyTeam_22set_points(((struct __pyx_obj_9mcss_ext2_PyTeam *)__pyx_v_self), ((PyObject *)__pyx_v_val));
-
-  /* function exit code */
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_22set_points(struct __pyx_obj_9mcss_ext2_PyTeam *__pyx_v_self, PyObject *__pyx_v_val) {
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  int __pyx_t_1;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("set_points", 0);
-
-  /* "mcss_ext2.pyx":81
- * 
- *     def set_points(self,val):
- *         self.thisptr.set_points(val)             # <<<<<<<<<<<<<<
- * 
- *     def set_wild_card_odds(self,val):
- */
-  __pyx_t_1 = __Pyx_PyInt_As_int(__pyx_v_val); if (unlikely((__pyx_t_1 == (int)-1) && PyErr_Occurred())) __PYX_ERR(1, 81, __pyx_L1_error)
-  __pyx_v_self->thisptr->set_points(__pyx_t_1);
-
-  /* "mcss_ext2.pyx":80
- *         self.thisptr.set_total_wins(val)
- * 
- *     def set_points(self,val):             # <<<<<<<<<<<<<<
- *         self.thisptr.set_points(val)
- * 
- */
-
-  /* function exit code */
-  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
-  goto __pyx_L0;
-  __pyx_L1_error:;
-  __Pyx_AddTraceback("mcss_ext2.PyTeam.set_points", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
-  __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
 /* "mcss_ext2.pyx":83
- *         self.thisptr.set_points(val)
+ *     #    self.thisptr.set_points(val)
  * 
  *     def set_wild_card_odds(self,val):             # <<<<<<<<<<<<<<
  *         self.thisptr.set_wild_card_odds(val)
@@ -2591,19 +2530,19 @@ static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_22set_points(struct __pyx_obj_9mcss
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_9mcss_ext2_6PyTeam_25set_wild_card_odds(PyObject *__pyx_v_self, PyObject *__pyx_v_val); /*proto*/
-static PyObject *__pyx_pw_9mcss_ext2_6PyTeam_25set_wild_card_odds(PyObject *__pyx_v_self, PyObject *__pyx_v_val) {
+static PyObject *__pyx_pw_9mcss_ext2_6PyTeam_23set_wild_card_odds(PyObject *__pyx_v_self, PyObject *__pyx_v_val); /*proto*/
+static PyObject *__pyx_pw_9mcss_ext2_6PyTeam_23set_wild_card_odds(PyObject *__pyx_v_self, PyObject *__pyx_v_val) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("set_wild_card_odds (wrapper)", 0);
-  __pyx_r = __pyx_pf_9mcss_ext2_6PyTeam_24set_wild_card_odds(((struct __pyx_obj_9mcss_ext2_PyTeam *)__pyx_v_self), ((PyObject *)__pyx_v_val));
+  __pyx_r = __pyx_pf_9mcss_ext2_6PyTeam_22set_wild_card_odds(((struct __pyx_obj_9mcss_ext2_PyTeam *)__pyx_v_self), ((PyObject *)__pyx_v_val));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_24set_wild_card_odds(struct __pyx_obj_9mcss_ext2_PyTeam *__pyx_v_self, PyObject *__pyx_v_val) {
+static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_22set_wild_card_odds(struct __pyx_obj_9mcss_ext2_PyTeam *__pyx_v_self, PyObject *__pyx_v_val) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   float __pyx_t_1;
@@ -2623,7 +2562,7 @@ static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_24set_wild_card_odds(struct __pyx_o
   __pyx_v_self->thisptr->set_wild_card_odds(__pyx_t_1);
 
   /* "mcss_ext2.pyx":83
- *         self.thisptr.set_points(val)
+ *     #    self.thisptr.set_points(val)
  * 
  *     def set_wild_card_odds(self,val):             # <<<<<<<<<<<<<<
  *         self.thisptr.set_wild_card_odds(val)
@@ -2651,19 +2590,19 @@ static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_24set_wild_card_odds(struct __pyx_o
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_9mcss_ext2_6PyTeam_27set_division_odds(PyObject *__pyx_v_self, PyObject *__pyx_v_val); /*proto*/
-static PyObject *__pyx_pw_9mcss_ext2_6PyTeam_27set_division_odds(PyObject *__pyx_v_self, PyObject *__pyx_v_val) {
+static PyObject *__pyx_pw_9mcss_ext2_6PyTeam_25set_division_odds(PyObject *__pyx_v_self, PyObject *__pyx_v_val); /*proto*/
+static PyObject *__pyx_pw_9mcss_ext2_6PyTeam_25set_division_odds(PyObject *__pyx_v_self, PyObject *__pyx_v_val) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("set_division_odds (wrapper)", 0);
-  __pyx_r = __pyx_pf_9mcss_ext2_6PyTeam_26set_division_odds(((struct __pyx_obj_9mcss_ext2_PyTeam *)__pyx_v_self), ((PyObject *)__pyx_v_val));
+  __pyx_r = __pyx_pf_9mcss_ext2_6PyTeam_24set_division_odds(((struct __pyx_obj_9mcss_ext2_PyTeam *)__pyx_v_self), ((PyObject *)__pyx_v_val));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_26set_division_odds(struct __pyx_obj_9mcss_ext2_PyTeam *__pyx_v_self, PyObject *__pyx_v_val) {
+static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_24set_division_odds(struct __pyx_obj_9mcss_ext2_PyTeam *__pyx_v_self, PyObject *__pyx_v_val) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   float __pyx_t_1;
@@ -2711,19 +2650,19 @@ static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_26set_division_odds(struct __pyx_ob
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_9mcss_ext2_6PyTeam_29set_playoff_odds(PyObject *__pyx_v_self, PyObject *__pyx_v_val); /*proto*/
-static PyObject *__pyx_pw_9mcss_ext2_6PyTeam_29set_playoff_odds(PyObject *__pyx_v_self, PyObject *__pyx_v_val) {
+static PyObject *__pyx_pw_9mcss_ext2_6PyTeam_27set_playoff_odds(PyObject *__pyx_v_self, PyObject *__pyx_v_val); /*proto*/
+static PyObject *__pyx_pw_9mcss_ext2_6PyTeam_27set_playoff_odds(PyObject *__pyx_v_self, PyObject *__pyx_v_val) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("set_playoff_odds (wrapper)", 0);
-  __pyx_r = __pyx_pf_9mcss_ext2_6PyTeam_28set_playoff_odds(((struct __pyx_obj_9mcss_ext2_PyTeam *)__pyx_v_self), ((PyObject *)__pyx_v_val));
+  __pyx_r = __pyx_pf_9mcss_ext2_6PyTeam_26set_playoff_odds(((struct __pyx_obj_9mcss_ext2_PyTeam *)__pyx_v_self), ((PyObject *)__pyx_v_val));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_28set_playoff_odds(struct __pyx_obj_9mcss_ext2_PyTeam *__pyx_v_self, PyObject *__pyx_v_val) {
+static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_26set_playoff_odds(struct __pyx_obj_9mcss_ext2_PyTeam *__pyx_v_self, PyObject *__pyx_v_val) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   float __pyx_t_1;
@@ -2771,19 +2710,19 @@ static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_28set_playoff_odds(struct __pyx_obj
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_9mcss_ext2_6PyTeam_31get_wild_card_odds(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_9mcss_ext2_6PyTeam_31get_wild_card_odds(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_9mcss_ext2_6PyTeam_29get_wild_card_odds(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_9mcss_ext2_6PyTeam_29get_wild_card_odds(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("get_wild_card_odds (wrapper)", 0);
-  __pyx_r = __pyx_pf_9mcss_ext2_6PyTeam_30get_wild_card_odds(((struct __pyx_obj_9mcss_ext2_PyTeam *)__pyx_v_self));
+  __pyx_r = __pyx_pf_9mcss_ext2_6PyTeam_28get_wild_card_odds(((struct __pyx_obj_9mcss_ext2_PyTeam *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_30get_wild_card_odds(struct __pyx_obj_9mcss_ext2_PyTeam *__pyx_v_self) {
+static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_28get_wild_card_odds(struct __pyx_obj_9mcss_ext2_PyTeam *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -2834,19 +2773,19 @@ static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_30get_wild_card_odds(struct __pyx_o
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_9mcss_ext2_6PyTeam_33get_division_odds(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_9mcss_ext2_6PyTeam_33get_division_odds(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_9mcss_ext2_6PyTeam_31get_division_odds(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_9mcss_ext2_6PyTeam_31get_division_odds(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("get_division_odds (wrapper)", 0);
-  __pyx_r = __pyx_pf_9mcss_ext2_6PyTeam_32get_division_odds(((struct __pyx_obj_9mcss_ext2_PyTeam *)__pyx_v_self));
+  __pyx_r = __pyx_pf_9mcss_ext2_6PyTeam_30get_division_odds(((struct __pyx_obj_9mcss_ext2_PyTeam *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_32get_division_odds(struct __pyx_obj_9mcss_ext2_PyTeam *__pyx_v_self) {
+static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_30get_division_odds(struct __pyx_obj_9mcss_ext2_PyTeam *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -2897,19 +2836,19 @@ static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_32get_division_odds(struct __pyx_ob
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_9mcss_ext2_6PyTeam_35get_playoff_odds(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_9mcss_ext2_6PyTeam_35get_playoff_odds(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_9mcss_ext2_6PyTeam_33get_playoff_odds(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_9mcss_ext2_6PyTeam_33get_playoff_odds(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("get_playoff_odds (wrapper)", 0);
-  __pyx_r = __pyx_pf_9mcss_ext2_6PyTeam_34get_playoff_odds(((struct __pyx_obj_9mcss_ext2_PyTeam *)__pyx_v_self));
+  __pyx_r = __pyx_pf_9mcss_ext2_6PyTeam_32get_playoff_odds(((struct __pyx_obj_9mcss_ext2_PyTeam *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_34get_playoff_odds(struct __pyx_obj_9mcss_ext2_PyTeam *__pyx_v_self) {
+static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_32get_playoff_odds(struct __pyx_obj_9mcss_ext2_PyTeam *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -2960,19 +2899,19 @@ static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_34get_playoff_odds(struct __pyx_obj
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_9mcss_ext2_6PyTeam_37get_htoh(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_9mcss_ext2_6PyTeam_37get_htoh(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_9mcss_ext2_6PyTeam_35get_htoh(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_9mcss_ext2_6PyTeam_35get_htoh(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("get_htoh (wrapper)", 0);
-  __pyx_r = __pyx_pf_9mcss_ext2_6PyTeam_36get_htoh(((struct __pyx_obj_9mcss_ext2_PyTeam *)__pyx_v_self));
+  __pyx_r = __pyx_pf_9mcss_ext2_6PyTeam_34get_htoh(((struct __pyx_obj_9mcss_ext2_PyTeam *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_36get_htoh(struct __pyx_obj_9mcss_ext2_PyTeam *__pyx_v_self) {
+static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_34get_htoh(struct __pyx_obj_9mcss_ext2_PyTeam *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -3023,19 +2962,19 @@ static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_36get_htoh(struct __pyx_obj_9mcss_e
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_9mcss_ext2_6PyTeam_39set_htoh(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_9mcss_ext2_6PyTeam_39set_htoh(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_9mcss_ext2_6PyTeam_37set_htoh(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_9mcss_ext2_6PyTeam_37set_htoh(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("set_htoh (wrapper)", 0);
-  __pyx_r = __pyx_pf_9mcss_ext2_6PyTeam_38set_htoh(((struct __pyx_obj_9mcss_ext2_PyTeam *)__pyx_v_self));
+  __pyx_r = __pyx_pf_9mcss_ext2_6PyTeam_36set_htoh(((struct __pyx_obj_9mcss_ext2_PyTeam *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_38set_htoh(struct __pyx_obj_9mcss_ext2_PyTeam *__pyx_v_self) {
+static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_36set_htoh(struct __pyx_obj_9mcss_ext2_PyTeam *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   std::vector<double>  __pyx_t_1;
@@ -3086,19 +3025,19 @@ static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_38set_htoh(struct __pyx_obj_9mcss_e
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_9mcss_ext2_6PyTeam_41__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_9mcss_ext2_6PyTeam_41__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_9mcss_ext2_6PyTeam_39__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_9mcss_ext2_6PyTeam_39__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__reduce_cython__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_9mcss_ext2_6PyTeam_40__reduce_cython__(((struct __pyx_obj_9mcss_ext2_PyTeam *)__pyx_v_self));
+  __pyx_r = __pyx_pf_9mcss_ext2_6PyTeam_38__reduce_cython__(((struct __pyx_obj_9mcss_ext2_PyTeam *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_40__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_9mcss_ext2_PyTeam *__pyx_v_self) {
+static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_38__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_9mcss_ext2_PyTeam *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -3143,19 +3082,19 @@ static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_40__reduce_cython__(CYTHON_UNUSED s
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_9mcss_ext2_6PyTeam_43__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
-static PyObject *__pyx_pw_9mcss_ext2_6PyTeam_43__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pw_9mcss_ext2_6PyTeam_41__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
+static PyObject *__pyx_pw_9mcss_ext2_6PyTeam_41__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__setstate_cython__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_9mcss_ext2_6PyTeam_42__setstate_cython__(((struct __pyx_obj_9mcss_ext2_PyTeam *)__pyx_v_self), ((PyObject *)__pyx_v___pyx_state));
+  __pyx_r = __pyx_pf_9mcss_ext2_6PyTeam_40__setstate_cython__(((struct __pyx_obj_9mcss_ext2_PyTeam *)__pyx_v_self), ((PyObject *)__pyx_v___pyx_state));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_42__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_9mcss_ext2_PyTeam *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_9mcss_ext2_6PyTeam_40__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_9mcss_ext2_PyTeam *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -4989,17 +4928,16 @@ static PyMethodDef __pyx_methods_9mcss_ext2_PyTeam[] = {
   {"get_total_wins", (PyCFunction)__pyx_pw_9mcss_ext2_6PyTeam_17get_total_wins, METH_NOARGS, 0},
   {"get_points", (PyCFunction)__pyx_pw_9mcss_ext2_6PyTeam_19get_points, METH_NOARGS, 0},
   {"set_total_wins", (PyCFunction)__pyx_pw_9mcss_ext2_6PyTeam_21set_total_wins, METH_O, 0},
-  {"set_points", (PyCFunction)__pyx_pw_9mcss_ext2_6PyTeam_23set_points, METH_O, 0},
-  {"set_wild_card_odds", (PyCFunction)__pyx_pw_9mcss_ext2_6PyTeam_25set_wild_card_odds, METH_O, 0},
-  {"set_division_odds", (PyCFunction)__pyx_pw_9mcss_ext2_6PyTeam_27set_division_odds, METH_O, 0},
-  {"set_playoff_odds", (PyCFunction)__pyx_pw_9mcss_ext2_6PyTeam_29set_playoff_odds, METH_O, 0},
-  {"get_wild_card_odds", (PyCFunction)__pyx_pw_9mcss_ext2_6PyTeam_31get_wild_card_odds, METH_NOARGS, 0},
-  {"get_division_odds", (PyCFunction)__pyx_pw_9mcss_ext2_6PyTeam_33get_division_odds, METH_NOARGS, 0},
-  {"get_playoff_odds", (PyCFunction)__pyx_pw_9mcss_ext2_6PyTeam_35get_playoff_odds, METH_NOARGS, 0},
-  {"get_htoh", (PyCFunction)__pyx_pw_9mcss_ext2_6PyTeam_37get_htoh, METH_NOARGS, 0},
-  {"set_htoh", (PyCFunction)__pyx_pw_9mcss_ext2_6PyTeam_39set_htoh, METH_NOARGS, 0},
-  {"__reduce_cython__", (PyCFunction)__pyx_pw_9mcss_ext2_6PyTeam_41__reduce_cython__, METH_NOARGS, 0},
-  {"__setstate_cython__", (PyCFunction)__pyx_pw_9mcss_ext2_6PyTeam_43__setstate_cython__, METH_O, 0},
+  {"set_wild_card_odds", (PyCFunction)__pyx_pw_9mcss_ext2_6PyTeam_23set_wild_card_odds, METH_O, 0},
+  {"set_division_odds", (PyCFunction)__pyx_pw_9mcss_ext2_6PyTeam_25set_division_odds, METH_O, 0},
+  {"set_playoff_odds", (PyCFunction)__pyx_pw_9mcss_ext2_6PyTeam_27set_playoff_odds, METH_O, 0},
+  {"get_wild_card_odds", (PyCFunction)__pyx_pw_9mcss_ext2_6PyTeam_29get_wild_card_odds, METH_NOARGS, 0},
+  {"get_division_odds", (PyCFunction)__pyx_pw_9mcss_ext2_6PyTeam_31get_division_odds, METH_NOARGS, 0},
+  {"get_playoff_odds", (PyCFunction)__pyx_pw_9mcss_ext2_6PyTeam_33get_playoff_odds, METH_NOARGS, 0},
+  {"get_htoh", (PyCFunction)__pyx_pw_9mcss_ext2_6PyTeam_35get_htoh, METH_NOARGS, 0},
+  {"set_htoh", (PyCFunction)__pyx_pw_9mcss_ext2_6PyTeam_37set_htoh, METH_NOARGS, 0},
+  {"__reduce_cython__", (PyCFunction)__pyx_pw_9mcss_ext2_6PyTeam_39__reduce_cython__, METH_NOARGS, 0},
+  {"__setstate_cython__", (PyCFunction)__pyx_pw_9mcss_ext2_6PyTeam_41__setstate_cython__, METH_O, 0},
   {0, 0, 0, 0}
 };
 
