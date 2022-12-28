@@ -3,5 +3,7 @@ Playoff positions are decided based on points not "total wins". A new function n
 Monte Carlo simulation with ties is not exactly easy/intuitive. Need to research further.
 
 Strategy:
-Import points to the CPP file
-Use fact winner gets pt .25 pct of time
+Import points to the CPP file - done
+Add "points" value to the Team class
+Change custom comparison function to use points and then wins
+Add to simulation, Use fact winner gets pt .25 pct of time
