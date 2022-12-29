@@ -212,7 +212,7 @@ if __name__ == "__main__":
     #end_datetime = datetime(season_year,4,30)  # a few weeks or months in
     end_datetime = datetime(season_year,1,1)
 
-    ratings_mode = "Elo"
+    ratings_mode = "SRS"
     results = playoff_odds_calc(
         start_datetime, end_datetime, season_year, ratings_mode=ratings_mode
     )
@@ -225,7 +225,7 @@ if __name__ == "__main__":
         + end_datetime.strftime("%b %d %Y")
     )
     print("Method used: " + ratings_mode)
-    #print(results_table)
+    print(results_table)
     print(
         "Notes Pending. Note that an editorial decision also has yet to be made on whether this tool will use 2020/2021 seasons\n" +
         "While valid for the purposes of determining Elo ratings, the playoff format for 2020 was for obvious reasons changed mid-season"
