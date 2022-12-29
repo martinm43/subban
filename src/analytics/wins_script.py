@@ -71,6 +71,6 @@ def get_wins(team_id, season_year, start_datetime, end_datetime):
 
 def points_list(season_year, start_datetime, end_datetime):
     wins_dict_list = [
-    get_wins(i, season_year, start_datetime, end_datetime) for i in range(1, 32)]
+    get_wins(i, season_year, start_datetime, end_datetime) for i in range(1, 33)]
     points_list = [x["points"] for x in wins_dict_list]
     return points_list

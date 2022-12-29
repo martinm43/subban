@@ -65,7 +65,12 @@ def playoff_odds_calc(start_datetime, end_datetime, season_year, ratings_mode="E
     [x.id, x.team_name, x.abbreviation, x.division, x.conference,0,0] #last two are 'rating' (unused) and 'points' (to be used)
        for x in teams_list
     ]
+    print(len(current_points))
+    for i,x in enumerate(teams_list):
+        print(i)
+        x[6] = current_points[i]
 
+    pprint(teams_list)
 
     #pprint(teams_list)
     # Division changes go here
@@ -113,11 +118,11 @@ def playoff_odds_calc(start_datetime, end_datetime, season_year, ratings_mode="E
             Elo_diff = home_team_rating - away_team_rating
             x.append(Elo_regress(Elo_diff))
 
-    pprint(games_won_list_cpp)
+    #pprint(games_won_list_cpp)
     team_results = simulations_result_vectorized(
         games_won_list_cpp, future_games_list, teams_list, season_year,current_points
     )
-    print(team_results)
+    #print(team_results)
     # Return (top 8 odds, average wins, top 6 odds, and play in tournament odds).
     team_results = [
         [x[0] * 100.0, x[1], x[2] * 100.0, x[3] * 100.0] for x in team_results
@@ -215,7 +220,7 @@ if __name__ == "__main__":
         + end_datetime.strftime("%b %d %Y")
     )
     print("Method used: " + ratings_mode)
-    print(results_table)
+    #print(results_table)
     print(
         "Notes Pending. Note that an editorial decision also has yet to be made on whether this tool will use 2020/2021 seasons\n" +
         "While valid for the purposes of determining Elo ratings, the playoff format for 2020 was for obvious reasons changed mid-season"
