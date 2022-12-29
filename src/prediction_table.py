@@ -105,6 +105,9 @@ def playoff_odds_calc(start_datetime, end_datetime, season_year, ratings_mode="E
             SRS_diff = home_team_rating - away_team_rating
             x.append(SRS_regress(SRS_diff))
 
+    pprint("Future games")
+    pprint(future_games_list)
+
     if ratings_mode == "Elo":
         ratings_list = elo_ratings_list(epochtime(end_datetime))
         for i, x in enumerate(teams_list):
