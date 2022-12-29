@@ -35,7 +35,7 @@ def Elo_regress(dElo):
     Not yet calibrated for subban library.
 
     """
-    max_elo_diff = 800
+    max_elo_diff = 1500
     f = max_elo_diff / 1.10266
     h = 0.069636 * f  # this value comes from 60% HFA, or h = -log(1/0.6-1)
     return 1 / (1 + 10 ** ((-1 * (dElo + h) / f)))
@@ -50,9 +50,9 @@ def SRS_regress(dSRS):
     """
     import math
 
-    max_srs_diff = 2  # should be nominally 2, but has to be tuned for 'sanity check'
+    max_srs_diff = 3  # should be nominally 2, but has to be tuned for 'sanity check'
     f = max_srs_diff / 2.539
-    h = 0.00405465 * f
+    h = 0.405465 * f
     return 1 / (1 + math.exp(-1 * (h + dSRS) / f))  # .3
 
 

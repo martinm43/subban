@@ -117,11 +117,11 @@ def playoff_odds_calc(start_datetime, end_datetime, season_year, ratings_mode="E
             away_team_rating = teams_list[x[0] - 1][5]
             home_team_rating = teams_list[x[1] - 1][5]
             Elo_diff = home_team_rating - away_team_rating
-            print(Elo_diff)
+            #print(Elo_diff)
             x.append(Elo_regress(Elo_diff))
 
-    pprint("Future games")
-    pprint(future_games_list)
+    #pprint("Future games")
+    #pprint(future_games_list)
     
     #pprint(games_won_list_cpp)
     team_results = simulations_result_vectorized(
@@ -212,7 +212,7 @@ if __name__ == "__main__":
     #end_datetime = datetime(season_year,4,30)  # a few weeks or months in
     end_datetime = datetime(season_year,1,1)
 
-    ratings_mode = "SRS"
+    ratings_mode = "Elo"
     results = playoff_odds_calc(
         start_datetime, end_datetime, season_year, ratings_mode=ratings_mode
     )
