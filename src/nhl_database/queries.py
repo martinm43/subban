@@ -305,6 +305,6 @@ def elo_ratings_list(epochtime):
 
     """
     ratings_list = []
-    for i in range(1, 31):
+    for i in range(1, 33):
         ratings_list.append(team_elo_rating(i, epochtime))
     return ratings_list

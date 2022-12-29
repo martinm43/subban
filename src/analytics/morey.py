@@ -50,9 +50,9 @@ def SRS_regress(dSRS):
     """
     import math
 
-    max_srs_diff = 5  # should be nominally 2, but has to be tuned for 'sanity check'
+    max_srs_diff = 1  # should be nominally 2, but has to be tuned for 'sanity check'
     f = max_srs_diff / 2.539
-    h = 0.405465 * f
+    h = 0.00405465 * f
     return 1 / (1 + math.exp(-1 * (h + dSRS) / f))  # .3
 
 

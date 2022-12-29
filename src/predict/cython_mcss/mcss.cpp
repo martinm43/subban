@@ -98,10 +98,10 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
     //Debug Print - cout << future_games << endl;
     int num_future_games = future_games.n_rows;
 
-    //Debug Print - how many wins and points
+    /* Debug Print - how many wins and points
     for(int i=0;i<NUM_TEAMS;i++){
         cout << teams[i].get_full_team_name() << ":" << teams[i].get_points() << endl;
-    }
+    }*/
 
 
 
@@ -176,8 +176,8 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
             int print_points = sim_teams[i].get_points();
             int print_total_wins = sim_teams[i].get_total_wins();
             int team_id = sim_teams[i].get_team_id();
-            //cout << i << ":" << team_name << ":" << team_division << ":" 
-            //    << print_points << ":wins:" << print_total_wins << endl;
+            cout << i << ":" << team_name << ":" << team_division << ":" 
+                << print_points << ":wins:" << print_total_wins << endl;
             if(( i >= 0 && i <= 2) || (i >= 8 && i <= 10)||(i >= 16 && i <= 18)||(i >= 24 && i <= 26)){
                 sim_playoff_total.row(team_id-1)[0]++; //Division Winner
             }
