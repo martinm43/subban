@@ -67,7 +67,9 @@ struct teams_sort
     {
         if (Team1.get_division() != Team2.get_division())
             return (Team1.get_division() < Team2.get_division());
-	else if (Team1.get_total_wins() != Team2.get_total_wins())
+	else if (Team1.get_points() != Team2.get_points())
+	    return (Team1.get_points() > Team2.get_points());
+    else if (Team1.get_total_wins() != Team2.get_total_wins())
 	    return (Team1.get_total_wins() > Team2.get_total_wins());
 	else              
 	    return false;  //CANNOT be return true. Must investigate further.
@@ -79,6 +81,17 @@ struct wins_sort
     inline bool operator()(const Team& Team1, const Team& Team2)
     {
         if (Team1.get_total_wins() >= Team2.get_total_wins())
+            return true;
+        else 
+            return false;
+    } 
+};
+
+struct points_sort
+{
+    inline bool operator()(const Team& Team1, const Team& Team2)
+    {
+        if (Team1.get_points() >= Team2.get_points())
             return true;
         else 
             return false;

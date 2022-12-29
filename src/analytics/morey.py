@@ -32,6 +32,8 @@ def Elo_regress(dElo):
     2) delta is a large Elo difference, and the expected win percentage is high
     to obtain the coefficients that are used below.
 
+    Not yet calibrated for subban library.
+
     """
     max_elo_diff = 800
     f = max_elo_diff / 1.10266
@@ -43,10 +45,12 @@ def SRS_regress(dSRS):
 
     """
     See analysis performed for Elo_regress.
+    Max SRS diff used here is based on the McDavid draft season,
+    0.69 for the Blues vs -1.2 for the Coyotes.
     """
     import math
 
-    max_srs_diff = 20  # should be nominally 15, but has to be tuned for 'sanity check'
+    max_srs_diff = 5  # should be nominally 2, but has to be tuned for 'sanity check'
     f = max_srs_diff / 2.539
     h = 0.405465 * f
     return 1 / (1 + math.exp(-1 * (h + dSRS) / f))  # .3
@@ -55,5 +59,5 @@ def SRS_regress(dSRS):
 if __name__ == "__main__":
     max_delo =800
     print(Elo_regress(max_delo))
-    max_dsrs = 15
+    max_dsrs = 2
     print(SRS_regress(max_dsrs))

@@ -105,11 +105,19 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
         {
             int away_team_id = future_games.row(i)[0]-1;
             int home_team_id = future_games.row(i)[1]-1;
+            int awaypts = teams[away_team_id].get_points();
+            int homepts = teams[home_team_id].get_points();
 
             if (uniformRandom()<future_games.row(i)[2])
                 MCSS_Head_To_Head.row(home_team_id)[away_team_id]++;
+                teams[home_team_id].set_points(homepts+2);
+                if (uniformRandom()<0.24)
+                    teams[away_team_id].set_points(awaypts+1);
             else
                 MCSS_Head_To_Head.row(away_team_id)[home_team_id]++;
+                teams[away_team_id].set_points(awaypts+2);
+                if (uniformRandom()<0.24)
+                    teams[home_team_id].set_points(homepts+1);
         }
 
         debug_total.zeros();
@@ -139,7 +147,7 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
             sim_teams[i].set_total_wins(round(total_wins[i]));
 	    sim_teams[i].set_htoh(htoh_records[i]);
 	}
-
+        //random_shuffle is deprecated in C++17 but this code will not be c++17 compliant.
         random_shuffle(sim_teams.begin(),sim_teams.end());
 	    sort(sim_teams.begin(),sim_teams.end(),teams_sort());
 
@@ -157,9 +165,11 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
             for(int i=0;i<NUM_TEAMS;i++){
             string team_name = sim_teams[i].get_full_team_name();
             string team_division = sim_teams[i].get_division();
+            int print_points = sim_teams[i].get_points();
             int print_total_wins = sim_teams[i].get_total_wins();
             int team_id = sim_teams[i].get_team_id();
-            cout << i << ":" << team_name << ":" << team_division << ":" << print_total_wins << endl;
+            cout << i << ":" << team_name << ":" << team_division << ":" 
+                << print_points << ":wins:" << print_total_wins << endl;
             if(( i >= 0 && i <= 2) || (i >= 8 && i <= 10)||(i >= 16 && i <= 18)||(i >= 24 && i <= 26)){
                 sim_playoff_total.row(team_id-1)[0]++; //Division Winner
             }

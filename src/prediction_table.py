@@ -205,7 +205,7 @@ if __name__ == "__main__":
     season_year = 2017  # year in which season ends
     start_datetime = datetime(season_year - 1, 9, 1)  # start of season
     #end_datetime = datetime(season_year,4,30)  # a few weeks or months in
-    end_datetime = datetime(season_year,5,5)
+    end_datetime = datetime(season_year,1,1)
 
     ratings_mode = "SRS"
     results = playoff_odds_calc(
