@@ -54,9 +54,9 @@ def playoff_odds_calc(start_datetime, end_datetime, season_year, ratings_mode="E
 
     # Get List Of Known Wins
     games_list = games_query(start_datetime, end_datetime)
-    print("Debug print of points based analysis")
+    #print("Debug print of points based analysis")
     current_points = points_list(season_year,start_datetime,end_datetime)
-    print(len(games_list))
+    #print(len(games_list))
     games_won_list_cpp = games_won_query(games_list, return_format="matrix").tolist()
 
     # Get team data.
@@ -65,14 +65,11 @@ def playoff_odds_calc(start_datetime, end_datetime, season_year, ratings_mode="E
     [x.id, x.team_name, x.abbreviation, x.division, x.conference,0,0] #last two are 'rating' (unused) and 'points' (to be used)
        for x in teams_list
     ]
-    print(len(current_points))
+    #print(len(current_points))
     for i,x in enumerate(teams_list):
-        print(i)
+        #print(i)
         x[6] = current_points[i]
 
-    pprint(teams_list)
-
-    #pprint(teams_list)
     # Division changes go here
     #for z in teams_list:
     #    if season_year <= 2003 and z[0] == 19: #Charlotte Hornets to NOH change
@@ -118,11 +115,16 @@ def playoff_odds_calc(start_datetime, end_datetime, season_year, ratings_mode="E
             home_team_rating = teams_list[x[1] - 1][5]
             Elo_diff = home_team_rating - away_team_rating
             #print(Elo_diff)
-            x.append(Elo_regress(Elo_diff))
+            #x.append(Elo_regress(Elo_diff))
+            #Debug
+            x.append(0.5)
+
 
     #pprint("Future games")
     #pprint(future_games_list)
-    
+
+    #pprint(teams_list)
+
     #pprint(games_won_list_cpp)
     team_results = simulations_result_vectorized(
         games_won_list_cpp, future_games_list, teams_list, season_year,current_points
@@ -130,7 +132,7 @@ def playoff_odds_calc(start_datetime, end_datetime, season_year, ratings_mode="E
     #print(team_results)
     # Return (top 8 odds, average wins, top 6 odds, and play in tournament odds).
     team_results = [
-        [x[0] * 100.0, x[1], x[2] * 100.0, x[3] * 100.0] for x in team_results
+        [x[0] * 100.0, x[1], x[2] * 100.0, x[3] * 100.0, x[4]] for x in team_results
     ]
     return team_results
 
@@ -167,11 +169,13 @@ def playoff_odds_print(team_results,season_year):
         d["Avg. Wins"] = round(team_results[i][1], 1)
         d["Unused"] = round(team_results[i][2], 1)
         d["WC%"] = round(team_results[i][3], 1)
+        d["Points"] = round(team_results[i][4], 1)
 
         # Convert into percentages for printing
         d["PF%"] = format_percent(d["PF%"])
         d["Unused"] = format_percent(d["Unused"])
         d["WC%"] = format_percent(d["WC%"])
+
 
     teams_dict.sort(key=lambda x: (x["Conference"], -x["Avg. Wins"]))
 
@@ -180,9 +184,9 @@ def playoff_odds_print(team_results,season_year):
             d["Conference"],
             d["Team"],
             d["Avg. Wins"],
+            d["Points"],
             d["PF%"],
-            d["WC%"],
-            d["Unused"],
+            d["WC%"]
         )
         for d in teams_dict
     ]
@@ -193,9 +197,9 @@ def playoff_odds_print(team_results,season_year):
             "Conference",
             "Team",
             "Avg. Wins",
+            "Points",
             "PF%",
-            "WC%",
-            "Unused",
+            "WC%"
         ],
         tablefmt="rst",
         numalign="left",

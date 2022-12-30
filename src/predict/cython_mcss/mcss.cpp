@@ -10,7 +10,7 @@
 #include <armadillo>
 #include "mcss.hpp"
 
-#define MAX_ITER 1
+#define MAX_ITER 1000
 #define NUM_TEAMS 32
 
 using namespace std;
@@ -86,7 +86,8 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
     mat MCSS_Head_To_Head = zeros<mat>(NUM_TEAMS,NUM_TEAMS);
     mat Sim_Total = zeros<mat>(NUM_TEAMS,NUM_TEAMS);
     mat debug_total = zeros<mat>(NUM_TEAMS,NUM_TEAMS);
-    mat sim_playoff_total = zeros<mat>(NUM_TEAMS,4); // [Division Win, Total Wins, Division Runner Up (NOT USED), Wild Card]  
+    // [Division Win, Total Wins, Division Runner Up (NOT USED), Wild Card, Points] 
+    mat sim_playoff_total = zeros<mat>(NUM_TEAMS,5); 
     mat error_matrix = ones<mat>(1,1);
 
     mat Head_To_Head = mat_head_to_head;
@@ -98,17 +99,20 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
     //Debug Print - cout << future_games << endl;
     int num_future_games = future_games.n_rows;
 
-    /* Debug Print - how many wins and points
-    for(int i=0;i<NUM_TEAMS;i++){
+    // Debug Print - how many wins and points
+    /*for(int i=0;i<NUM_TEAMS;i++){
         cout << teams[i].get_full_team_name() << ":" << teams[i].get_points() << endl;
-    }*/
+    }
 
 
 
     for(int x_iter=0;x_iter<MAX_ITER;x_iter++){
     /* S5 - Monte Carlo Simulation */
         //set mcss head to head matrix to zero
+        //and re-initialize teams.
         MCSS_Head_To_Head.zeros();
+        teams = list_of_teams;
+
         for(int i=0;i<num_future_games;i++)
         {
             int away_team_id = future_games.row(i)[0]-1;
@@ -142,9 +146,11 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
         */
 
         //Calculate raw wins - only concerned with that now (can implement tie breaking functionality later)
+        //Add points as well
         mat total_wins = sum(debug_total.t());
         for(int i=0;i<NUM_TEAMS;i++){
             sim_playoff_total.row(i)[1] = sim_playoff_total.row(i)[1] +  total_wins[i];
+            sim_playoff_total.row(i)[4] = sim_playoff_total.row(i)[4] +  teams[i].get_points();
             //cout << sim_playoff_total.row(i)[2] << endl;
         }
         //Create a copy of the teams list, only defined in the scope of this loop
@@ -176,8 +182,8 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
             int print_points = sim_teams[i].get_points();
             int print_total_wins = sim_teams[i].get_total_wins();
             int team_id = sim_teams[i].get_team_id();
-            cout << i << ":" << team_name << ":" << team_division << ":" 
-                << print_points << ":wins:" << print_total_wins << endl;
+            //cout << i << ":" << team_name << ":" << team_division << ":" 
+            //    << print_points << ":wins:" << print_total_wins << endl;
             if(( i >= 0 && i <= 2) || (i >= 8 && i <= 10)||(i >= 16 && i <= 18)||(i >= 24 && i <= 26)){
                 sim_playoff_total.row(team_id-1)[0]++; //Division Winner
             }
@@ -480,6 +486,7 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
         sim_playoff_total.row(i)[1] = sim_playoff_total.row(i)[1]/MAX_ITER;
         sim_playoff_total.row(i)[2] = sim_playoff_total.row(i)[2]/MAX_ITER;
         sim_playoff_total.row(i)[3] = sim_playoff_total.row(i)[3]/MAX_ITER;
+        sim_playoff_total.row(i)[4] = sim_playoff_total.row(i)[4]/MAX_ITER;
     }
 
     //cout << MAX_ITER << " simulations complete." << endl; //--not necessary.

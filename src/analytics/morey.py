@@ -35,7 +35,7 @@ def Elo_regress(dElo):
     Not yet calibrated for subban library.
 
     """
-    max_elo_diff = 0.5
+    max_elo_diff = 2000
     f = max_elo_diff / 1.10266
     h = 0.069636 * f  # this value comes from 60% HFA, or h = -log(1/0.6-1)
     return 1 / (1 + 10 ** ((-1 * (dElo + h) / f)))
