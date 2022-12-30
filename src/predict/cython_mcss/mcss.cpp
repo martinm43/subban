@@ -102,7 +102,7 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
     // Debug Print - how many wins and points
     /*for(int i=0;i<NUM_TEAMS;i++){
         cout << teams[i].get_full_team_name() << ":" << teams[i].get_points() << endl;
-    }
+    }*/
 
 
 
@@ -120,17 +120,19 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
             int awaypts = teams[away_team_id].get_points();
             int homepts = teams[home_team_id].get_points();
 
-            if (uniformRandom()<future_games.row(i)[2])
+            if (uniformRandom()<future_games.row(i)[2]){
                 MCSS_Head_To_Head.row(home_team_id)[away_team_id]++;
                 teams[home_team_id].set_points(homepts+2);
                 if (uniformRandom()<0.24)
                     teams[away_team_id].set_points(awaypts+1);
-            else
+	    }
+            else{
                 MCSS_Head_To_Head.row(away_team_id)[home_team_id]++;
                 teams[away_team_id].set_points(awaypts+2);
                 if (uniformRandom()<0.24)
                     teams[home_team_id].set_points(homepts+1);
         }
+	}
 
         debug_total.zeros();
         debug_total = MCSS_Head_To_Head+Head_To_Head;
