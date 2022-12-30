@@ -64,7 +64,7 @@ def get_wins(team_id, season_year, start_datetime, end_datetime):
     try:
         pts_pct = pts/(2*(home_games_total+visitor_games_total))
     except ZeroDivisionError:
-        print("Some teams played no games this season - please investigate whether this is expected behaviour")
+        print("WARNING: Team "+str(team_id)+" played no games this season ending "+str(season_year)+" - please investigate whether this is expected behaviour")
         pts_pct = 0.0
         pass
     return {"visitor_record": visitor_record, "home_record": home_record, "record": record,"points":pts,"pts_pct":pts_pct}
