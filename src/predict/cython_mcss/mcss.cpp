@@ -10,7 +10,7 @@
 #include <armadillo>
 #include "mcss.hpp"
 
-#define MAX_ITER 1000
+#define MAX_ITER 10000
 #define NUM_TEAMS 32
 
 using namespace std;
@@ -181,8 +181,8 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
             for(int i=0;i<NUM_TEAMS;i++){
             string team_name = sim_teams[i].get_full_team_name();
             string team_division = sim_teams[i].get_division();
-            int print_points = sim_teams[i].get_points();
-            int print_total_wins = sim_teams[i].get_total_wins();
+            //int print_points = sim_teams[i].get_points();
+            //int print_total_wins = sim_teams[i].get_total_wins();
             int team_id = sim_teams[i].get_team_id();
             //cout << i << ":" << team_name << ":" << team_division << ":" 
             //    << print_points << ":wins:" << print_total_wins << endl;

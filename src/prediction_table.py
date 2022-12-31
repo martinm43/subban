@@ -177,7 +177,7 @@ def playoff_odds_print(team_results,season_year):
         d["WC%"] = format_percent(d["WC%"])
 
 
-    teams_dict.sort(key=lambda x: (x["Conference"], -x["Avg. Wins"]))
+    teams_dict.sort(key=lambda x: (x["Conference"], -x["Points"]))
 
     team_tuples = [
         (
@@ -211,10 +211,10 @@ def playoff_odds_print(team_results,season_year):
 
 if __name__ == "__main__":
 
-    season_year = 2017 # year in which season ends
+    season_year = 2023 # year in which season ends
     start_datetime = datetime(season_year - 1, 9, 1)  # start of season
     #end_datetime = datetime(season_year,4,30)  # a few weeks or months in
-    end_datetime = datetime(season_year,1,1)
+    end_datetime = datetime(season_year-1,12,20)
 
     ratings_mode = "SRS"
     results = playoff_odds_calc(
