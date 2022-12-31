@@ -75,11 +75,11 @@ def playoff_odds_calc(start_datetime, end_datetime, season_year, ratings_mode="E
         #print(i)
         x[6] = current_points[i]
 
-    # Division changes go here
-    #for z in teams_list:
-    #    if season_year <= 2003 and z[0] == 19: #Charlotte Hornets to NOH change
-    #        z[4]="E"
-    #        z[3]="Central"
+    # Division and conf changes go here
+    for z in teams_list:
+        print(z)
+        if season_year <= 2013 and z[0]==11: #Red wings
+            z[4]="W"
 
     #pprint("Fixed")
     #pprint(teams_list)
@@ -119,16 +119,13 @@ def playoff_odds_calc(start_datetime, end_datetime, season_year, ratings_mode="E
             away_team_rating = teams_list[x[0] - 1][5]
             home_team_rating = teams_list[x[1] - 1][5]
             Elo_diff = home_team_rating - away_team_rating
-            #print(Elo_diff)
-            #x.append(Elo_regress(Elo_diff))
-            #Debug
-            x.append(0.5)
+            x.append(Elo_regress(Elo_diff))
 
 
     #pprint("Future games")
     #pprint(future_games_list)
 
-    #pprint(teams_list)
+    pprint(teams_list)
 
     #pprint(games_won_list_cpp)
     team_results = simulations_result_vectorized(
@@ -165,8 +162,8 @@ def playoff_odds_print(team_results,season_year):
     #The dict for the teams
     #Conference change implemented here.
     for z in teams_dict:
-        if z["Team"]=="NOP/NOH/CHA" and season_year <= 2003:
-            z["Conference"]="E"
+        if z["Team"]=="DET" and season_year <= 2013:
+            z["Conference"]="W"
 
 
     for i, d in enumerate(teams_dict):
@@ -216,7 +213,7 @@ def playoff_odds_print(team_results,season_year):
 
 if __name__ == "__main__":
 
-    season_year = 2012 # year in which season ends
+    season_year = 2007 # year in which season ends
     start_datetime = datetime(season_year - 1, 9, 1)  # start of season
     #end_datetime = datetime(season_year,4,30)  # a few weeks or months in
     end_datetime = datetime(season_year-1,12,20)
