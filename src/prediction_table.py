@@ -61,10 +61,15 @@ def playoff_odds_calc(start_datetime, end_datetime, season_year, ratings_mode="E
 
     # Get team data.
     teams_list = Teams.select().order_by(Teams.id)
+    # ending 2014-present excluding 2020, 2021
+    #teams_list = [
+    #[x.id, x.team_name, x.abbreviation, x.division, x.conference,0,0] #last two are 'rating' (unused) and 'points' (to be used)
+    #   for x in teams_list
+    #]
+    # ending 1999 to ending 2013
     teams_list = [
-    [x.id, x.team_name, x.abbreviation, x.division, x.conference,0,0] #last two are 'rating' (unused) and 'points' (to be used)
-       for x in teams_list
-    ]
+    [x.id, x.team_name, x.abbreviation, x.legacy_divisions_3, x.conference,0,0] #last two are 'rating' (unused) and 'points' (to be used)            
+    for x in teams_list ]
     #print(len(current_points))
     for i,x in enumerate(teams_list):
         #print(i)
@@ -211,7 +216,7 @@ def playoff_odds_print(team_results,season_year):
 
 if __name__ == "__main__":
 
-    season_year = 2023 # year in which season ends
+    season_year = 2010 # year in which season ends
     start_datetime = datetime(season_year - 1, 9, 1)  # start of season
     #end_datetime = datetime(season_year,4,30)  # a few weeks or months in
     end_datetime = datetime(season_year-1,12,20)

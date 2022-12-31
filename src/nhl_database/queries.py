@@ -67,7 +67,8 @@ def full_name_to_id(full_team_name):
         full_team_name = "Arizona Coyotes"
     if full_team_name == "Atlanta Thrashers":
         full_team_name = "Winnipeg Jets"
-
+    if full_team_name == "Mighty Ducks of Anaheim":
+        full_team_name = "Anaheim Ducks"
     from .nhl_data_models import Teams
 
     s_query = Teams.select(Teams.id).where(

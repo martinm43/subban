@@ -7,10 +7,6 @@ Import points to the CPP file - done
 Add "points" value to the Team class - done
 Change custom comparison function to use points and then wins - done
 Add to simulation, Use fact winner gets pt .25 pct of time - done
-Need to modify SRS_regress function to provide valid odds
-focus on several middle of the road teams and calibrate wins/points using c++ outputs
-For 2017:
-Tampa Bay: 42 wins
-Sabres: 33 wins
-Kings: 39 wins
-Wild: 49 wins
+calibration required
+add mighty ducks fix
+change names to more appropriate nhl and hockey things
