@@ -10,7 +10,7 @@
 #include <armadillo>
 #include "mcss.hpp"
 
-#define MAX_ITER 10000
+#define MAX_ITER 1
 #define NUM_TEAMS 32
 
 using namespace std;
@@ -181,11 +181,11 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
             for(int i=0;i<NUM_TEAMS;i++){
             string team_name = sim_teams[i].get_full_team_name();
             string team_division = sim_teams[i].get_division();
-            //int print_points = sim_teams[i].get_points();
-            //int print_total_wins = sim_teams[i].get_total_wins();
+            int print_points = sim_teams[i].get_points();
+            int print_total_wins = sim_teams[i].get_total_wins();
             int team_id = sim_teams[i].get_team_id();
-            //cout << i << ":" << team_name << ":" << team_division << ":" 
-            //    << print_points << ":wins:" << print_total_wins << endl;
+            cout << i << ":" << team_name << ":" << team_division << ":" 
+                << print_points << ":wins:" << print_total_wins << endl;
             if(( i >= 0 && i <= 2) || (i >= 8 && i <= 10)||(i >= 16 && i <= 18)||(i >= 24 && i <= 26)){
                 sim_playoff_total.row(team_id-1)[0]++; //Division Winner
             }
@@ -304,22 +304,22 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
         sim_playoff_total.row(west_wc2-1)[3]++;
        }
        */
-        //Format for 1998-2011 inclusive
-        /*
-        if((year >= 1998)&&(year<=2011)){
+        //Format for 1999-2013 inclusive
+        
+        if((year >= 1999)&&(year<=2013)){
        //iterate through list of teams to determine division winners.
        for(int i=0;i<NUM_TEAMS;i++){
             string team_name = sim_teams[i].get_full_team_name();
             string team_division = sim_teams[i].get_division();
-            //int print_total_wins = sim_teams[i].get_total_wins();
+            int print_points = sim_teams[i].get_points();
             int team_id = sim_teams[i].get_team_id();
-            //cout << team_name << ":" << team_division << ":" << print_total_wins << endl;
-            if((i == 0) || (i==5)||(i==10)||(i==14)||(i==20)||(i==25)){
+            cout << i << ":" << team_name << ":" << team_division << ":" << print_points << endl;
+            if((i == 2) || (i==7)||(i==12)||(i==17)||(i==22)||(i==27)){
                 sim_playoff_total.row(team_id-1)[0]++; //Division Winner
             }
         }
 
-        //NL Wild Card (singluar)
+        //East Wild Cards
         vector<Team> east_wild_card;
         east_wild_card.push_back(sim_teams[15]); //Cent 1	
         east_wild_card.push_back(sim_teams[21]); //East 1	
@@ -328,7 +328,7 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
         int east_wc1 = east_wild_card[0].get_team_id();
         sim_playoff_total.row(east_wc1-1)[3]++; 
         
-        //AL Wild Cards
+        //West Wild Cards
         vector<Team> west_wild_card;
         west_wild_card.push_back(sim_teams[1]); //Cent 1	
         west_wild_card.push_back(sim_teams[6]); //East 1	
@@ -337,7 +337,7 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
         int west_wc1 = west_wild_card[0].get_team_id();
         sim_playoff_total.row(west_wc1-1)[3]++; 
         }
-        */
+        
 
         //Format for 1994-1997 inclusive
 	/*
