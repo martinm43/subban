@@ -12,6 +12,7 @@
      
  File must have format "2022-2023-hockey.csv" for season_year 2023, etc.        
 """
+import sys
 from math import isnan
 from pprint import pprint
 import pandas as pd
@@ -20,7 +21,7 @@ from datetime import datetime
 from nhl_database.queries import epochtime, full_name_to_id
 from nhl_database.nhl_data_models import database, Games
 
-season_year = 2022
+season_year = int(sys.argv[1])
 prev_season_year = season_year-1
 filename = str(prev_season_year)+"-"+str(season_year)+"-hockey.csv"
 df = pd.read_csv(filename)
