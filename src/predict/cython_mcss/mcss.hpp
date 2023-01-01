@@ -76,6 +76,7 @@ struct teams_sort
     } 
 };
 
+
 struct wins_sort
 {
     inline bool operator()(const Team& Team1, const Team& Team2)

@@ -165,7 +165,7 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
 	}
         //random_shuffle is deprecated in C++17 but this code will not be c++17 compliant.
         random_shuffle(sim_teams.begin(),sim_teams.end());
-	    sort(sim_teams.begin(),sim_teams.end(),teams_sort());
+	sort(sim_teams.begin(),sim_teams.end(),teams_sort());
 
         //Create conference based vectors. 
         vector<Team>::const_iterator first = sim_teams.begin();
@@ -178,6 +178,8 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
        if(((year >= 2014)&&(year<=2019)) || (year >= 2022))
        {
        //iterate through list of teams to determine playoff teams.
+           
+	    sort(sim_teams.begin(),sim_teams.end(),teams_sort());
             for(int i=0;i<NUM_TEAMS;i++){
             string team_name = sim_teams[i].get_full_team_name();
             string team_division = sim_teams[i].get_division();
