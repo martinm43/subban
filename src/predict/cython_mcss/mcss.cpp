@@ -197,7 +197,7 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
         east_wild_card.push_back(sim_teams[4]); 	
         east_wild_card.push_back(sim_teams[19]); //Division Group Metro remaining top two	
         east_wild_card.push_back(sim_teams[20]); 	
-        sort(east_wild_card.begin(),east_wild_card.end(),wins_sort());        
+        sort(east_wild_card.begin(),east_wild_card.end(),points_sort());        
         int east_wc1 = east_wild_card[0].get_team_id();
         int east_wc2 = east_wild_card[1].get_team_id();
         sim_playoff_total.row(east_wc1-1)[3]++; //WC Winner 
@@ -209,7 +209,7 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
         west_wild_card.push_back(sim_teams[12]); 	
         west_wild_card.push_back(sim_teams[27]); //Division Group Pacific remaining top two	
         west_wild_card.push_back(sim_teams[28]); 
-        sort(west_wild_card.begin(),west_wild_card.end(),wins_sort());        
+        sort(west_wild_card.begin(),west_wild_card.end(),points_sort());        
         int west_wc1 = west_wild_card[0].get_team_id();
         int west_wc2 = west_wild_card[1].get_team_id();
         sim_playoff_total.row(west_wc1-1)[3]++; //WC Winner
@@ -241,7 +241,7 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
         east_wild_card.push_back(sim_teams[23]); //East 4	
         east_wild_card.push_back(sim_teams[27]); //West 3	
         east_wild_card.push_back(sim_teams[28]); //West 4	
-        sort(east_wild_card.begin(),east_wild_card.end(),wins_sort());        
+        sort(east_wild_card.begin(),east_wild_card.end(),points_sort());        
         int east_wc1 = east_wild_card[0].get_team_id();
         int east_wc2 = east_wild_card[1].get_team_id();
         sim_playoff_total.row(east_wc1-1)[3]++; 
@@ -255,7 +255,7 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
         west_wild_card.push_back(sim_teams[8]); //East 4	
         west_wild_card.push_back(sim_teams[12]); //West 3	
         west_wild_card.push_back(sim_teams[13]); //West 4	
-        sort(west_wild_card.begin(),west_wild_card.end(),wins_sort());        
+        sort(west_wild_card.begin(),west_wild_card.end(),points_sort());        
         int west_wc1 = west_wild_card[0].get_team_id();
         int west_wc2 = west_wild_card[1].get_team_id();
         sim_playoff_total.row(west_wc1-1)[3]++; 
@@ -283,7 +283,7 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
         east_wild_card.push_back(sim_teams[22]); //East 2	
         east_wild_card.push_back(sim_teams[26]); //West 1	
         east_wild_card.push_back(sim_teams[27]); //West 2	
-        sort(east_wild_card.begin(),east_wild_card.end(),wins_sort());        
+        sort(east_wild_card.begin(),east_wild_card.end(),points_sort());        
         int east_wc1 = east_wild_card[0].get_team_id();
         int east_wc2 = east_wild_card[1].get_team_id();
         sim_playoff_total.row(east_wc1-1)[3]++; 
@@ -297,7 +297,7 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
         west_wild_card.push_back(sim_teams[7]); //East 2	
         west_wild_card.push_back(sim_teams[11]); //West 1	
         west_wild_card.push_back(sim_teams[12]); //West 2	
-        sort(west_wild_card.begin(),west_wild_card.end(),wins_sort());        
+        sort(west_wild_card.begin(),west_wild_card.end(),points_sort());        
         int west_wc1 = west_wild_card[0].get_team_id();
         int west_wc2 = west_wild_card[1].get_team_id();
         sim_playoff_total.row(west_wc1-1)[3]++; 
@@ -369,7 +369,7 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
         east_wild_card.push_back(sim_teams[16]); //Cent 1	
         east_wild_card.push_back(sim_teams[21]); //East 1	
         east_wild_card.push_back(sim_teams[26]); //West 1	
-        sort(east_wild_card.begin(),east_wild_card.end(),wins_sort());        
+        sort(east_wild_card.begin(),east_wild_card.end(),points_sort());        
         int east_wc1 = east_wild_card[0].get_team_id();
         sim_playoff_total.row(east_wc1-1)[3]++; 
         
@@ -378,7 +378,7 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
         west_wild_card.push_back(sim_teams[1]); //Cent 1	
         west_wild_card.push_back(sim_teams[6]); //East 1	
         west_wild_card.push_back(sim_teams[12]); //West 1	
-        sort(west_wild_card.begin(),west_wild_card.end(),wins_sort());        
+        sort(west_wild_card.begin(),west_wild_card.end(),points_sort());        
         int west_wc1 = west_wild_card[0].get_team_id();
         sim_playoff_total.row(west_wc1-1)[3]++;
         }
@@ -421,7 +421,7 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
         east_division_winners.push_back(sim_teams[15]); //Cent Winner
         east_division_winners.push_back(sim_teams[20]); //East Winner
         east_division_winners.push_back(sim_teams[25]); //West Winner
-        sort(east_division_winners.begin(),east_division_winners.end(),wins_sort());
+        sort(east_division_winners.begin(),east_division_winners.end(),points_sort());
         int east_s_1 = east_division_winners[0].get_team_id();
         int east_s_2 = east_division_winners[1].get_team_id();
         int east_s_3 = east_division_winners[2].get_team_id();
@@ -440,7 +440,7 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
         east_wild_card.push_back(sim_teams[26]); //West 1	
         east_wild_card.push_back(sim_teams[27]); //West 2
         east_wild_card.push_back(sim_teams[28]); //West 2	
-        sort(east_wild_card.begin(),east_wild_card.end(),wins_sort());        
+        sort(east_wild_card.begin(),east_wild_card.end(),points_sort());        
         int east_s_4 = east_wild_card[0].get_team_id();
         int east_s_5 = east_wild_card[1].get_team_id();
         int east_s_6 = east_wild_card[2].get_team_id();
@@ -453,7 +453,7 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
         west_division_winners.push_back(sim_teams[0]); //Cent Winner
         west_division_winners.push_back(sim_teams[5]); //East Winner
         west_division_winners.push_back(sim_teams[10]); //West Winner
-        sort(west_division_winners.begin(),west_division_winners.end(),wins_sort());
+        sort(west_division_winners.begin(),west_division_winners.end(),points_sort());
         int west_s_1 = west_division_winners[0].get_team_id();
         int west_s_2 = west_division_winners[1].get_team_id();
         int west_s_3 = west_division_winners[2].get_team_id();
@@ -472,7 +472,7 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
         west_wild_card.push_back(sim_teams[11]); //West 1	
         west_wild_card.push_back(sim_teams[12]); //West 2
         west_wild_card.push_back(sim_teams[13]); //West 2	
-        sort(west_wild_card.begin(),west_wild_card.end(),wins_sort());        
+        sort(west_wild_card.begin(),west_wild_card.end(),points_sort());        
         int west_s_4 = west_wild_card[0].get_team_id();
         int west_s_5 = west_wild_card[1].get_team_id();
         int west_s_6 = west_wild_card[2].get_team_id();
