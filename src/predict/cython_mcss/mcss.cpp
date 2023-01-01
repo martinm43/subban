@@ -324,7 +324,7 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
 
         vector<Team> east_wild_card;
         for(int i=0;i<17;i++){
-	    if((i != 2) || (i != 7)||(i != 12)){
+	    if((i != 2) && (i != 7) && (i != 12)){
                 east_wild_card.push_back(sim_teams[i]); //Division Winner
             }
 	}
@@ -343,7 +343,7 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
         //West Wild Cards
         vector<Team> west_wild_card;
         for(int i=17;i<32;i++){
-            if((i != 17) || (i != 22)||(i != 27)){
+            if((i != 17) && (i != 22) && (i != 27)){
                 west_wild_card.push_back(sim_teams[i]); //Division Winner
             }
 	}
@@ -357,7 +357,7 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
         sim_playoff_total.row(west_wc2-1)[3]++; 
         sim_playoff_total.row(west_wc3-1)[3]++; 
         sim_playoff_total.row(west_wc4-1)[3]++; 
-        sim_playoff_total.row(west_wc4-1)[3]++; 
+        sim_playoff_total.row(west_wc5-1)[3]++; 
        
 
 
@@ -518,6 +518,7 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
 
     //cout << MAX_ITER << " simulations complete." << endl; //--not necessary.
     return sim_playoff_total;
+}
 }
 
 //only require this instantiation as we are only using the vanilla analysis tool
