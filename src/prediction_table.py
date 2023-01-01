@@ -77,7 +77,7 @@ def playoff_odds_calc(start_datetime, end_datetime, season_year, ratings_mode="E
 
     # Division and conf changes go here
     for z in teams_list:
-        print(z)
+        #print(z)
         if season_year <= 2013 and z[0]==11: #Red wings
             z[4]="W"
 
@@ -125,7 +125,7 @@ def playoff_odds_calc(start_datetime, end_datetime, season_year, ratings_mode="E
     #pprint("Future games")
     #pprint(future_games_list)
 
-    pprint(teams_list)
+    #pprint(teams_list)
 
     #pprint(games_won_list_cpp)
     team_results = simulations_result_vectorized(
@@ -213,7 +213,8 @@ def playoff_odds_print(team_results,season_year):
 
 if __name__ == "__main__":
 
-    season_year = 2007 # year in which season ends
+    import sys
+    season_year = int(sys.argv[1]) # year in which season ends
     start_datetime = datetime(season_year - 1, 9, 1)  # start of season
     #end_datetime = datetime(season_year,4,30)  # a few weeks or months in
     end_datetime = datetime(season_year-1,12,20)
