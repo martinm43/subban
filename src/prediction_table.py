@@ -69,6 +69,7 @@ def playoff_odds_calc(start_datetime, end_datetime, season_year, ratings_mode="E
         ]
     # ending 1999 to ending 2013
     else:
+        print(season_year)
         teams_list = [
         [x.id, x.team_name, x.abbreviation, x.legacy_divisions_3, x.conference,0,0] 
            for x in teams_list
@@ -218,9 +219,9 @@ if __name__ == "__main__":
 
     import sys
     season_year = int(sys.argv[1]) # year in which season ends
-    start_datetime = datetime(season_year - 1, 9, 1)  # start of season
+    start_datetime = datetime(season_year, 1, 1)  # start of season Sep, except 12-2013 in Jan
     #end_datetime = datetime(season_year,4,30)  # a few weeks or months in
-    end_datetime = datetime(season_year-1,12,20)
+    end_datetime = datetime(season_year,2,15)
 
     ratings_mode = "SRS"
     results = playoff_odds_calc(

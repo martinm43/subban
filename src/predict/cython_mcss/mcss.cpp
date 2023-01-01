@@ -315,6 +315,7 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
             string team_division = sim_teams[i].get_division();
             int print_points = sim_teams[i].get_points();
             int team_id = sim_teams[i].get_team_id();
+	    sort(east_wild_card.begin(),east_wild_card.end(),teams_sort());        
             cout << i << ":" << team_name << ":" << team_division << ":" << print_points << endl;
             if((i == 2) || (i==7)||(i==12)||(i==17)||(i==22)||(i==27)){
                 sim_playoff_total.row(team_id-1)[0]++; //Division Winner
@@ -330,7 +331,6 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
                 east_wild_card.push_back(sim_teams[i]); //Division Winner
             }
 	}
-	sort(east_wild_card.begin(),east_wild_card.end(),points_sort());        
         int east_wc1 = east_wild_card[0].get_team_id();
         int east_wc2 = east_wild_card[1].get_team_id();
         int east_wc3 = east_wild_card[2].get_team_id();
