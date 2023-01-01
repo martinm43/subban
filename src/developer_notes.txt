@@ -9,6 +9,7 @@ Change custom comparison function to use points and then wins - done
 Add to simulation, Use fact winner gets pt .25 pct of time - done
 calibration required
 add mighty ducks fix - done
-legacy wild cards
-change names to more appropriate nhl and hockey things
+
+troubleshoot 2016, add 2020 and 2021
+fix legacy wild cards
 
