@@ -69,7 +69,7 @@ struct teams_sort
             return (Team1.get_division() < Team2.get_division());
 	else if (Team1.get_points() != Team2.get_points())
 	    return (Team1.get_points() > Team2.get_points());
-	else              
+	else        
 	    return false;  //CANNOT be return true. Must investigate further.
     } 
 };

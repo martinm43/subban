@@ -330,7 +330,12 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
 	    if((i != 2) && (i != 7) && (i != 12)){
                 east_wild_card.push_back(sim_teams[i]); //Division Winner
             }
-	}
+	}   
+        sort(east_wild_card.begin(), east_wild_card.end(),points_sort());
+        cout << "east_teams" << endl;
+        for(int i=0;i<10;i++){ //skip two non existent teams
+                cout << east_wild_card[i].get_full_team_name()<<":"<<east_wild_card[i].get_division()<<":"<<east_wild_card[i].get_points()<<endl; //Division Winner
+        }
         int east_wc1 = east_wild_card[0].get_team_id();
         int east_wc2 = east_wild_card[1].get_team_id();
         int east_wc3 = east_wild_card[2].get_team_id();
@@ -349,7 +354,11 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
                 west_wild_card.push_back(sim_teams[i]); //Division Winner
             }
 	}
-        sort(west_wild_card.begin(),west_wild_card.end(),points_sort());        
+        cout << "west_teams" << endl;
+        sort(west_wild_card.begin(),west_wild_card.end(),points_sort());    
+        for(int i=0;i<10;i++){ //skip two non existent teams
+            cout << west_wild_card[i].get_full_team_name() <<":"<<west_wild_card[i].get_division()<<":"<<west_wild_card[i].get_points()<<endl; //Division Winner
+        }    
         int west_wc1 = west_wild_card[0].get_team_id();
         int west_wc2 = west_wild_card[1].get_team_id();
         int west_wc3 = west_wild_card[2].get_team_id();
