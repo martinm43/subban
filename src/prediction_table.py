@@ -219,9 +219,9 @@ if __name__ == "__main__":
 
     import sys
     season_year = int(sys.argv[1]) # year in which season ends
-    start_datetime = datetime(season_year, 1, 1)  # start of season Sep, except 12-2013 in Jan
+    start_datetime = datetime(season_year-1, 9, 1)  # start of season Sep, except 12-2013 in Jan
     #end_datetime = datetime(season_year,4,30)  # a few weeks or months in
-    end_datetime = datetime(season_year,2,15)
+    end_datetime = datetime(season_year-1,12,1)
 
     ratings_mode = "SRS"
     results = playoff_odds_calc(
