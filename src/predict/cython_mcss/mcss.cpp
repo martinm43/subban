@@ -165,7 +165,7 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
 	}
         //random_shuffle is deprecated in C++17 but this code will not be c++17 compliant.
         random_shuffle(sim_teams.begin(),sim_teams.end());
-	sort(sim_teams.begin(),sim_teams.end(),teams_sort());
+	    sort(sim_teams.begin(),sim_teams.end(),teams_sort());
 
         //Create conference based vectors. 
         vector<Team>::const_iterator first = sim_teams.begin();
@@ -326,16 +326,24 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
 	
 
         vector<Team> east_wild_card;
-        for(int i=2;i<17;i++){ //skip two non existent teams
-	    if((i != 2) && (i != 7) && (i != 12)){
-                east_wild_card.push_back(sim_teams[i]); //Division Winner
-            }
-	}   
-        sort(east_wild_card.begin(), east_wild_card.end(),points_sort());
-        cout << "east_teams" << endl;
-        for(int i=0;i<10;i++){ //skip two non existent teams
-                cout << east_wild_card[i].get_full_team_name()<<":"<<east_wild_card[i].get_division()<<":"<<east_wild_card[i].get_points()<<endl; //Division Winner
-        }
+        //Select all non div win teams in east conf
+        east_wild_card.push_back(sim_teams[3]);
+        east_wild_card.push_back(sim_teams[4]); 
+        east_wild_card.push_back(sim_teams[5]); 
+        east_wild_card.push_back(sim_teams[6]); 
+        east_wild_card.push_back(sim_teams[13]); 
+        east_wild_card.push_back(sim_teams[14]); 
+        east_wild_card.push_back(sim_teams[15]); 
+        east_wild_card.push_back(sim_teams[16]); 
+        east_wild_card.push_back(sim_teams[28]); 
+        east_wild_card.push_back(sim_teams[29]); 
+        east_wild_card.push_back(sim_teams[30]); 
+        east_wild_card.push_back(sim_teams[31]); 
+        sort(east_wild_card.begin(),east_wild_card.end(),points_sort());  
+        cout<<"East Teams"<<endl;
+        for (Team i : east_wild_card){
+            cout << i.get_full_team_name() << ":" << i.get_division() << ":" << i.get_points() << endl;
+        }    
         int east_wc1 = east_wild_card[0].get_team_id();
         int east_wc2 = east_wild_card[1].get_team_id();
         int east_wc3 = east_wild_card[2].get_team_id();
@@ -349,16 +357,23 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
         
         //West Wild Cards
         vector<Team> west_wild_card;
-        for(int i=17;i<32;i++){
-            if((i != 17) && (i != 22) && (i != 27)){
-                west_wild_card.push_back(sim_teams[i]); //Division Winner
-            }
-	}
-        cout << "west_teams" << endl;
-        sort(west_wild_card.begin(),west_wild_card.end(),points_sort());    
-        for(int i=0;i<10;i++){ //skip two non existent teams
-            cout << west_wild_card[i].get_full_team_name() <<":"<<west_wild_card[i].get_division()<<":"<<west_wild_card[i].get_points()<<endl; //Division Winner
-        }    
+        west_wild_card.push_back(sim_teams[8]);
+        west_wild_card.push_back(sim_teams[9]); 
+        west_wild_card.push_back(sim_teams[10]); 
+        west_wild_card.push_back(sim_teams[11]); 
+        west_wild_card.push_back(sim_teams[18]); 
+        west_wild_card.push_back(sim_teams[19]); 
+        west_wild_card.push_back(sim_teams[20]); 
+        west_wild_card.push_back(sim_teams[21]); 
+        west_wild_card.push_back(sim_teams[23]); 
+        west_wild_card.push_back(sim_teams[24]); 
+        west_wild_card.push_back(sim_teams[25]); 
+        west_wild_card.push_back(sim_teams[26]); 
+        sort(west_wild_card.begin(),west_wild_card.end(),points_sort());
+        cout<<"West Teams"<<endl;
+        for (Team i : west_wild_card){
+            cout << i.get_full_team_name() << ":" << i.get_division() << ":" << i.get_points() << endl;
+        }
         int west_wc1 = west_wild_card[0].get_team_id();
         int west_wc2 = west_wild_card[1].get_team_id();
         int west_wc3 = west_wild_card[2].get_team_id();

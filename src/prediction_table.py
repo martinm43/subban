@@ -84,6 +84,8 @@ def playoff_odds_calc(start_datetime, end_datetime, season_year, ratings_mode="E
         #print(z)
         if season_year <= 2013 and z[0]==11: #Red wings
             z[4]="W"
+        if season_year <= 2013 and z[0]==9: #Blue Jackets
+            z[4]="W"
 
     #pprint("Fixed")
     #pprint(teams_list)
@@ -167,6 +169,8 @@ def playoff_odds_print(team_results,season_year):
     #Conference change implemented here.
     for z in teams_dict:
         if z["Team"]=="DET" and season_year <= 2013:
+            z["Conference"]="W"
+        if z["Team"]=="CBJ" and season_year <= 2013:
             z["Conference"]="W"
 
 
