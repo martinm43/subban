@@ -182,11 +182,11 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
             for(int i=0;i<NUM_TEAMS;i++){
             string team_name = sim_teams[i].get_full_team_name();
             string team_division = sim_teams[i].get_division();
-            int print_points = sim_teams[i].get_points();
-            int print_total_wins = sim_teams[i].get_total_wins();
+//            int print_points = sim_teams[i].get_points();
+//            int print_total_wins = sim_teams[i].get_total_wins();
             int team_id = sim_teams[i].get_team_id();
-            cout << i << ":" << team_name << ":" << team_division << ":" 
-                << print_points << ":wins:" << print_total_wins << endl;
+     //       cout << i << ":" << team_name << ":" << team_division << ":" 
+     //           << print_points << ":wins:" << print_total_wins << endl;
             if(( i >= 0 && i <= 2) || (i >= 8 && i <= 10)||(i >= 16 && i <= 18)||(i >= 24 && i <= 26)){
                 sim_playoff_total.row(team_id-1)[0]++; //Division Winner
             }
@@ -224,10 +224,10 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
        for(int i=0;i<NUM_TEAMS;i++){
             string team_name = sim_teams[i].get_full_team_name();
             string team_division = sim_teams[i].get_division();
-            int print_points = sim_teams[i].get_points();
+  //          int print_points = sim_teams[i].get_points();
             int team_id = sim_teams[i].get_team_id();
 	        sort(sim_teams.begin(),sim_teams.end(),teams_sort());        
-            cout << i << ":" << team_name << ":" << team_division << ":" << print_points << endl;
+            //cout << i << ":" << team_name << ":" << team_division << ":" << print_points << endl;
             if((i == 2) || (i==7)||(i==12)||(i==17)||(i==22)||(i==27)){
                 sim_playoff_total.row(team_id-1)[0]++; //Division Winner
             }
@@ -251,10 +251,10 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
         east_wild_card.push_back(sim_teams[30]); 
         east_wild_card.push_back(sim_teams[31]); 
         sort(east_wild_card.begin(),east_wild_card.end(),points_sort());  
-        cout<<"East Teams"<<endl;
-        for (Team i : east_wild_card){
-            cout << i.get_full_team_name() << ":" << i.get_division() << ":" << i.get_points() << endl;
-        }    
+        //cout<<"East Teams"<<endl;
+        //for (Team i : east_wild_card){
+        //    cout << i.get_full_team_name() << ":" << i.get_division() << ":" << i.get_points() << endl;
+        //}    
         int east_wc1 = east_wild_card[0].get_team_id();
         int east_wc2 = east_wild_card[1].get_team_id();
         int east_wc3 = east_wild_card[2].get_team_id();
@@ -281,10 +281,10 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
         west_wild_card.push_back(sim_teams[25]); 
         west_wild_card.push_back(sim_teams[26]); 
         sort(west_wild_card.begin(),west_wild_card.end(),points_sort());
-        cout<<"West Teams"<<endl;
-        for (Team i : west_wild_card){
-            cout << i.get_full_team_name() << ":" << i.get_division() << ":" << i.get_points() << endl;
-        }
+        //cout<<"West Teams"<<endl;
+        //for (Team i : west_wild_card){
+        //    cout << i.get_full_team_name() << ":" << i.get_division() << ":" << i.get_points() << endl;
+        //}
         int west_wc1 = west_wild_card[0].get_team_id();
         int west_wc2 = west_wild_card[1].get_team_id();
         int west_wc3 = west_wild_card[2].get_team_id();
@@ -297,7 +297,7 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
         sim_playoff_total.row(west_wc5-1)[3]++; 
         }
     
-    cout << x_iter << " simulations complete." << endl; //--not necessary.
+    //cout << x_iter << " simulations complete." << endl; //--not necessary.
     }	
     for(int i=0;i<NUM_TEAMS;i++){
         sim_playoff_total.row(i)[0] = sim_playoff_total.row(i)[0]/MAX_ITER;

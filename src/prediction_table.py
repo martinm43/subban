@@ -69,7 +69,7 @@ def playoff_odds_calc(start_datetime, end_datetime, season_year, ratings_mode="E
         ]
     # ending 1999 to ending 2013
     else:
-        print(season_year)
+        #print(season_year)
         teams_list = [
         [x.id, x.team_name, x.abbreviation, x.legacy_divisions_3, x.conference,0,0] 
            for x in teams_list
@@ -89,7 +89,6 @@ def playoff_odds_calc(start_datetime, end_datetime, season_year, ratings_mode="E
         if season_year <= 2011 and z[0]==26: #the former Atlanta Thrashers
             z[4]="E"
             z[1]="Atlanta Thrashers"
-            print(z[3])
 
 
     #pprint("Fixed")
