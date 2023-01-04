@@ -10,7 +10,7 @@
 #include <armadillo>
 #include "mcss.hpp"
 
-#define MAX_ITER 1
+#define MAX_ITER 1000
 #define NUM_TEAMS 32
 
 using namespace std;
@@ -113,8 +113,7 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
         MCSS_Head_To_Head.zeros();
         teams = list_of_teams;
 
-        for(int i=0;i<num_future_games;i++)
-        {
+        for(int i=0;i<num_future_games;i++){
             int away_team_id = future_games.row(i)[0]-1;
             int home_team_id = future_games.row(i)[1]-1;
             int awaypts = teams[away_team_id].get_points();
@@ -138,7 +137,7 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
         debug_total = MCSS_Head_To_Head+Head_To_Head;
 
 
-	    stdvecvec htoh_records = mat_to_std_vec(debug_total);
+        stdvecvec htoh_records = mat_to_std_vec(debug_total);
 
         /*
         cout << "Head to Head" << endl;
@@ -297,7 +296,9 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
         sim_playoff_total.row(west_wc4-1)[3]++; 
         sim_playoff_total.row(west_wc5-1)[3]++; 
         }
-	
+    
+    cout << x_iter << " simulations complete." << endl; //--not necessary.
+    }	
     for(int i=0;i<NUM_TEAMS;i++){
         sim_playoff_total.row(i)[0] = sim_playoff_total.row(i)[0]/MAX_ITER;
         sim_playoff_total.row(i)[1] = sim_playoff_total.row(i)[1]/MAX_ITER;
@@ -305,10 +306,9 @@ mat mcss_function(mat mat_head_to_head, mat future_games, stdteamvec list_of_tea
         sim_playoff_total.row(i)[3] = sim_playoff_total.row(i)[3]/MAX_ITER;
         sim_playoff_total.row(i)[4] = sim_playoff_total.row(i)[4]/MAX_ITER;
     }
-
-    //cout << MAX_ITER << " simulations complete." << endl; //--not necessary.
+    
     return sim_playoff_total;
-    }
+    
 }
 
 //only require this instantiation as we are only using the vanilla analysis tool
