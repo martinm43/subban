@@ -86,6 +86,11 @@ def playoff_odds_calc(start_datetime, end_datetime, season_year, ratings_mode="E
             z[4]="W"
         if season_year <= 2013 and z[0]==9: #Blue Jackets
             z[4]="W"
+        if season_year <= 2011 and z[0]==26: #the former Atlanta Thrashers
+            z[4]="E"
+            z[1]="Atlanta Thrashers"
+            print(z[3])
+
 
     #pprint("Fixed")
     #pprint(teams_list)
@@ -166,12 +171,15 @@ def playoff_odds_print(team_results,season_year):
 
 
     #The dict for the teams
-    #Conference change implemented here.
+    #Conference change implemented here for printing.
     for z in teams_dict:
         if z["Team"]=="DET" and season_year <= 2013:
             z["Conference"]="W"
         if z["Team"]=="CBJ" and season_year <= 2013:
             z["Conference"]="W"
+        if z["Team"]=="WPG" and season_year <= 2011: #the Atlanta Thrashers
+            z["Conference"]="E"
+            z['Team']="ATL"
 
 
     for i, d in enumerate(teams_dict):
