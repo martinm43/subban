@@ -222,7 +222,7 @@ def results_summary(season_elo_ratings_list, scaling=100000):
 if __name__ == "__main__":
 
     x = Games.select().order_by(Games.season_year.asc()).get()
-    start_year = x.season_year
+    start_year = max(2007,x.season_year) #Temp fix, start games in 2007.
     print("Minimum start year is "+str(start_year))
     x = Games.select().order_by(Games.season_year.desc()).get()
     end_year = x.season_year
