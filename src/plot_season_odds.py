@@ -135,7 +135,6 @@ while b < end:
     #pprint(x_odds)
     
     x_odds = [x[0]+x[3] for x in x_odds]
-    print(x_odds)
 
     print("Finished processing "+b.strftime("%m %d %Y"))
 
