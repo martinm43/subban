@@ -117,7 +117,7 @@ except:
     sys.exit(1)
 """
 
-x_odds = [x[2]+x[3] for x in x_odds]
+x_odds = [x[0]+x[3] for x in x_odds]
 
 odds_list.append(x_odds)
 
@@ -134,7 +134,7 @@ while b < end:
     #print(b)
     #pprint(x_odds)
     
-    x_odds = [x[2]+x[3] for x in x_odds]
+    x_odds = [x[0]+x[3] for x in x_odds]
     print(x_odds)
 
     print("Finished processing "+b.strftime("%m %d %Y"))
