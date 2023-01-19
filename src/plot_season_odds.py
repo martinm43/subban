@@ -24,10 +24,10 @@ import random
 
 from prediction_table import playoff_odds_calc
 
-from nba_database.queries import team_abbreviation
-from nba_database.nba_data_models import ProApiTeams
+from nhl_database.queries import team_abbreviation
+from nhl_database.nhl_data_models import Teams
 
-division_name_list = ["Atlantic", "Central", "Southeast", "Southwest", "Pacific", "Northwest"]
+division_name_list = ["Atlantic", "Metro", "Central", "Pacific"]
 
 
 try:
@@ -38,7 +38,7 @@ except ValueError:
     0
 
 min_year = 1990
-max_year = 2022
+max_year = 2023
 
 if season_year == 0:
     season_year = random.randint(min_year,max_year)
@@ -48,6 +48,7 @@ if season_year < min_year or season_year > max_year:
     sys.exit(1)
 
 
+"""
 elif season_year == 2012:  # 2011-2012 lockout year fix.
     a = datetime(season_year - 1, 12, 25)
     b = datetime(season_year, 1, 15)
@@ -64,11 +65,10 @@ elif season_year == 2021:  # SARS-CoV-2 fix (Second Season)
     a = datetime(season_year - 1, 12, 25)
     b = datetime(season_year, 1, 15)
     end = min(datetime(season_year, 5, 30),datetime.today() - timedelta(days=1))
-else:
-    a = datetime(season_year - 1, 10, 1)
-    b = datetime(season_year - 1, 11, 15)
-    end = min(datetime(season_year, 4, 30), datetime.today() - timedelta(days=1))
-
+"""
+a = datetime(season_year - 1, 10, 1)
+b = datetime(season_year - 1, 11, 15)
+end = min(datetime(season_year, 5, 15), datetime.today() - timedelta(days=1))
 
 # Python Moving Average, taken by:
 # https://stackoverflow.com/questions/13728392/moving-average-or-running-mean
@@ -81,10 +81,9 @@ def running_mean(x, N):
 team_labels = [team_abbreviation(i) for i in range(1, 30)]
 
 # Team ID
-# Possible divisions are Southeast, Atlantic, Central
-# Pacific, Southwest, Northwest
+# Possible divisions are Atlantic, Metro, Central, Pacific
 print("Divisions are as follows: ")
-print(" 1: Atlantic \n 2: Central \n 3: Southeast \n 4: Southwest \n 5: Pacific \n 6: Northwest")
+print(" 1: Atlantic \n 2: Metro \n 3: Central \n 4: Pacific")
 dn = input("Please select a division: ")
 
 try:
@@ -98,13 +97,15 @@ except IndexError:
     print("out of range for divisions, program exiting")
     sys.exit(1)
 
-query = ProApiTeams.select().where(ProApiTeams.division == division_name)
-division_team_id_list = [i.bball_ref for i in query]
+query = Teams.select().where(Teams.division == division_name)
+division_team_id_list = [i.id for i in query]
 
 
 # Odds calculations
 odds_list = []
 x_odds = playoff_odds_calc(a, b, season_year)
+
+"""
 print("Calculation modes are as follows: ")
 print("1: Classic mode (top 8 finish)\n2: Top 6 mode\n3: Top 10 mode")
 mode_dict={1:"Top 8",2:"Top 6",3:"Top 10"}
@@ -114,16 +115,9 @@ try:
 except:
     print("not an integer, exiting now")
     sys.exit(1)
+"""
 
-if mode == 1:
-    x_odds = [x[0] for x in x_odds]
-elif mode == 2:
-    x_odds = [x[2] for x in x_odds]
-elif mode == 3:
-    x_odds = [x[2]+x[3] for x in x_odds]
-else:
-    print("mode invalid, quitting")
-    sys.exit(1)
+x_odds = [x[2]+x[3] for x in x_odds]
 
 odds_list.append(x_odds)
 
@@ -139,20 +133,15 @@ while b < end:
 
     #print(b)
     #pprint(x_odds)
-
-    if mode == 1:
-        x_odds = [x[0] for x in x_odds]
-    elif mode == 2:
-        x_odds = [x[2] for x in x_odds]
-    elif mode == 3:
-        x_odds = [x[2]+x[3] for x in x_odds]
-
+    
+    x_odds = [x[2]+x[3] for x in x_odds]
+    print(x_odds)
 
     print("Finished processing "+b.strftime("%m %d %Y"))
 
     odds_list.append(x_odds)
     dates_list.append(b)
-    b = b + timedelta(days=1) #1
+    b = b + timedelta(days=7) #Use a week for testing
 
 
 
@@ -187,7 +176,6 @@ plt.title(
 + str(season_year - 1)
 + "-"
 + str(season_year)
-+ "\n (teams in division may not be accurate before 2004, "+mode_dict[mode]+")"
 )
 plt.legend()
 plt.xticks(rotation=15)
