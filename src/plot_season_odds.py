@@ -140,7 +140,7 @@ while b < end:
 
     odds_list.append(x_odds)
     dates_list.append(b)
-    b = b + timedelta(days=7) #Use a week for testing
+    b = b + timedelta(days=3) 
 
 
 
