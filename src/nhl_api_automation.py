@@ -6,8 +6,10 @@ Created on Fri Jan 27 23:31:39 2023
 """
 
 import requests
-import zulu
+import pandas as pd
 from datetime import datetime
+
+from nhl_database.queries import epochtime
 
 base_url = "https://statsapi.web.nhl.com/api/v1/schedule"
 
@@ -47,7 +49,7 @@ for g in games:
         print("Error - check game status for game "+str(g["gamePk"]))
         break
     game_dict["game_date"] = game_date
-    #Need to figure out how to parse datetime objects in the zulu format.
-    #game_dict["datetime_obj"] = zulu.parse(g["gameDate"])
+    game_dict["game_datetime"] = datetime.fromisoformat(game_date)
+    game_dict["datetime"] = epochtime(game_dict["game_datetime"])
     game_list.append(game_dict)
     
