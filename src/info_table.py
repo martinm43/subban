@@ -9,7 +9,7 @@ Output: table (string)
 
 """
 # Standard imports
-from datetime import datetime
+from datetime import datetime, timedelta
 
 # Third Party Imports
 from tabulate import tabulate
@@ -34,7 +34,7 @@ from analytics.wins_script import get_wins
 # Query Testing
 season_year = 2023
 start_datetime = datetime(season_year-1, 9, 1)
-end_datetime = datetime(season_year,2,14)
+end_datetime = datetime.today()-timedelta(days=1)
 #end_datetime = datetime(season_year,5,1)
 
 games_list = games_query(start_datetime, end_datetime)
