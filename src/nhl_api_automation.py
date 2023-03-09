@@ -18,13 +18,13 @@ base_url = "https://statsapi.web.nhl.com/api/v1/schedule"
 
 # API call variable
 
-start_date = datetime(2023,2,5) #date, used for observation
+start_date = datetime(2023,2,14) #date, used for observation
 end_date = datetime.today() - timedelta(days=1)
 loop_date = start_date
 
 while loop_date < end_date:
     game_date = loop_date.strftime("%Y-%m-%d")
-
+    print(game_date+" processing")
     r = requests.get(url=base_url+"?date="+game_date)
     data = r.json()
     
