@@ -18,7 +18,7 @@ base_url = "https://statsapi.web.nhl.com/api/v1/schedule"
 
 # API call variable
 
-start_date = datetime(2023,2,14) #date, used for observation
+start_date = datetime(2023,3,1) #date, used for observation
 end_date = datetime.today() - timedelta(days=1)
 loop_date = start_date
 
