@@ -48,15 +48,15 @@ def pythagorean_wins(
         Game.game_datetime >= mincalcdatetime,
         Game.game_datetime <= maxcalcdatetime,
     )
-    #team_visitor_g = sum([p.visitor_g if p.visitor_g is not None else 0 for p in pts])
-    team_visitor_g = sum([p.visitor_g for p in pts])
+    team_visitor_g = sum([p.visitor_g if p.visitor_g is not None else 0 for p in pts])
+    #team_visitor_g = sum([p.visitor_g for p in pts])
     pts = Game.select(Game.home_g).where(
         Game.home_team_id == team_id,
         Game.game_datetime >= mincalcdatetime,
         Game.game_datetime <= maxcalcdatetime,
     )
-    #team_home_g = sum([p.home_g if p.home_g is not None else 0 for p in pts])
-    team_home_g = sum([p.home_g for p in pts])
+    team_home_g = sum([p.home_g if p.home_g is not None else 0 for p in pts])
+    #team_home_g = sum([p.home_g for p in pts])
     team_team_g_for = team_visitor_g + team_home_g
     team_team_g_against_home = Game.select(Game.visitor_g).where(
         Game.home_team_id == team_id,
@@ -69,12 +69,12 @@ def pythagorean_wins(
         Game.game_datetime <= maxcalcdatetime,
     )
     team_team_g_against_home = sum(
-         [p.visitor_g for p in team_team_g_against_home]
-    #    [p.visitor_g if p.visitor_g is not None else 0 for p in team_team_g_against_home]
+    #     [p.visitor_g for p in team_team_g_against_home]
+        [p.visitor_g if p.visitor_g is not None else 0 for p in team_team_g_against_home]
     )
     team_team_g_against_away = sum(
-         [p.home_g for p in team_team_g_against_away]
-    #    [p.home_g if p.home_g is not None else 0 for p in team_team_g_against_away]
+    #     [p.home_g for p in team_team_g_against_away]
+        [p.home_g if p.home_g is not None else 0 for p in team_team_g_against_away]
     )
     team_team_g_against = team_team_g_against_away + team_team_g_against_home
 

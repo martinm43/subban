@@ -125,8 +125,9 @@ def games_query(start_datetime, end_datetime):
     played_games = (
         Games.select()
         .where(
-            Games.game_datetime < end_epochtime,
-            Games.game_datetime > start_epochtime,
+            (Games.game_datetime < end_epochtime) &
+            (Games.game_datetime > start_epochtime) &
+            ((Games.home_g > 0) | (Games.visitor_g > 0))
             #Internal note - here you need a visitor_g or home_g is not zero statement
         )
         .order_by(Games.game_datetime)
