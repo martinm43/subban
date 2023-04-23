@@ -43,7 +43,7 @@ except ValueError:
     
     
 if analysis_days == -1:
-    start_datetime = datetime(2022, 10, 10)
+    start_datetime = datetime(2022, 10, 1)
 elif analysis_days >= 7:
     start_datetime = datetime.today()-timedelta(days=analysis_days)
 else:
