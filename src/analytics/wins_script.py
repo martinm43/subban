@@ -67,6 +67,8 @@ def get_wins(team_id, season_year, start_datetime, end_datetime):
         print("WARNING: Team "+str(team_id)+" played no games this season ending "+str(season_year)+" - please investigate whether this is expected behaviour")
         pts_pct = 0.0
         pass
+    print(f"Team id is: {team_id}")
+    print(sum([1 if (x[2]=="OT" or x[2]=="SO") else 0 for x in home_results])+sum([1 if (x[2]=="OT" or x[2]=="SO") else 0 for x in visitor_results]))
     return {"visitor_record": visitor_record, "home_record": home_record, "record": record,"points":pts,"pts_pct":pts_pct}
 
 def points_list(season_year, start_datetime, end_datetime):

@@ -33,7 +33,7 @@ from analytics.wins_script import get_wins
 
 # Query Testing
 season_year = 2023
-#start_datetime = datetime(season_year-1, 9, 1)
+""" #start_datetime = datetime(season_year-1, 9, 1)
 analysis_days = input("Please enter the number of days, min 7, to use for analysis. If all, enter -1: ")
     
 try:
@@ -47,7 +47,8 @@ if analysis_days == -1:
 elif analysis_days >= 7:
     start_datetime = datetime.today()-timedelta(days=analysis_days)
 else:
-    sys.exit("Number of days invalid, program exiting.")
+    sys.exit("Number of days invalid, program exiting.") """
+start_datetime = datetime(2022,10,1)
 end_datetime = datetime.today()-timedelta(days=1)
 #end_datetime = datetime(season_year,5,1)
 
@@ -58,8 +59,12 @@ max_MOV = 100  # no real max MOV
 home_team_adv = 0
 win_floor = 0
 
+for i in range(1,33):
+    print(f"{i}, {team_abbreviation(i)}")
+
+
 wins_dict_list = [
-    get_wins(i, season_year, start_datetime, end_datetime) for i in range(1, 32)
+    get_wins(i, season_year, start_datetime, end_datetime) for i in range(1, 33)
 ]
 wins_list = [[x["visitor_record"], x["home_record"], x["record"],x["points"],x["pts_pct"]] for x in wins_dict_list]
 
@@ -76,7 +81,7 @@ srs_list = SRS(
 
 elo_list = elo_ratings_list(epochtime(end_datetime))
 
-form_list = [form_query(i) for i in range(1, 31)]
+form_list = [form_query(i) for i in range(1, 33)]
 
 lpw_results.sort(key=lambda x: x[0]) 
 
