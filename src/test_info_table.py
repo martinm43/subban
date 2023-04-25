@@ -19,7 +19,11 @@ ovr_loc = 6
 def itd():
     return info_table_data
     
-
+def test_dimensions(itd):
+    tm_fn = itd
+    tm_tuple = tm_fn(season_year,start_datetime,end_datetime)
+    assert(len(tm_tuple)==32) #length is 32
+    assert(len(tm_tuple[team_index])==10) #width is 10
 
 def test_team_tuple(itd):
     tm_fn = itd
@@ -31,19 +35,16 @@ def test_wins(itd):
     tm_fn = itd
     tm_tuple = tm_fn(season_year,start_datetime,end_datetime)
     tm_abbrev = tm_tuple[team_index][ovr_loc]
-    print(tm_tuple[team_index])
     assert(tm_abbrev[0:2]=="46")
 
 def test_losses(itd):
     tm_fn = itd
     tm_tuple = tm_fn(season_year,start_datetime,end_datetime)
     tm_abbrev = tm_tuple[team_index][ovr_loc]
-    print(tm_tuple[team_index])
     assert(tm_abbrev[3:5]=="33") 
     
 def test_OTL_losses(itd):
     tm_fn = itd
     tm_tuple = tm_fn(season_year,start_datetime,end_datetime)
     tm_abbrev = tm_tuple[team_index][ovr_loc]
-    print(tm_tuple[team_index])
     assert(tm_abbrev[6:8]=="3") 
