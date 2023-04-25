@@ -28,21 +28,23 @@ def test_team_tuple(itd):
     assert(tm_abbrev=="MTL")
 
 def test_wins(itd):
-    itd = info_table_data(season_year,start_datetime,end_datetime)
-    tm_tuple = itd[ovr_loc][6] #overall record
-    print(tm_tuple)
-    tm_abbrev = tm_tuple[0:1]
-    assert(tm_abbrev=="30")
+    tm_fn = itd
+    tm_tuple = tm_fn(season_year,start_datetime,end_datetime)
+    tm_abbrev = tm_tuple[team_index][ovr_loc]
+    print(tm_tuple[team_index])
+    assert(tm_abbrev[0:2]=="30")
 
-"""def test_losses():
-    itd = info_table_data(season_year,start_datetime,end_datetime)
-    tm_tuple = itd[ovr_loc][6] #overall record
-    tm_abbrev = tm_tuple[3:4]
-    assert(tm_abbrev=="42")
+def test_losses(itd):
+    tm_fn = itd
+    tm_tuple = tm_fn(season_year,start_datetime,end_datetime)
+    tm_abbrev = tm_tuple[team_index][ovr_loc]
+    print(tm_tuple[team_index])
+    assert(tm_abbrev[3:5]=="42") #Current value, Test Shim
 
-def test_OTL_losses():
-    itd = info_table_data(season_year,start_datetime,end_datetime)
-    tm_tuple = itd[ovr_loc][6] #overall record
-    tm_abbrev = tm_tuple[6:7]
-    assert(tm_abbrev=="3")  """
+def test_OTL_losses(itd):
+    tm_fn = itd
+    tm_tuple = tm_fn(season_year,start_datetime,end_datetime)
+    tm_abbrev = tm_tuple[team_index][ovr_loc]
+    print(tm_tuple[team_index])
+    assert(tm_abbrev[6:8]=="3") #Current value, Test Shim
 
