@@ -13,17 +13,18 @@ end_datetime = datetime(2023,4,15)
 team_index = 15
 ovr_loc = 6
 
-""" @pytest.fixture
+
+@pytest.fixture
 def itd():
-    return info_table_data(season_year,start_datetime,end_datetime)
- """
+    return info_table_data
+    
 
 #TO-DO: use fixtures
 
-def test_team_tuple():
-    itd = info_table_data(season_year,start_datetime,end_datetime)
-    tm_tuple = itd[team_index]
-    tm_abbrev = tm_tuple[0]
+def test_team_tuple(itd):
+    tm_fn = itd
+    tm_tuple = tm_fn(season_year,start_datetime,end_datetime)
+    tm_abbrev = tm_tuple[team_index][0]
     assert(tm_abbrev=="MTL")
 
 """ def test_wins():
