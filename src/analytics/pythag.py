@@ -110,7 +110,7 @@ def league_pythagorean_wins(
 
     """
     results_list = []
-    for i in range(1, 31):
+    for i in range(1, 33):
         results_list.append(
             [
                 i,

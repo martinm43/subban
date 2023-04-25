@@ -61,7 +61,7 @@ def info_table_data(season_year, start_datetime, end_datetime):
     win_floor = 0
 
     wins_dict_list = [
-        get_wins(i, season_year, start_datetime, end_datetime) for i in range(1, 32)
+        get_wins(i, season_year, start_datetime, end_datetime) for i in range(1, 33)
     ]
     wins_list = [[x["visitor_record"], x["home_record"], x["record"],x["points"],x["pts_pct"]] for x in wins_dict_list]
 
@@ -78,7 +78,7 @@ def info_table_data(season_year, start_datetime, end_datetime):
 
     elo_list = elo_ratings_list(epochtime(end_datetime))
 
-    form_list = [form_query(i) for i in range(1, 31)]
+    form_list = [form_query(i) for i in range(1, 33)]
 
     lpw_results.sort(key=lambda x: x[0]) 
 
