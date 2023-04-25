@@ -27,14 +27,14 @@ def test_team_tuple(itd):
     tm_abbrev = tm_tuple[team_index][0]
     assert(tm_abbrev=="MTL")
 
-""" def test_wins():
+def test_wins(itd):
     itd = info_table_data(season_year,start_datetime,end_datetime)
     tm_tuple = itd[ovr_loc][6] #overall record
     print(tm_tuple)
     tm_abbrev = tm_tuple[0:1]
     assert(tm_abbrev=="30")
 
-def test_losses():
+"""def test_losses():
     itd = info_table_data(season_year,start_datetime,end_datetime)
     tm_tuple = itd[ovr_loc][6] #overall record
     tm_abbrev = tm_tuple[3:4]
