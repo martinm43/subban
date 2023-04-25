@@ -21,7 +21,7 @@ class BaseModel(Model):
 class Games(BaseModel):
     """ORM object for the Games table"""
 
-    notes = TextField(db_column="Notes", null=True)
+    notes = TextField(column_name="Notes", null=True)
     game_decided_by = TextField(null=True)
     visitor_g = IntegerField(null=True)
     visitor = TextField(null=True)
@@ -36,7 +36,7 @@ class Games(BaseModel):
     attendance = IntegerField(null=True)
 
     class Meta:
-        db_table = "games"
+        table_name = "games"
 
 
 class Teams(BaseModel):
@@ -68,7 +68,7 @@ class Teams(BaseModel):
     legacy_divisions_3 = TextField(null=True)
 
     class Meta:
-        db_table = "teams"
+        table_name = "teams"
 
 
 class ProlineData(BaseModel):
@@ -78,7 +78,7 @@ class ProlineData(BaseModel):
     away_2nd = IntegerField(null=True)
     away_3rd = IntegerField(null=True)
     away_4th = IntegerField(null=True)
-    away_ot_pts = IntegerField(db_column="away_OT_pts", null=True)
+    away_ot_pts = IntegerField(column_name="away_OT_pts", null=True)
     away_pts = IntegerField(null=True)
     away_team = TextField(null=True)
     away_team_id = IntegerField(null=True)
@@ -91,7 +91,7 @@ class ProlineData(BaseModel):
     home_2nd = IntegerField(null=True)
     home_3rd = IntegerField(null=True)
     home_4th = IntegerField(null=True)
-    home_ot_pts = IntegerField(db_column="home_OT_pts", null=True)
+    home_ot_pts = IntegerField(column_name="home_OT_pts", null=True)
     home_pts = IntegerField(null=True)
     home_team = TextField(null=True)
     home_team_id = IntegerField(null=True)
@@ -105,7 +105,7 @@ class ProlineData(BaseModel):
     unix_date = FloatField(null=True)
 
     class Meta:
-        db_table = "proline_data"
+        table_name = "proline_data"
 
 
 class TeamEloData(BaseModel):
@@ -118,4 +118,4 @@ class TeamEloData(BaseModel):
     team_id = IntegerField(null=True)
 
     class Meta:
-        db_table = "team_elo_data"
+        table_name = "team_elo_data"
