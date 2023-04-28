@@ -29,16 +29,15 @@ from nhl_database.nhl_data_models import Teams
 
 division_name_list = ["Atlantic", "Metro", "Central", "Pacific"]
 
+min_year = 2001
+max_year = 2023
 
 try:
-    season_year = int(input("Please select a year between 1990 and 2022, or enter 0 for random year: "))
+    season_year = int(input(f"Please select a year between {min_year} and {max_year}, or enter 0 for random year: "))
 except ValueError:
     print("Invalid value entered, quitting!!")
     sys.exit(1)
-    0
-
-min_year = 1990
-max_year = 2023
+    #0
 
 if season_year == 0:
     season_year = random.randint(min_year,max_year)
