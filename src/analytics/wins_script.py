@@ -31,8 +31,8 @@ def get_wins(team_id, season_year, start_datetime, end_datetime):
     visitor_results = [[i.visitor_g, i.home_g, i.game_decided_by] for i in visitor_query]
 
     visitor_wins_total = sum([1 if x[0] > x[1] else 0 for x in visitor_results])
-    visitor_OTW_total = sum([1 if x[2] != "Regulation" and x[1] < x[0] else 0 for x in visitor_results])
-    visitor_OTL_total = sum([1 if x[2] != "Regulation" and x[1] > x[0] else 0 for x in visitor_results])
+    visitor_T_total = sum([1 if x[2] != "Regulation" and x[0] < x[1] else 0 for x in visitor_results])
+    visitor_L_total = sum([1 if x[2] == "Regulation" and x[0] < x[1] else 0 for x in visitor_results])
 
     visitor_games_total = len(visitor_results)
     # home_query = Games.select().where(Games.season_year == season_year, Games.home_team_id == team_id, Games.home_g > 0)
@@ -45,22 +45,22 @@ def get_wins(team_id, season_year, start_datetime, end_datetime):
     )
     home_results = [[i.home_g, i.visitor_g,i.game_decided_by] for i in home_query]
     home_wins_total = sum([1 if x[0] > x[1] else 0 for x in home_results])
-    home_OTW_total = sum([1 if x[2] != "Regulation" and x[1] < x[0] else 0 for x in home_results])
-    home_OTL_total = sum([1 if x[2] != "Regulation" and x[1] > x[0] else 0 for x in home_results])
+    home_T_total = sum([1 if x[2] != "Regulation" and x[0] < x[1]  else 0 for x in home_results])
+    home_L_total = sum([1 if x[2] == "Regulation" and x[0] < x[1] else 0 for x in home_results])
 
     home_games_total = len(home_results)
 
-    visitor_record = str(visitor_wins_total) + "-" + str(visitor_games_total - visitor_OTL_total - visitor_wins_total) + "-" + str(visitor_OTL_total)
-    home_record = str(home_wins_total) + "-" + str(home_games_total - home_OTL_total - home_wins_total) + "-" + str(home_OTL_total)
+    visitor_record = str(visitor_wins_total) + "-" + str(visitor_L_total) + "-" + str(visitor_T_total)
+    home_record = str(home_wins_total) + "-" + str(home_L_total) + "-" + str(home_T_total)
 
     record = (
         str(visitor_wins_total + home_wins_total)
         + "-"
-        + str(visitor_games_total + home_games_total - visitor_OTL_total - home_OTL_total - visitor_wins_total - home_wins_total)
+        + str(visitor_L_total + home_L_total)
         + "-" 
-        + str(home_OTL_total+visitor_OTL_total)
+        + str(home_T_total+visitor_T_total)
     )
-    pts =  2*(visitor_wins_total+home_wins_total)+1*(visitor_OTL_total+home_OTL_total)
+    pts =  2*(visitor_wins_total+home_wins_total)+1*(visitor_T_total+home_T_total)
     try:
         pts_pct = pts/(2*(home_games_total+visitor_games_total))
     except ZeroDivisionError:

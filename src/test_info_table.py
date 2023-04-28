@@ -8,8 +8,8 @@ from datetime import datetime
 
 #Test setup values
 season_year = 2023
-start_datetime = datetime(2022,10,1)
-end_datetime = datetime(2023,4,15)
+start_datetime = datetime(season_year-1,10,1)
+end_datetime = datetime(season_year,4,20)
 team_index = 31
 ovr_loc = 6
 

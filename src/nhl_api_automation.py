@@ -18,7 +18,7 @@ base_url = "https://statsapi.web.nhl.com/api/v1/schedule"
 
 # API call variable
 
-start_date = datetime(2023,1,1) #date, used for observation
+start_date = datetime(2022,10,6) #date, used for observation
 end_date = datetime(2023,4,16)
 loop_date = start_date
 
@@ -70,7 +70,7 @@ while loop_date < end_date:
     
     for z in game_list:
         #Quick 
-        Games.update(visitor_g = z["away_g"], home_g = z["home_g"]).where((Games.game_date == z["game_date"]) & (Games.visitor == z["away_team_name"]) & (Games.home == z["home_team_name"])).execute()
+        Games.update(visitor_g = z["away_g"], home_g = z["home_g"],game_decided_by = z["Game_Decided_By"]).where((Games.game_date == z["game_date"]) & (Games.visitor == z["away_team_name"]) & (Games.home == z["home_team_name"])).execute()
 
 
     loop_date = loop_date + timedelta(days=1)
