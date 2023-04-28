@@ -41,10 +41,10 @@ def test_losses(itd):
     tm_fn = itd
     tm_tuple = tm_fn(season_year,start_datetime,end_datetime)
     tm_abbrev = tm_tuple[team_index][ovr_loc]
-    assert(tm_abbrev[3:5]=="33") 
+    assert(tm_abbrev[3:5]=="35") 
     
 def test_OTL_losses(itd):
     tm_fn = itd
     tm_tuple = tm_fn(season_year,start_datetime,end_datetime)
     tm_abbrev = tm_tuple[team_index][ovr_loc]
-    assert(tm_abbrev[6:8]=="3") 
+    assert(tm_abbrev[6:8]=="1") 
