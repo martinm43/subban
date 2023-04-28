@@ -138,7 +138,7 @@ def print_results_table(results_tuples):
     print(results_table)
 
 if __name__ == "__main__":
-    season_year = 2012
+    season_year = 2023
     start_datetime = datetime(season_year-1,10,1)
     end_datetime = datetime(season_year,4,15)
     a = info_table_data(season_year,start_datetime,end_datetime)
