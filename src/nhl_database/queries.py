@@ -242,8 +242,7 @@ def form_query(team_id):
     }
     q = Games.select().where(
         ((Games.visitor_team_id == team_id) | (Games.home_team_id == team_id))
-        & Games.visitor_g
-        > 0
+        & (Games.visitor_g > 0 | Games.home_g > 0)
     )
     x = [[z.visitor_team_id, z.visitor_g, z.home_team_id, z.home_g, z.game_decided_by] for z in q[-5:]]
     winstring = ""
