@@ -1,7 +1,9 @@
 # -*-coding:utf8;-*-
 # qpy:2
 # qpy:console
-
+"""
+A set of queries used by various files within the subban library against the database.
+"""
 # Choose working directory.
 from .nhl_data_models import Games
 import time, datetime
