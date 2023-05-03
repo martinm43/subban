@@ -23,7 +23,7 @@ start_year = 2007 #Temporary fix here - Elo only starts from 2007 in this iterat
 x = Games.select().order_by(Games.season_year.desc()).get()
 end_year = x.season_year
 
-for year in range(start_year, end_year):
+for year in range(start_year, end_year+1):
 
     season_query(year)
     games = season_query(year)
