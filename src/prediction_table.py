@@ -39,7 +39,7 @@ def playoff_odds_calc(start_datetime, end_datetime, season_year, ratings_mode="E
 
     from predict.cython_mcss.mcss_ext2 import simulations_result_vectorized
     from analytics.SRS import SRS
-    from analytics.morey import SRS_regress, Elo_regress
+    from analytics.purdy import SRS_regress, Elo_regress
     from analytics.wins_script import points_list
 
     from nhl_database.queries import games_query, games_won_query, future_games_query

@@ -16,7 +16,7 @@ import numpy as np
 from random import randint
 from nhl_database.queries import season_query, team_elo_rating
 from nhl_database.nhl_data_models import Games
-from analytics.morey import Elo_regress
+from analytics.purdy import Elo_regress
 
 #x = Games.select().order_by(Games.season_year.asc()).get()
 start_year = 2007 #Temporary fix here - Elo only starts from 2007 in this iteration of simple sports model
