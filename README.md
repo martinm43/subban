@@ -1,6 +1,7 @@
 =======
-# subban
-A hockey predictions library based on Elo and SRS. Named after the great Habs defenseman, PK Subban. Currently under development.
+# Subban
+A hockey predictions library based on Elo and SRS, similar to the nba_playoff_odds library. Named after the great Habs defenseman, PK Subban. Still under development.
+
 
 ## Attributions
 This project incorporates source from the Armadillo C++ Linear Algebra Library.

@@ -14,13 +14,13 @@ Outputs: None
 import numpy as np
 
 from random import randint
-from nba_database.queries import season_query, team_elo_rating
-from nba_database.nba_data_models import BballrefScores
+from nhl_database.queries import season_query, team_elo_rating
+from nhl_database.nhl_data_models import Games
 from analytics.morey import Elo_regress
 
-x = BballrefScores.select().order_by(BballrefScores.season_year.asc()).get()
-start_year = x.season_year
-x = BballrefScores.select().order_by(BballrefScores.season_year.desc()).get()
+#x = Games.select().order_by(Games.season_year.asc()).get()
+start_year = 2007 #Temporary fix here - Elo only starts from 2007 in this iteration of simple sports model
+x = Games.select().order_by(Games.season_year.desc()).get()
 end_year = x.season_year
 
 for year in range(start_year, end_year):

@@ -9,7 +9,7 @@ donate to them: they make parsing data easy!
 Inputs: A schedule file.
 Headers are as follows:
 Round Number,Date,Location,Home Team,Away Team,Result
--- Note that the website uses "LA Clippers" not "Los Angeles Clippers"
+-- e.g., note that the website uses "LA Clippers" not "Los Angeles Clippers"
 
 Outputs:
     None, writes to the database as blank "games to be played"
