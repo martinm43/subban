@@ -1,5 +1,5 @@
 """
-ORM class objects for the tables within the nba_data.sqlite database.
+ORM class objects for the tables within the nhl_data.sqlite database.
 
 """
 # from peewee import *
@@ -109,7 +109,7 @@ class ProlineData(BaseModel):
 
 
 class TeamEloData(BaseModel):
-    """ORM object for the 'NBATeamEloData' Table"""
+    """ORM object for the team elo table"""
 
     season_year = IntegerField(null=True)  #
     team_abbreviation = TextField(null=True)

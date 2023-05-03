@@ -1,5 +1,5 @@
 """
-Script that calculates Elo for the entire available NBA history,
+Script that calculates Elo for the entire available NHL history,
 ERASES THE PREVIOUS RESULTS, and stores the result the main SQLite database.
 
 Inputs: 
