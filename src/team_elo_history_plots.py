@@ -1,4 +1,6 @@
 """
+MODULE UNDER DEVELOPMENT - NOT READY FOR USE. - MM.
+
 Short sample script that plots the moving elo for a given team over their 
 available history in the Elo database.
 
@@ -13,11 +15,11 @@ import pandas as pd
 import sqlite3
 import time
 
-from nba_database.queries import team_abbreviation
+from nhl_database.queries import team_abbreviation
 
 for team_id in range(1, 31):
-    conn = sqlite3.connect("nba_data.sqlite")
-    query = "SELECT datetime,elo_rating FROM nba_team_elo_data where team_id = " + str(
+    conn = sqlite3.connect("nhl_data.sqlite")
+    query = "SELECT datetime,elo_rating FROM team_elo_data where team_id = " + str(
         team_id
     )
 
@@ -28,7 +30,7 @@ for team_id in range(1, 31):
     # get the appropriate colours
     cursor = conn.cursor()
     cursor.execute(
-        "SELECT primary_color from pro_api_teams where bball_ref_id=" + str(team_id)
+        "SELECT primary_color from teams where id=" + str(team_id)
     )
     s = cursor.fetchall()
 
