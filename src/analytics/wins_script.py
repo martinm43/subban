@@ -1,4 +1,8 @@
 # coding: utf-8
+"""
+Scripts for getting wins and points.
+"""
+
 from pprint import pprint
 def get_wins(team_id, season_year, start_datetime, end_datetime):
     """
