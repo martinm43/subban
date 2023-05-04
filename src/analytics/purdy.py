@@ -4,6 +4,7 @@ in calculated analytical values (Elo and SRS)
 and returns a one-game probability of
 winning.
 
+Named after a recent late innovator in hockey analytics, T. Purdy.
 """
 
 
