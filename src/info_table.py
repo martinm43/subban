@@ -106,7 +106,7 @@ def info_table_data(season_year, start_datetime, end_datetime):
         for x in results
     ]
 
-    #results_tuples.sort(key=lambda x: -x[8]) #formerly x[8], otherwise will return alphabetical sort
+    results_tuples.sort(key=lambda x: -x[8]) #formerly x[8], otherwise will return alphabetical sort
     return results_tuples
 
 def print_results_table(results_tuples):
@@ -139,7 +139,7 @@ def print_results_table(results_tuples):
 
 if __name__ == "__main__":
     import sys
-    season_year = 2023
+    season_year = 2024
     start_datetime = datetime(season_year-1,10,1)
     analysis_days = input("Please enter the number of days, min 7, to use for analysis. If all, enter -1: ")
         
@@ -149,7 +149,7 @@ if __name__ == "__main__":
         sys.exit("Invalid value entered, program exiting")
         
     if analysis_days == -1:
-        start_datetime = datetime(2022, 10, 10)
+        start_datetime = datetime(2023, 10, 10)
     elif analysis_days >= 7:
         start_datetime = datetime.today()-timedelta(days=analysis_days)
     else:
