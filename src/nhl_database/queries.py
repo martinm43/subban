@@ -53,6 +53,17 @@ def team_abbreviation(team_alphabetical_id):
     s_result = s_query[0]
     return s_result.abbreviation
 
+def full_name_from_abbrev(abbreviation):
+    """
+    Converts team numerical ids into team names.
+    """
+    from .nhl_data_models import Teams
+
+    s_query = Teams.select(Teams.team_name).where(
+        Teams.abbreviation == abbreviation
+    )
+    s_result = s_query[0]
+    return s_result.team_name
 
 def full_name_to_id(full_team_name):
     """

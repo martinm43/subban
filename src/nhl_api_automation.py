@@ -9,27 +9,28 @@ A script for updating data between a given certain amount of dates
 import requests
 from datetime import datetime, timedelta
 
-import sqlite3
+from pprint import pprint
 
-from nhl_database.queries import epochtime
+from nhl_database.queries import epochtime, full_name_from_abbrev
 from nhl_database.nhl_data_models import database, Games
 
-base_url = "https://statsapi.web.nhl.com/api/v1/schedule"
-
+#base_url = "https://statsapi.web.nhl.com/api/v1/schedule"
+base_url = "https://api-web.nhle.com/v1/schedule/" #Url changes as of Wed Nov 8 2023
 # API call variable
 
-start_date = datetime(2022,10,6) #date, used for observation
-end_date = datetime(2023,4,16)
+start_date = datetime.today()-timedelta(days=14) #date, used for observation
+end_date = datetime.today()-timedelta(days=1)
 loop_date = start_date
 
 while loop_date < end_date:
     game_date = loop_date.strftime("%Y-%m-%d")
     print(game_date+" processing")
-    r = requests.get(url=base_url+"?date="+game_date)
+    #r = requests.get(url=base_url+"?date="+game_date)
+    r = requests.get(url=base_url+game_date)
     data = r.json()
     
     try:
-        games = data["dates"][0]["games"]
+        games = data["gameWeek"][0]["games"]
     except IndexError:
         loop_date = loop_date + timedelta(days=1)
         print("No games played on "+game_date)
@@ -45,27 +46,31 @@ while loop_date < end_date:
     
     game_list = []
     for g in games:
+        #pprint(g)
         game_dict = {}
-        r_game = requests.get(
-            "https://statsapi.web.nhl.com/api/v1/game/"+str(g["gamePk"])+"/linescore")
-        game_data = r_game.json()
-        game_dict["away_team_name"] = game_data["teams"]["away"]["team"]["name"]
-        game_dict["away_g"] = game_data["teams"]["away"]["goals"]
-        game_dict["home_team_name"] = game_data["teams"]["home"]["team"]["name"]
-        game_dict["home_g"] = game_data["teams"]["home"]["goals"]
+
+        game_dict["away_team_abbrev"] = g["awayTeam"]["abbrev"]
+        game_dict["away_team_name"] = full_name_from_abbrev(g["awayTeam"]["abbrev"])
+        game_dict["away_g"] = g["awayTeam"]["score"]
+        game_dict["home_team_abbrev"] = g["homeTeam"]["abbrev"]
+        game_dict["home_team_name"] = full_name_from_abbrev(g["homeTeam"]["abbrev"])
+        game_dict["home_g"] = g["homeTeam"]["score"]
     
-        if game_data["currentPeriodOrdinal"] == "SO":
+        #print(g["gameOutcome"]["lastPeriodType"])
+        if g["gameOutcome"]["lastPeriodType"] == "SO": 
             game_dict["Game_Decided_By"] = "SO"
-        elif game_data["currentPeriodOrdinal"] == "OT":
+        elif g["gameOutcome"]["lastPeriodType"] == "OT":
             game_dict["Game_Decided_By"] = "OT"
-        elif game_data["currentPeriodOrdinal"] == "3rd":
+        elif g["gameOutcome"]["lastPeriodType"] == "REG":
             game_dict["Game_Decided_By"] = "Regulation"
         else:
-            print("Error - check game status for game "+str(g["gamePk"]))
+            print("Error - check game status for game "+str(g["id"]))
             break
         game_dict["game_date"] = game_date
         game_dict["game_datetime"] = datetime.fromisoformat(game_date)
         game_dict["datetime"] = epochtime(game_dict["game_datetime"])
+        #pprint("Dictionary")
+        #pprint(game_dict)
         game_list.append(game_dict)
     
     for z in game_list:
