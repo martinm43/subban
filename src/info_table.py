@@ -156,6 +156,5 @@ if __name__ == "__main__":
         sys.exit("Number of days invalid, program exiting.")
 
     end_datetime = datetime.today()-timedelta(days=1)
-    end_datetime = datetime(season_year,4,15)
     a = info_table_data(season_year,start_datetime,end_datetime)
     print_results_table(a)
