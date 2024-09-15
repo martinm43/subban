@@ -18,8 +18,8 @@ from nhl_database.nhl_data_models import database, Games
 base_url = "https://api-web.nhle.com/v1/schedule/" #Url changes as of Wed Nov 8 2023
 # API call variable
 
-start_date = datetime.today()-timedelta(days=30) #date, used for observation
-end_date = datetime.today()-timedelta(days=1)
+start_date = datetime(2024,2,1) #date, used for observation
+end_date = datetime(2024,2,2)
 loop_date = start_date
 
 while loop_date < end_date:
@@ -45,17 +45,21 @@ while loop_date < end_date:
     # projects. Here this is only for scores.
     
     game_list = []
+    mtl_count = 0
     for g in games:
         #pprint(g)
         game_dict = {}
 
         game_dict["away_team_abbrev"] = g["awayTeam"]["abbrev"]
-        game_dict["away_team_name"] = full_name_from_abbrev(g["awayTeam"]["abbrev"])
+        print(game_dict["away_team_abbrev"])
+        game_dict["away_team_name"] = full_name_from_abbrev(game_dict["away_team_abbrev"])
         game_dict["away_g"] = g["awayTeam"]["score"]
         game_dict["home_team_abbrev"] = g["homeTeam"]["abbrev"]
-        game_dict["home_team_name"] = full_name_from_abbrev(g["homeTeam"]["abbrev"])
+        game_dict["home_team_name"] = full_name_from_abbrev(game_dict["home_team_abbrev"])
         game_dict["home_g"] = g["homeTeam"]["score"]
-    
+        if game_dict["home_team_abbrev"] == "MTL" or game_dict["away_team_abbrev"] == "MTL":
+            mtl_count += 1
+
         #print(g["gameOutcome"]["lastPeriodType"])
         if g["gameOutcome"]["lastPeriodType"] == "SO": 
             game_dict["Game_Decided_By"] = "SO"
@@ -69,10 +73,11 @@ while loop_date < end_date:
         game_dict["game_date"] = game_date
         game_dict["game_datetime"] = datetime.fromisoformat(game_date)
         game_dict["datetime"] = epochtime(game_dict["game_datetime"])
-        #pprint("Dictionary")
-        #pprint(game_dict)
+        pprint("Dictionary")
+        pprint(game_dict)
         game_list.append(game_dict)
     
+    print("MTL Count"+mtl_count)
     for z in game_list:
         #Quick 
         Games.update(visitor_g = z["away_g"], home_g = z["home_g"],game_decided_by = z["Game_Decided_By"]).where((Games.game_date == z["game_date"]) & (Games.visitor == z["away_team_name"]) & (Games.home == z["home_team_name"])).execute()
