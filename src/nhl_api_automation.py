@@ -47,7 +47,7 @@ while loop_date < end_date:
     game_list = []
     mtl_count = 0
     for g in games:
-        #pprint(g)
+        #pprint(g) -- using debug printing.
         game_dict = {}
 
         game_dict["away_team_abbrev"] = g["awayTeam"]["abbrev"]
