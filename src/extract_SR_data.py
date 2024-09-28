@@ -53,7 +53,7 @@ for d in imported_season_dicts:
     d["date"] = date_datetime.strftime("%Y-%m-%d")
     d['game_date']=d['date']
     d.pop('date')
-    
+    d.pop('Time')    
 
     # convert values that should be ints into ints
     # and address zero-attendance COVID games
