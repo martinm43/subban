@@ -22,6 +22,8 @@ import os
 ext = Extension(
     "mcss_ext2",
     sources=["mcss_ext2.pyx", "mcss.cpp"],
+    library_dirs=["/usr/local/lib"],
+    include_dirs=["/usr/local/include"],
     extra_compile_args=["-std=c++11"],
 
 )
