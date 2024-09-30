@@ -3,4 +3,4 @@
 rm -r build && rm -r *.so
 # run the python script and link sqlite.
 #python3 cpp_setup.py build_ext --inplace 
-python3 cpp_setup.py build_ext -larmadillo -lsqlite3
+python3 cpp_setup.py build_ext --inplace -larmadillo -lsqlite3
