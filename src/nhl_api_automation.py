@@ -19,6 +19,7 @@ base_url = "https://api-web.nhle.com/v1/schedule/" #Url changes as of Wed Nov 8 
 # API call variable
 
 start_date = datetime.today()-timedelta(days=30) #date, used for observation
+start_date = datetime(2024,11,1)
 end_date = datetime.today()-timedelta(days=1)
 loop_date = start_date
 
