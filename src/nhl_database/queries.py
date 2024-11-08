@@ -59,6 +59,11 @@ def full_name_from_abbrev(abbreviation):
     """
     from .nhl_data_models import Teams
 
+    #quick fix
+    if abbreviation == "UTA":
+        abbreviation = "ARI"
+
+
     s_query = Teams.select(Teams.team_name).where(
         Teams.abbreviation == abbreviation
     )
