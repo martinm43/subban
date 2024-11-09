@@ -1,9 +1,0 @@
-#need to come up with a way to link games to teams now that
-- Montreal uses an accent
-- Utah and Arizona are "different teams"
-
-Idea is to use abbreviations for this
-
-This should fix automatic update issue.
-
--- Martin Miller, November 9, 2024
