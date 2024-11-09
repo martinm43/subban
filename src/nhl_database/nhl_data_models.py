@@ -34,6 +34,9 @@ class Games(BaseModel):
     season_year = IntegerField(null=True)
     log = TextField(null=True)
     attendance = IntegerField(null=True)
+    home_abbreviation = TextField(null=True)
+    away_abbreviation = TextField(null=True)
+
 
     class Meta:
         table_name = "games"

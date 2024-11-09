@@ -19,7 +19,7 @@ base_url = "https://api-web.nhle.com/v1/schedule/" #Url changes as of Wed Nov 8 
 # API call variable
 
 #start_date = datetime.today()-timedelta(days=20) #date, used for observation
-start_date = datetime(2024,11,7)
+start_date = datetime(2024,10,4)
 end_date = datetime.today()-timedelta(days=1)
 loop_date = start_date
 
@@ -48,11 +48,12 @@ while loop_date < end_date:
     game_list = []
     for g in games:
         #pprint(g)
-        if "score" in g["homeTeam"]:
+        if "score" in g["homeTeam"]: #if game was played
             game_dict = {}
 
             game_dict["away_team_abbrev"] = g["awayTeam"]["abbrev"]
             game_dict["away_team_name"] = full_name_from_abbrev(g["awayTeam"]["abbrev"])
+            print(g["awayTeam"]["abbrev"])
             game_dict["away_g"] = g["awayTeam"]["score"]
             game_dict["home_team_abbrev"] = g["homeTeam"]["abbrev"]
             game_dict["home_team_name"] = full_name_from_abbrev(g["homeTeam"]["abbrev"])
@@ -77,7 +78,7 @@ while loop_date < end_date:
     
     for z in game_list:
         #Quick 
-        Games.update(visitor_g = z["away_g"], home_g = z["home_g"],game_decided_by = z["Game_Decided_By"]).where((Games.game_date == z["game_date"]) & (Games.visitor == z["away_team_name"]) & (Games.home == z["home_team_name"])).execute()
+        Games.update(visitor_g = z["away_g"], home_g = z["home_g"],game_decided_by = z["Game_Decided_By"]).where((Games.game_date == z["game_date"]) & (Games.away_abbreviation == z["away_team_abbrev"]) & (Games.home_abbreviation == z["home_team_abbrev"])).execute()
 
 
     loop_date = loop_date + timedelta(days=1)
