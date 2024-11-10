@@ -62,7 +62,7 @@ def full_name_from_abbrev(abbreviation):
     #quick fix
     if abbreviation == "UTA":
         abbreviation = "ARI"
-        print("this code is accesssed")
+        #print("this code is accesssed")
 
 
     s_query = Teams.select(Teams.team_name).where(
