@@ -71,8 +71,8 @@ while loop_date < end_date:
             game_dict["game_date"] = game_date
             game_dict["game_datetime"] = datetime.fromisoformat(game_date)
             game_dict["datetime"] = epochtime(game_dict["game_datetime"])
-            #pprint("Dictionary")
             #pprint(game_dict)
+            print(game_dict["away_team_abbrev"]+" "+str(game_dict["away_g"])+", "+game_dict["home_team_abbrev"]+" "+str(game_dict["home_g"])+" "+game_dict["Game_Decided_By"])
             game_list.append(game_dict)
     
     for z in game_list:
