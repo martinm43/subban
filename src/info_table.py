@@ -106,7 +106,7 @@ def info_table_data(season_year, start_datetime, end_datetime):
         for x in results
     ]
 
-    results_tuples.sort(key=lambda x: -x[2]) #formerly x[8], otherwise will return alphabetical sort
+    results_tuples.sort(key=lambda x: -x[8]) #formerly x[8], otherwise will return alphabetical sort
     return results_tuples
 
 def print_results_table(results_tuples):
@@ -140,7 +140,7 @@ def print_results_table(results_tuples):
 if __name__ == "__main__":
     import sys
     season_year = 2025
-    start_datetime=datetime(season_year-1,10,1)
+    start_datetime=datetime(season_year-1,12,1)
     end_datetime = datetime(season_year,5,1)
     a = info_table_data(season_year,start_datetime,end_datetime)
     print_results_table(a)
