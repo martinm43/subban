@@ -39,7 +39,8 @@ for d in imported_season_dicts:
     d["season_year"] = season_year
 
     # add in team ids
-    print(d['visitor'])
+    #print(d['visitor'])
+    #print(d)
     d["visitor_team_id"]=full_name_to_id(d["visitor"])
     d["home_team_id"]=full_name_to_id(d["home"])
 

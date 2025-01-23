@@ -90,13 +90,14 @@ def full_name_to_id(full_team_name):
         full_team_name = "Anaheim Ducks"
 
 
-    # Faut qu'on soit correcte
-    if full_team_name == "Montreal Canadiens":
-        full_team_name = "Montréal Canadiens"
+    # Faut qu'on soit correcte - check this later.
+    #if full_team_name == "Montreal Canadiens":
+    #    full_team_name = "Montréal Canadiens"
 
 
     from .nhl_data_models import Teams
 
+    #print(full_team_name+"query")
     s_query = Teams.select(Teams.id).where(
         Teams.team_name == full_team_name
     )
