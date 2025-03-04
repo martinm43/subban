@@ -68,8 +68,14 @@ def full_name_from_abbrev(abbreviation):
     s_query = Teams.select(Teams.team_name).where(
         Teams.abbreviation == abbreviation
     )
-    s_result = s_query[0]
-    return s_result.team_name
+    
+    try:
+        s_result = s_query[0]
+        name = s_result.team_name
+    except IndexError:
+        print(abbreviation+" not in list")
+        name = ""
+    return name
 
 def full_name_to_id(full_team_name):
     """
