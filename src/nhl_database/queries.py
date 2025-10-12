@@ -88,7 +88,7 @@ def full_name_to_id(full_team_name):
     """
     # Adjusting for previous team names/previous team locations.
     
-    if full_team_name == "Phoenix Coyotes" or full_team_name == "Utah Hockey Club":
+    if full_team_name == "Phoenix Coyotes" or full_team_name == "Utah Hockey Club" or full_team_name == "Utah Mammoth":
         full_team_name = "Arizona Coyotes"
     if full_team_name == "Atlanta Thrashers":
         full_team_name = "Winnipeg Jets"
