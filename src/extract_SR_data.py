@@ -18,7 +18,7 @@ from pprint import pprint
 import pandas as pd
 from datetime import datetime
 
-from nhl_database.queries import epochtime, full_name_to_id
+from nhl_database.queries import epochtime, full_name_to_id, team_abbreviation
 from nhl_database.nhl_data_models import database, Games
 
 season_year = int(sys.argv[1])
@@ -43,6 +43,9 @@ for d in imported_season_dicts:
     #print(d)
     d["visitor_team_id"]=full_name_to_id(d["visitor"])
     d["home_team_id"]=full_name_to_id(d["home"])
+    d["home_abbreviation"]=team_abbreviation(d["home_team_id"])
+    d["away_abbreviation"]=team_abbreviation(d["visitor_team_id"])
+
 
     # standardized date conversion
     datestr = d["Date"]
