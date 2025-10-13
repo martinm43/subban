@@ -18,7 +18,7 @@ from nhl_database.nhl_data_models import database, Games
 base_url = "https://api-web.nhle.com/v1/schedule/" #Url changes as of Wed Nov 8 2023
 # API call variable
 
-start_date = datetime.today()-timedelta(days=40) #date, used for observation
+start_date = datetime.today()-timedelta(days=5) #date, used for observation
 end_date = datetime.today()-timedelta(days=1)
 loop_date = start_date
 
@@ -71,7 +71,7 @@ while loop_date < end_date:
             game_dict["game_date"] = game_date
             game_dict["game_datetime"] = datetime.fromisoformat(game_date)
             game_dict["datetime"] = epochtime(game_dict["game_datetime"])
-            #pprint(game_dict)
+            pprint(game_dict)
             print(game_dict["away_team_abbrev"]+" "+str(game_dict["away_g"])+", "+game_dict["home_team_abbrev"]+" "+str(game_dict["home_g"])+" "+game_dict["Game_Decided_By"])
             game_list.append(game_dict)
     

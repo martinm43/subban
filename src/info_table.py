@@ -72,9 +72,10 @@ def info_table_data(season_year, start_datetime, end_datetime):
         maxcalcdatetime=epochtime(end_datetime),
     )
 
-    srs_list = SRS(
-        games_list, max_MOV=max_MOV, home_team_adv=home_team_adv, win_floor=win_floor
-    )
+    #srs_list = SRS(
+    #    games_list, max_MOV=max_MOV, home_team_adv=home_team_adv, win_floor=win_floor
+    #)
+    srs_list = [0 for i in range(1,33)]
 
     elo_list = elo_ratings_list(epochtime(end_datetime))
 
@@ -139,7 +140,7 @@ def print_results_table(results_tuples):
 
 if __name__ == "__main__":
     import sys
-    season_year = 2025
+    season_year = 2026
     start_datetime=datetime(season_year-1,10,1)
     end_datetime = datetime(season_year,5,1)
     a = info_table_data(season_year,start_datetime,end_datetime)
