@@ -24,7 +24,8 @@ from nhl_database.nhl_data_models import Games
 x = Games.select().order_by(Games.season_year.asc()).get()
 min_val = x.season_year
 x = Games.select().order_by(Games.season_year.desc()).get()
-max_val = x.season_year
+#max_val = x.season_year
+max_val = 2024
 
 z = Games.select().where(
     Games.season_year >= min_val, Games.season_year < max_val

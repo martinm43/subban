@@ -231,7 +231,7 @@ if __name__ == "__main__":
     # master_results - capture all ratings over all seasons.
     master_results = []
 
-    reset_factor = 0.25  # 1: every season is new. #0: every season is a continuation
+    reset_factor = 1  # 1: every season is new. #0: every season is a continuation
     reset_value = DEFAULT_RATING  # identical to default value
     for season_year in range(start_year, end_year):
 
