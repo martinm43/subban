@@ -72,10 +72,10 @@ def info_table_data(season_year, start_datetime, end_datetime):
         maxcalcdatetime=epochtime(end_datetime),
     )
 
-    #srs_list = SRS(
-    #    games_list, max_MOV=max_MOV, home_team_adv=home_team_adv, win_floor=win_floor
-    #)
-    srs_list = [0 for i in range(1,33)]
+    srs_list = SRS(
+        games_list, max_MOV=max_MOV, home_team_adv=home_team_adv, win_floor=win_floor
+    )
+    #srs_list = [0 for i in range(1,33)]
 
     elo_list = elo_ratings_list(epochtime(end_datetime))
 
