@@ -1,6 +1,7 @@
 =======
-# Subban
-A hockey predictions library based on Elo and SRS, similar to the nba_playoff_odds library. Named after the great Habs defenseman, PK Subban. Still under development.
+# NHL_Playoffs_Tool
+A hockey predictions library based on Elo and SRS, similar to the nba_playoff_odds library. 
+(Name has changed.)
 
 
 ## Attributions
